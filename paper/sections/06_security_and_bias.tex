@@ -1,0 +1,66 @@
+\section{Security, Bias, and Fairness as Architectural Side-Benefits}
+\label{sec:security}
+
+The same architectural choice that makes our committee
+token-efficient --- small heterogeneous agents instead of one large
+monolith --- also makes it auditable, exposes a free trust signal,
+and supplies a route to cross-border \textbf{fairness}.
+
+\paragraph{SDI as a post-hoc LLM-hallucination detector.}
+Stratifying FPB by ``LLM-correct'' vs.\ ``LLM-wrong'' on the gold
+label, mean SDI$_{\mathrm{ER}}$ when the LLM is correct is $0.17$;
+when the LLM is wrong it is $0.71$ --- a $4\times$ separation
+(Welch's $t=46.8$, $p<10^{-300}$). Treating
+SDI$_{\mathrm{ER}}>\tau$ as a binary ``LLM-is-hallucinating'' flag
+yields \textbf{AUC$=0.90$} on FPB (Figure~\ref{fig:halluc}). Any
+deployment that already runs FinBERT and an LLM in parallel can
+wire SDI$_{\mathrm{ER}}$ as a trust score with no additional models,
+no labelling, and no training~\cite{ji2023hallucination,manakul2023selfcheckgpt}.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{fig_e2_halluc_roc.pdf}
+\caption{SDI as a post-hoc LLM-hallucination detector on FPB.
+SDI$_{\mathrm{ER}}$ (FinBERT vs.\ Qwen-7B) reaches AUC $=0.90$ for
+the binary ``LLM gives the wrong label'' task.}
+\label{fig:halluc}
+\end{figure}
+
+\paragraph{Adversarial perturbation detection (partial).}
+On 500 held-out FPB sentences perturbed with synonym swap, negation
+insertion, numeric magnitude flip, or character dropout, SDI reaches
+AUC $=0.71$ at catching negation flips but only AUC $\approx\!0.5$
+on the other classes. The honest takeaway is that SDI is a strong
+post-hoc hallucination detector but only a partial adversarial
+detector --- adequate for negation attacks but not a substitute for
+purpose-built defences~\cite{jin2020textfooler,perez2022promptinject}.
+
+\paragraph{Per-agent attack containment.}
+Sandboxing one large LLM saturates a GPU; sandboxing five small
+agents costs roughly the same total resources but allows each to
+live in a separate container with its own permission scope. Because
+routing decisions hinge on the SDI signal between \emph{independent}
+agents, an attacker would need to corrupt multiple agents
+\emph{coherently} for the manipulation to remain invisible to the
+SDI gate.
+
+\paragraph{Bias diversity and fairness on the minority class.}
+Pairwise error-set Jaccard between (V, F, L) is $0.13$--$0.15$
+(Section~\ref{sec:experiments:bias}). The debate@7B committee reaches
+$F_1\!=\!0.893$ on the (hard) negative class --- $+1.4$\,pp over
+FinBERT alone (0.879) --- the only setting where a committee
+strictly beats the specialist on a class. The lift is precision
+improvement at near-equal recall, which is the operationally
+important regime for risk management. We treat this as a concrete
+\emph{intra-corpus fairness} result: the committee improves the
+worst-off (minority) class without sacrificing the others.
+
+\paragraph{Cross-border fairness via the SCD.}
+For multinational deployments, fairness across languages matters as
+much as fairness across classes: a Chinese end-user should receive
+the same canonical sentiment label as the English equivalent. The
+SCD with multilingual sentence embeddings achieves this directly
+(Section~\ref{sec:experiments:zh}): 95\% of Chinese queries match
+the English canonical answer at $F_1\!=\!0.99$, eliminating a
+common source of cross-language drift in production multilingual
+deployments.

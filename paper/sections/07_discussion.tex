@@ -1,0 +1,41 @@
+\section{Discussion and Deployment}
+\label{sec:discussion}
+
+\paragraph{Distributed deployment at scale.}
+Each tier of TriAgent is stateless and shardable. At 10\,M users
+($\sim$1\,B queries/day): L1 (VADER) is CPU-co-located with the API
+gateway ($\sim$30\,K queries/sec/core); L2 (FinBERT) is a stateless
+GPU service at $\approx$5\,K queries/sec per A5000-class card,
+needing 3--4 instances; L3 (Qwen-$N$) handles only 5--15\,\% of
+nominal traffic after the SDI gate ($\sim$15\,\% trigger) and SCD
+cache (10--55\,\% absorbed depending on $\tau$), giving roughly
+\textbf{18 GPUs at the 10\,M-user scale vs.\ $\sim$3{,}000 for an
+always-L3 deployment}. The SCD is the only stateful component ---
+materialised as a single FAISS index~\cite{johnson2019faiss} per
+region with asynchronous replication; a 1\,M-entry cache occupies
+$\approx$1.5\,GB RAM and serves cosine queries in microseconds.
+
+\paragraph{Customer-language regime.}
+On Twitter Financial News (TFNS~\cite{tfns}, $\sim$12\,K customer-
+style tweets) FinBERT collapses from $F_1=0.88$ to $0.66$
+($-22$\,pp), while Qwen-7B holds at $0.76$. This inverts the
+``specialist beats LLM'' relationship for fragmented text and
+explains why the critic protocol regresses on TFNS: with weak V$+$F
+scaffolding, a critic underperforms the LLM alone. The SDI gate
+handles this by accepting a per-domain trigger threshold.
+
+\paragraph{Cross-family scaling is not universal.}
+The critic plateau holds within Qwen2.5-Instruct (1.5\,B--7\,B) but
+does not transfer cleanly: critic@Mistral-7B reaches only $F_1=0.79$.
+Debate is more family-robust (debate@Mistral-7B$=0.82$). A
+practitioner should run the cheap persona-vote sanity check before
+committing to a specific LLM family for the L3 tier.
+
+\paragraph{Honest limitations.}
+The 20-ticker back-test uses FPB sentences as a controlled news
+proxy; we do not claim it predicts real markets. The adversarial
+detector AUC drops to $\approx\!0.5$ for synonym / numeric / typo
+attacks --- a perturbation-specific defence is the most pressing
+follow-on. The Chinese pilot shows that the V$+$F lexicon$+$
+specialist tier needs Chinese-specific replacements for full
+deployment.

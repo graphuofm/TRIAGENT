@@ -1,0 +1,74 @@
+\section{Three-Granularity Edge Predictor}
+\label{sec:predictor}
+
+For routing to be deployable, the gating decision must be made
+\emph{before} any expensive model has run. We train a lightweight
+classifier to predict, from features computable at the VADER stage
+alone, whether a sentence will produce high committee disagreement
+(binary target: $\mathrm{SDI}_{\max}>0.7$). The feature engineering
+mirrors the committee's own granularity stratification ---
+word, phrase, and sentence --- and we report the marginal
+contribution of each.
+
+\paragraph{Word-level.}
+6 VADER outputs (positive/negative/neutral fractions, compound,
+confidence, $|$compound$|$) and 6 surface indicators (number,
+currency, contrast word, negation, length). We mine \emph{unigram}
+triggers via log-odds + $z$-score on the high-SDI subset; top words
+include \texttt{decreased}, \texttt{dropped}, \texttt{fell}.
+
+\paragraph{Phrase-level.}
+We extend the log-odds miner to $n\!\in\!\{2,3\}$ and use the
+top-30 bigram / trigram triggers as binary presence features.
+Bigrams capture phrase-bound polarity that single words miss
+(\texttt{down\_from}, \texttt{compared\_profit}, and ideally
+context-flipping pairs like \texttt{loss\_narrowed} vs.\
+\texttt{loss\_widened}). On FPB the bigram lift is small ($+0.01$
+AUC over unigram), but the running example
+(Section~\ref{sec:intro}) shows the linguistic mechanism is real.
+
+\paragraph{Sentence-level.}
+We encode each sentence with the multilingual MiniLM-L12 model
+(22\,M params, $\approx$10\,ms/sentence on CPU) and PCA-reduce the
+384-dim embedding to 16 components. The same module powers the SCD
+(Section~\ref{sec:framework:scd}) and the cross-lingual pilot
+(Section~\ref{sec:experiments:zh}).
+
+Table~\ref{tab:predictor} reports the seven-variant ablation. Word
+features alone reach AUC $=0.69$; phrase adds $+0.01$;
+\emph{sentence} adds $+0.04$ --- the largest single-granularity
+contribution. XGBoost over the full feature set reaches AUC $=0.85$.
+A non-deployable upper bound that encodes the LLM's R1 reasoning
+text reaches AUC $=0.94$, marking remaining headroom for deployable
+variants.
+
+\begin{table*}[t]
+\centering
+\small
+\caption{Edge predictor ablation across the three feature
+granularities. AUC-PR = area under precision-recall;
+P@R$x$ = precision at $x$\,\% recall; P@top10 = precision among the
+10\,\% riskiest predictions. Sentence-BERT features add the largest
+single-granularity lift. The non-deployable upper bound encodes the
+LLM's R1 explanation text and is not counted toward the deployable
+ceiling.}
+\label{tab:predictor}
+\begin{tabular}{lrrrrr}
+\toprule
+Model & AUC-ROC & AUC-PR & P@R20 & P@R50 & P@top10 \\
+\midrule
+random              & 0.503 & 0.328 & 0.353 & 0.332 & 0.351 \\
+LR-unigram          & 0.694 & 0.566 & 0.788 & 0.479 & 0.773 \\
+LR-uni+bigram       & 0.697 & 0.570 & 0.764 & 0.486 & 0.742 \\
+LR-uni+bi+trigram   & 0.703 & 0.582 & 0.808 & 0.503 & 0.773 \\
+LR-sentence-only    & 0.688 & 0.583 & 0.944 & 0.472 & 0.814 \\
+\textbf{LR-uni+bi+sent.} & \textbf{0.741} & \textbf{0.607} & 0.768 & 0.554 & 0.742 \\
+\textbf{XGBoost (all)}   & \textbf{0.848} & \textbf{0.745} & \textbf{0.943} & \textbf{0.759} & \textbf{0.866} \\
+\midrule
+XGBoost+reasoning$^\dagger$ & 0.937 & 0.897 & 0.990 & 0.964 & 0.990 \\
+\bottomrule
+\end{tabular}
+\\[2pt]
+\footnotesize $^\dagger$Encodes the LLM's R1 explanation text
+(non-deployable upper bound).
+\end{table*}

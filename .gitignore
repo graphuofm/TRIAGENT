@@ -1,0 +1,16 @@
+.env
+__pycache__/
+*.pyc
+*.pyo
+.ipynb_checkpoints/
+data/raw/market_data/
+results/data/*.csv
+results/figures/*.png
+paper/main.pdf
+paper/main.aux
+paper/main.log
+.vscode/
+.idea/
+venv/
+.venv/
+.claude/

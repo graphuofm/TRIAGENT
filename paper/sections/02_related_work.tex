@@ -1,0 +1,39 @@
+\section{Related Work}
+\label{sec:related}
+
+\paragraph{Financial NLP.}
+Loughran and McDonald~\shortcite{loughran2011liability} flagged
+systematic miscalibration of generic sentiment lexicons in financial
+text; Financial PhraseBank~\cite{malo2014fpb} grew out of that line.
+FinBERT~\cite{araci2019finbert,yang2020finbert} is the de facto open
+domain transformer; surveys~\cite{wang2024finllmsurvey} document a
+recent wave of billion-parameter financial reasoners
+(BloombergGPT~\cite{wu2023bloomberggpt},
+FinGPT~\cite{yang2023fingpt}, PIXIU~\cite{xie2023pixiu}). We ask
+\emph{not} which model is best, but how small each agent in a
+committee can become.
+
+\paragraph{Multi-agent LLMs.}
+Query-by-committee~\cite{settles2009al} and ensemble
+disagreement~\cite{lakshminarayanan2017ensembles} are the classical
+ancestors of our SDI. Recent multi-agent LLM frameworks ---
+AutoGen~\cite{wu2023autogen}, MetaGPT~\cite{hong2023metagpt},
+CAMEL~\cite{li2023camel}, multi-agent
+debate~\cite{du2023debate,liang2023encouraging}, LLM-as-a-judge
+\cite{zheng2023judging}, self-consistency
+\cite{wang2023selfconsistency} --- typically use the \emph{same}
+large model for every agent. Our negative result on same-size
+persona vote (Section~\ref{sec:experiments:scaling}) shows this does
+not substitute for the granularity-stratified diversity that drives
+our critic plateau.
+
+\paragraph{Cost-aware routing and semantic caching.}
+FrugalGPT~\cite{chen2023frugalgpt}, RouteLLM~\cite{ong2024routellm},
+and mixture-of-models routing~\cite{wang2022mixture,shnitzer2023llmrouting}
+cascade between cheap and expensive models per query. Semantic
+caches~\cite{wang2024caching} (a sibling of our SCD) reduce inference
+cost by reusing answers for near-duplicate queries; our SCD differs
+in that it caches \emph{committee decisions} (not single-model
+outputs) and uses multilingual sentence
+embeddings~\cite{reimers2019sbert,reimers2020multilingualkd} for
+cross-lingual canonicalisation.

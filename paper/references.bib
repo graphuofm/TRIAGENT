@@ -1,0 +1,482 @@
+% Bibliography for TriAgent — FinLLM @ IJCAI 2026 submission.
+
+% =====================================================================
+% 1) Domain background — financial NLP, lexicons, specialists
+% =====================================================================
+@article{loughran2011liability,
+  author  = {Loughran, Tim and McDonald, Bill},
+  title   = {When Is a Liability Not a Liability? {Textual} Analysis,
+             Dictionaries, and 10-{K}s},
+  journal = {The Journal of Finance},
+  volume  = {66}, number = {1}, pages = {35--65}, year = {2011},
+}
+
+@article{loughran2016survey,
+  author  = {Loughran, Tim and McDonald, Bill},
+  title   = {Textual Analysis in Accounting and Finance: A Survey},
+  journal = {Journal of Accounting Research},
+  volume  = {54}, number = {4}, pages = {1187--1230}, year = {2016},
+}
+
+@inproceedings{malo2014fpb,
+  author    = {Malo, Pekka and Sinha, Ankur and Korhonen, Pekka and
+               Wallenius, Jyrki and Takala, Pyry},
+  title     = {Good Debt or Bad Debt: Detecting Semantic Orientations
+               in Economic Texts},
+  booktitle = {JASIST}, year = {2014},
+}
+
+@inproceedings{maia2018fiqa,
+  author    = {Maia, Macedo and others},
+  title     = {{WWW'18 Open Challenge}: Financial Opinion Mining and
+               Question Answering},
+  booktitle = {WWW Companion}, year = {2018},
+}
+
+@misc{araci2019finbert,
+  author       = {Araci, Dogu},
+  title        = {{FinBERT}: Financial Sentiment Analysis with Pre-trained
+                  Language Models},
+  howpublished = {arXiv:1908.10063}, year = {2019},
+}
+
+@misc{yang2020finbert,
+  author       = {Yang, Yi and Uy, Mark Christopher Siy and Huang, Allen},
+  title        = {{FinBERT}: A Pretrained Language Model for Financial
+                  Communications},
+  howpublished = {arXiv:2006.08097}, year = {2020},
+}
+
+@inproceedings{shah2022flue,
+  author    = {Shah, Raj Sanjay and Chawla, Kunal and Eidnani,
+               Dheeraj and Shah, Agam and Du, Wendi and Chava, Sudheer
+               and Raman, Natraj and Smiley, Charese and Chen, Jiaao
+               and Yang, Diyi},
+  title     = {When {FLUE} Meets {FLANG}: Benchmarks and Large
+               Pretrained Language Model for Financial Domain},
+  booktitle = {EMNLP}, year = {2022},
+}
+
+@misc{wu2023bloomberggpt,
+  author       = {Wu, Shijie and others},
+  title        = {{BloombergGPT}: A Large Language Model for Finance},
+  howpublished = {arXiv:2303.17564}, year = {2023},
+}
+
+@misc{yang2023fingpt,
+  author       = {Yang, Hongyang and Liu, Xiao-Yang and Wang,
+                  Christina Dan},
+  title        = {{FinGPT}: Open-Source Financial Large Language Models},
+  howpublished = {arXiv:2306.06031}, year = {2023},
+}
+
+@inproceedings{xie2023pixiu,
+  author       = {Xie, Qianqian and others},
+  title        = {{PIXIU}: A Large Language Model, Instruction Data and
+                  Evaluation Benchmark for Finance},
+  booktitle    = {Advances in Neural Information Processing Systems
+                  (NeurIPS), Datasets and Benchmarks Track},
+  year         = {2023},
+}
+
+@misc{wang2024finllmsurvey,
+  author       = {Lee, Jean and others},
+  title        = {A Survey of Large Language Models in Finance
+                  ({FinLLMs})},
+  howpublished = {arXiv:2402.02315}, year = {2024},
+}
+
+@inproceedings{hutto2014vader,
+  author    = {Hutto, C. J. and Gilbert, Eric},
+  title     = {{VADER}: A Parsimonious Rule-based Model for Sentiment
+               Analysis of Social Media Text},
+  booktitle = {ICWSM}, year = {2014},
+}
+
+% =====================================================================
+% 2) Foundational LLMs & open-source models
+% =====================================================================
+@inproceedings{vaswani2017attention,
+  author    = {Vaswani, Ashish and others},
+  title     = {Attention Is All You Need},
+  booktitle = {NeurIPS}, year = {2017},
+}
+
+@inproceedings{devlin2019bert,
+  author    = {Devlin, Jacob and Chang, Ming-Wei and Lee, Kenton and
+               Toutanova, Kristina},
+  title     = {{BERT}: Pre-training of Deep Bidirectional Transformers
+               for Language Understanding},
+  booktitle = {NAACL}, year = {2019},
+}
+
+@misc{qwen25,
+  author       = {Qwen Team},
+  title        = {{Qwen2.5} Technical Report},
+  howpublished = {arXiv:2412.15115}, year = {2024},
+}
+
+@misc{mistral7b,
+  author       = {Jiang, Albert Q. and others},
+  title        = {{Mistral 7B}},
+  howpublished = {arXiv:2310.06825}, year = {2023},
+}
+
+@misc{llama3,
+  author       = {Dubey, Abhimanyu and others},
+  title        = {The {Llama 3} Herd of Models},
+  howpublished = {arXiv:2407.21783}, year = {2024},
+}
+
+@misc{deepseek2024,
+  author       = {DeepSeek-AI},
+  title        = {{DeepSeek-V3} Technical Report},
+  howpublished = {arXiv:2412.19437}, year = {2024},
+}
+
+% =====================================================================
+% 3) Multi-agent / committees / debate / LLM-as-judge
+% =====================================================================
+@techreport{settles2009al,
+  author      = {Settles, Burr},
+  title       = {Active Learning Literature Survey},
+  institution = {University of Wisconsin--Madison},
+  number      = {1648}, year = {2009},
+}
+
+@inproceedings{lakshminarayanan2017ensembles,
+  author    = {Lakshminarayanan, Balaji and Pritzel, Alexander and
+               Blundell, Charles},
+  title     = {Simple and Scalable Predictive Uncertainty Estimation
+               Using Deep Ensembles},
+  booktitle = {NeurIPS}, year = {2017},
+}
+
+@inproceedings{du2023debate,
+  author       = {Du, Yilun and Li, Shuang and Torralba, Antonio and
+                  Tenenbaum, Joshua B. and Mordatch, Igor},
+  title        = {Improving Factuality and Reasoning in Language Models
+                  through Multiagent Debate},
+  booktitle    = {Proceedings of the 41st International Conference on
+                  Machine Learning (ICML)}, year = {2024},
+}
+
+@inproceedings{liang2023encouraging,
+  author       = {Liang, Tian and others},
+  title        = {Encouraging Divergent Thinking in Large Language
+                  Models through Multi-Agent Debate},
+  booktitle    = {Proceedings of the 2024 Conference on Empirical
+                  Methods in Natural Language Processing (EMNLP)},
+  year         = {2024},
+}
+
+@inproceedings{wu2023autogen,
+  author       = {Wu, Qingyun and others},
+  title        = {{AutoGen}: Enabling Next-Gen {LLM} Applications via
+                  Multi-Agent Conversation Framework},
+  booktitle    = {First Conference on Language Modeling (COLM)},
+  year         = {2024},
+}
+
+@inproceedings{hong2023metagpt,
+  author       = {Hong, Sirui and others},
+  title        = {{MetaGPT}: Meta Programming for a Multi-Agent
+                  Collaborative Framework},
+  booktitle    = {The Twelfth International Conference on Learning
+                  Representations (ICLR)}, year = {2024},
+}
+
+@inproceedings{li2023camel,
+  author       = {Li, Guohao and others},
+  title        = {{CAMEL}: Communicative Agents for ``Mind'' Exploration
+                  of Large Language Model Society},
+  booktitle    = {Advances in Neural Information Processing Systems
+                  (NeurIPS)}, year = {2023},
+}
+
+@inproceedings{zheng2023judging,
+  author       = {Zheng, Lianmin and others},
+  title        = {Judging {LLM-as-a-Judge} with {MT-Bench} and {Chatbot
+                  Arena}},
+  booktitle    = {Advances in Neural Information Processing Systems
+                  (NeurIPS), Datasets and Benchmarks Track},
+  year         = {2023},
+}
+
+@inproceedings{wang2023selfconsistency,
+  author       = {Wang, Xuezhi and others},
+  title        = {Self-Consistency Improves Chain of Thought Reasoning
+                  in Language Models},
+  booktitle    = {The Eleventh International Conference on Learning
+                  Representations (ICLR)}, year = {2023},
+}
+
+% =====================================================================
+% 4) Cost-aware inference, cascading, and routing
+% =====================================================================
+@misc{chen2023frugalgpt,
+  author       = {Chen, Lingjiao and Zaharia, Matei and Zou, James},
+  title        = {{FrugalGPT}: How to Use Large Language Models While
+                  Reducing Cost and Improving Performance},
+  howpublished = {arXiv:2305.05176}, year = {2023},
+}
+
+@misc{ong2024routellm,
+  author       = {Ong, Isaac and others},
+  title        = {{RouteLLM}: Learning to Route LLMs with Preference
+                  Data},
+  howpublished = {arXiv:2406.18665}, year = {2024},
+}
+
+@inproceedings{wang2022mixture,
+  author    = {Wang, Hanrui and others},
+  title     = {Mixture of Cheap and Expensive Models for Cost-Effective
+               Inference},
+  booktitle = {NeurIPS Workshop on Efficient Natural Language and
+               Speech Processing}, year = {2022},
+}
+
+@misc{shnitzer2023llmrouting,
+  author       = {Shnitzer, Tal and others},
+  title        = {Large Language Model Routing with Benchmark Datasets},
+  howpublished = {arXiv:2309.15789}, year = {2023},
+}
+
+@misc{wang2024caching,
+  author       = {Bang, Fuyuan},
+  title        = {{GPTCache}: An Open-Source Semantic Cache for {LLM}
+                  Applications Enabling Faster Answers and Cost Savings},
+  howpublished = {EMNLP Demo}, year = {2023},
+}
+
+% =====================================================================
+% 5) Embeddings, RAG, retrieval
+% =====================================================================
+@inproceedings{reimers2019sbert,
+  author    = {Reimers, Nils and Gurevych, Iryna},
+  title     = {{Sentence-BERT}: Sentence Embeddings using Siamese
+               {BERT}-Networks},
+  booktitle = {EMNLP}, year = {2019},
+}
+
+@inproceedings{reimers2020multilingualkd,
+  author    = {Reimers, Nils and Gurevych, Iryna},
+  title     = {Making Monolingual Sentence Embeddings Multilingual
+               using Knowledge Distillation},
+  booktitle = {EMNLP}, year = {2020},
+}
+
+@inproceedings{lewis2020rag,
+  author    = {Lewis, Patrick and others},
+  title     = {Retrieval-Augmented Generation for Knowledge-Intensive
+               {NLP} Tasks},
+  booktitle = {NeurIPS}, year = {2020},
+}
+
+@inproceedings{karpukhin2020dpr,
+  author       = {Karpukhin, Vladimir and others},
+  title        = {Dense Passage Retrieval for Open-Domain Question
+                  Answering},
+  booktitle    = {Proceedings of the 2020 Conference on Empirical
+                  Methods in Natural Language Processing (EMNLP)},
+  year         = {2020},
+}
+
+@inproceedings{johnson2019faiss,
+  author    = {Johnson, Jeff and Douze, Matthijs and J{\'e}gou,
+               Herv{\'e}},
+  title     = {Billion-scale similarity search with {GPU}s},
+  booktitle = {IEEE Trans. Big Data}, year = {2021},
+}
+
+% =====================================================================
+% 6) Calibration, uncertainty, hallucination
+% =====================================================================
+@inproceedings{guo2017calibration,
+  author    = {Guo, Chuan and Pleiss, Geoff and Sun, Yu and
+               Weinberger, Kilian Q.},
+  title     = {On Calibration of Modern Neural Networks},
+  booktitle = {ICML}, year = {2017},
+}
+
+@inproceedings{naeini2015obtaining,
+  author    = {Naeini, Mahdi Pakdaman and Cooper, Gregory F. and
+               Hauskrecht, Milos},
+  title     = {Obtaining Well Calibrated Probabilities Using {Bayesian}
+               Binning},
+  booktitle = {AAAI}, year = {2015},
+}
+
+@article{ji2023hallucination,
+  author       = {Ji, Ziwei and others},
+  title        = {Survey of Hallucination in Natural Language Generation},
+  journal      = {ACM Computing Surveys},
+  volume       = {55}, number = {12}, pages = {1--38}, year = {2023},
+}
+
+@inproceedings{manakul2023selfcheckgpt,
+  author       = {Manakul, Potsawee and Liusie, Adian and Gales, Mark
+                  J.\,F.},
+  title        = {{SelfCheckGPT}: Zero-Resource Black-Box Hallucination
+                  Detection for Generative Large Language Models},
+  booktitle    = {Proceedings of the 2023 Conference on Empirical
+                  Methods in Natural Language Processing (EMNLP)},
+  year         = {2023},
+}
+
+% =====================================================================
+% 7) Quantization, edge / efficient LLMs
+% =====================================================================
+@inproceedings{frantar2022gptq,
+  author       = {Frantar, Elias and Ashkboos, Saleh and Hoefler,
+                  Torsten and Alistarh, Dan},
+  title        = {{GPTQ}: Accurate Post-Training Quantization for
+                  Generative Pre-trained Transformers},
+  booktitle    = {The Eleventh International Conference on Learning
+                  Representations (ICLR)}, year = {2023},
+}
+
+@inproceedings{lin2023awq,
+  author       = {Lin, Ji and others},
+  title        = {{AWQ}: Activation-aware Weight Quantization for
+                  {LLM} Compression and Acceleration},
+  booktitle    = {Proceedings of Machine Learning and Systems
+                  (MLSys)}, year = {2024},
+}
+
+@inproceedings{dettmers2023bnb,
+  author       = {Dettmers, Tim and Lewis, Mike and Belkada, Younes
+                  and Zettlemoyer, Luke},
+  title        = {{LLM.int8()}: 8-bit Matrix Multiplication for
+                  Transformers at Scale},
+  booktitle    = {Advances in Neural Information Processing Systems
+                  (NeurIPS)}, year = {2022},
+}
+
+% =====================================================================
+% 8) Cross-lingual & Chinese financial NLP
+% =====================================================================
+@inproceedings{conneau2020xlmr,
+  author    = {Conneau, Alexis and others},
+  title     = {Unsupervised Cross-lingual Representation Learning at
+               Scale},
+  booktitle = {ACL}, year = {2020},
+}
+
+@inproceedings{dong2003hownet,
+  author    = {Dong, Zhendong and Dong, Qiang},
+  title     = {{HowNet}---a hybrid language and knowledge resource},
+  booktitle = {NLP-KE}, year = {2003},
+}
+
+@misc{wang2023cflue,
+  author       = {Zhu, Jie and others},
+  title        = {{CFLUE}: A Comprehensive Chinese Financial Language
+                  Understanding Evaluation Benchmark},
+  howpublished = {Hugging Face Datasets},
+  year         = {2024},
+}
+
+@misc{finbertchinese,
+  author       = {Yang, Yi and others},
+  title        = {{FinBERT-tone-Chinese}: Domain-specific {BERT} for
+                  Chinese Financial Sentiment},
+  howpublished = {\url{https://huggingface.co/yiyanghkust/finbert-tone-chinese}},
+  year         = {2021},
+}
+
+% =====================================================================
+% 9) Adversarial / security in NLP
+% =====================================================================
+@inproceedings{jin2020textfooler,
+  author    = {Jin, Di and others},
+  title     = {Is {BERT} Really Robust? A Strong Baseline for Natural
+               Language Attack on Text Classification and Entailment},
+  booktitle = {AAAI}, year = {2020},
+}
+
+@misc{perez2022promptinject,
+  author       = {Perez, F{\'a}bio and Ribeiro, Ian},
+  title        = {Ignore Previous Prompt: Attack Techniques for
+                  Language Models},
+  howpublished = {arXiv:2211.09527}, year = {2022},
+}
+
+@inproceedings{wei2023jailbroken,
+  author       = {Wei, Alexander and Haghtalab, Nika and Steinhardt,
+                  Jacob},
+  title        = {Jailbroken: How Does {LLM} Safety Training Fail?},
+  booktitle    = {Advances in Neural Information Processing Systems
+                  (NeurIPS)}, year = {2023},
+}
+
+% =====================================================================
+% 10) Accessibility, scientific visualisation
+% =====================================================================
+@article{wong2011points,
+  author  = {Wong, Bang},
+  title   = {Points of view: Color blindness},
+  journal = {Nature Methods},
+  volume  = {8}, number = {6}, pages = {441}, year = {2011},
+}
+
+% =====================================================================
+% 11) Datasets and infrastructure (cited in §5)
+% =====================================================================
+@misc{tfns,
+  title        = {Twitter Financial News Sentiment Dataset},
+  howpublished = {\url{https://huggingface.co/datasets/zeroshot/twitter-financial-news-sentiment}},
+  year         = {2022},
+}
+
+@misc{finchina,
+  title        = {{FinChinaSentiment} dataset},
+  howpublished = {\url{https://huggingface.co/datasets/FinanceMTEB/FinChinaSentiment}},
+  year         = {2024},
+}
+
+@misc{flarefpb,
+  title        = {{FLARE-FPB}: Financial PhraseBank parquet mirror},
+  howpublished = {\url{https://huggingface.co/datasets/ChanceFocus/flare-fpb}},
+  year         = {2023},
+}
+
+@inproceedings{wolf2020transformers,
+  author       = {Wolf, Thomas and others},
+  title        = {{HuggingFace}'s Transformers: State-of-the-Art
+                  Natural Language Processing},
+  booktitle    = {Proceedings of the 2020 Conference on Empirical
+                  Methods in Natural Language Processing: System
+                  Demonstrations}, year = {2020},
+}
+
+@inproceedings{paszke2019pytorch,
+  author       = {Paszke, Adam and others},
+  title        = {{PyTorch}: An Imperative Style, High-Performance Deep
+                  Learning Library},
+  booktitle    = {Advances in Neural Information Processing Systems
+                  (NeurIPS)}, year = {2019},
+}
+
+@inproceedings{chen2016xgboost,
+  author       = {Chen, Tianqi and Guestrin, Carlos},
+  title        = {{XGBoost}: A Scalable Tree Boosting System},
+  booktitle    = {Proceedings of the 22nd ACM SIGKDD International
+                  Conference on Knowledge Discovery and Data Mining
+                  (KDD)}, year = {2016},
+}
+
+% =====================================================================
+% 12) Workshop / industry context
+% =====================================================================
+@misc{finllm2026cfp,
+  title        = {Call for Papers, FinLLM@IJCAI 2026},
+  howpublished = {\url{https://finllm.github.io/workshop/}},
+  year         = {2026},
+}
+
+@misc{openclaw,
+  title        = {{OpenClaw}: Open-Source Agentic Financial Framework},
+  howpublished = {\url{https://github.com/openclaw}},
+  year         = {2025},
+}

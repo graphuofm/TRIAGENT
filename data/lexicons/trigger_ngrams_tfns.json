@@ -1,0 +1,2114 @@
+{
+  "n1_high_sdi": [
+    {
+      "ngram": "down",
+      "z_score": 13.071308508533008,
+      "log_odds": 2.0169466912546383,
+      "presence_high_sdi": 188,
+      "presence_low_sdi": 53
+    },
+    {
+      "ngram": "after",
+      "z_score": 9.744374170449536,
+      "log_odds": 0.7950517772114871,
+      "presence_high_sdi": 304,
+      "presence_low_sdi": 295
+    },
+    {
+      "ngram": "raised",
+      "z_score": 9.226807438619971,
+      "log_odds": 3.058808297285878,
+      "presence_high_sdi": 100,
+      "presence_low_sdi": 9
+    },
+    {
+      "ngram": "price",
+      "z_score": 8.985426934682325,
+      "log_odds": 0.9291123613586763,
+      "presence_high_sdi": 204,
+      "presence_low_sdi": 171
+    },
+    {
+      "ngram": "revenue",
+      "z_score": 8.18000796928616,
+      "log_odds": 0.9827571630205107,
+      "presence_high_sdi": 156,
+      "presence_low_sdi": 123
+    },
+    {
+      "ngram": "target",
+      "z_score": 7.977255170828705,
+      "log_odds": 1.0185150215813077,
+      "presence_high_sdi": 141,
+      "presence_low_sdi": 107
+    },
+    {
+      "ngram": "sales",
+      "z_score": 7.653882279321479,
+      "log_odds": 1.2101850472728475,
+      "presence_high_sdi": 103,
+      "presence_low_sdi": 64
+    },
+    {
+      "ngram": "shares",
+      "z_score": 7.343913252736674,
+      "log_odds": 0.8702346302668307,
+      "presence_high_sdi": 151,
+      "presence_low_sdi": 133
+    },
+    {
+      "ngram": "from",
+      "z_score": 7.236750924621049,
+      "log_odds": 0.635763964221491,
+      "presence_high_sdi": 244,
+      "presence_low_sdi": 274
+    },
+    {
+      "ngram": "beats",
+      "z_score": 6.8758679487220435,
+      "log_odds": 1.0458838166734488,
+      "presence_high_sdi": 101,
+      "presence_low_sdi": 74
+    },
+    {
+      "ngram": "falls",
+      "z_score": 6.249904308039857,
+      "log_odds": 1.8089839863057033,
+      "presence_high_sdi": 46,
+      "presence_low_sdi": 15
+    },
+    {
+      "ngram": "eps",
+      "z_score": 6.053266082119028,
+      "log_odds": 0.780018182625013,
+      "presence_high_sdi": 122,
+      "presence_low_sdi": 117
+    },
+    {
+      "ngram": "fall",
+      "z_score": 6.002726443595922,
+      "log_odds": 2.6279787375516888,
+      "presence_high_sdi": 39,
+      "presence_low_sdi": 5
+    },
+    {
+      "ngram": "premarket",
+      "z_score": 5.72306818232313,
+      "log_odds": 1.0446014623876136,
+      "presence_high_sdi": 70,
+      "presence_low_sdi": 51
+    },
+    {
+      "ngram": "oil",
+      "z_score": 5.6795987086883315,
+      "log_odds": 0.6585547946293406,
+      "presence_high_sdi": 142,
+      "presence_low_sdi": 154
+    },
+    {
+      "ngram": "trust",
+      "z_score": 5.557529373521903,
+      "log_odds": 1.4457778631980682,
+      "presence_high_sdi": 44,
+      "presence_low_sdi": 21
+    },
+    {
+      "ngram": "virus",
+      "z_score": 5.427847850903895,
+      "log_odds": 1.1367376429818883,
+      "presence_high_sdi": 56,
+      "presence_low_sdi": 37
+    },
+    {
+      "ngram": "gainers",
+      "z_score": 5.348946438874941,
+      "log_odds": 1.5940918427619817,
+      "presence_high_sdi": 37,
+      "presence_low_sdi": 15
+    },
+    {
+      "ngram": "decline",
+      "z_score": 5.217223084240069,
+      "log_odds": 2.5201581760879757,
+      "presence_high_sdi": 29,
+      "presence_low_sdi": 4
+    },
+    {
+      "ngram": "since",
+      "z_score": 5.21080644264514,
+      "log_odds": 1.3982963063770084,
+      "presence_high_sdi": 40,
+      "presence_low_sdi": 20
+    },
+    {
+      "ngram": "record",
+      "z_score": 5.206413820490665,
+      "log_odds": 0.9441813955819809,
+      "presence_high_sdi": 67,
+      "presence_low_sdi": 54
+    },
+    {
+      "ngram": "upgraded",
+      "z_score": 5.112933096027296,
+      "log_odds": 1.8594358133432722,
+      "presence_high_sdi": 30,
+      "presence_low_sdi": 9
+    },
+    {
+      "ngram": "dow",
+      "z_score": 5.080721427913492,
+      "log_odds": 0.9322816988056362,
+      "presence_high_sdi": 65,
+      "presence_low_sdi": 53
+    },
+    {
+      "ngram": "rose",
+      "z_score": 4.958306856918735,
+      "log_odds": 2.4140235667261614,
+      "presence_high_sdi": 26,
+      "presence_low_sdi": 4
+    },
+    {
+      "ngram": "low",
+      "z_score": 4.953413997694669,
+      "log_odds": 1.0782709749101134,
+      "presence_high_sdi": 50,
+      "presence_low_sdi": 35
+    },
+    {
+      "ngram": "cut",
+      "z_score": 4.860505971806601,
+      "log_odds": 0.816498398110816,
+      "presence_high_sdi": 73,
+      "presence_low_sdi": 67
+    },
+    {
+      "ngram": "drops",
+      "z_score": 4.860310084205757,
+      "log_odds": 1.8623640061583258,
+      "presence_high_sdi": 27,
+      "presence_low_sdi": 8
+    },
+    {
+      "ngram": "jobs",
+      "z_score": 4.822020653747882,
+      "log_odds": 0.9714237439486801,
+      "presence_high_sdi": 55,
+      "presence_low_sdi": 43
+    },
+    {
+      "ngram": "concerns",
+      "z_score": 4.81260307654158,
+      "log_odds": 1.6438168927142423,
+      "presence_high_sdi": 29,
+      "presence_low_sdi": 11
+    },
+    {
+      "ngram": "losers",
+      "z_score": 4.78407720079109,
+      "log_odds": 1.4210826857322072,
+      "presence_high_sdi": 33,
+      "presence_low_sdi": 16
+    },
+    {
+      "ngram": "expectations",
+      "z_score": 4.698367421761374,
+      "log_odds": 1.3388534244081693,
+      "presence_high_sdi": 34,
+      "presence_low_sdi": 18
+    },
+    {
+      "ngram": "best",
+      "z_score": 4.685463908530406,
+      "log_odds": 0.9576511981245872,
+      "presence_high_sdi": 53,
+      "presence_low_sdi": 42
+    },
+    {
+      "ngram": "outlook",
+      "z_score": 4.626501431483558,
+      "log_odds": 1.0698350382817967,
+      "presence_high_sdi": 44,
+      "presence_low_sdi": 31
+    },
+    {
+      "ngram": "over",
+      "z_score": 4.479171437022102,
+      "log_odds": 0.5619754409077751,
+      "presence_high_sdi": 116,
+      "presence_low_sdi": 138
+    },
+    {
+      "ngram": "dollar",
+      "z_score": 4.464816126904922,
+      "log_odds": 1.25818934125346,
+      "presence_high_sdi": 33,
+      "presence_low_sdi": 19
+    },
+    {
+      "ngram": "misses",
+      "z_score": 4.423379634119872,
+      "log_odds": 0.794876109983722,
+      "presence_high_sdi": 63,
+      "presence_low_sdi": 59
+    },
+    {
+      "ngram": "bofa",
+      "z_score": 4.411739449798044,
+      "log_odds": 1.5868201302810752,
+      "presence_high_sdi": 25,
+      "presence_low_sdi": 10
+    },
+    {
+      "ngram": "increase",
+      "z_score": 4.367668763219418,
+      "log_odds": 1.7071818667244054,
+      "presence_high_sdi": 23,
+      "presence_low_sdi": 8
+    },
+    {
+      "ngram": "below",
+      "z_score": 4.358381405466946,
+      "log_odds": 1.3861395104214624,
+      "presence_high_sdi": 28,
+      "presence_low_sdi": 14
+    },
+    {
+      "ngram": "outperform",
+      "z_score": 4.342122853789542,
+      "log_odds": 1.7822722386340635,
+      "presence_high_sdi": 22,
+      "presence_low_sdi": 7
+    },
+    {
+      "ngram": "china",
+      "z_score": 4.306038738558807,
+      "log_odds": 0.44141415697384456,
+      "presence_high_sdi": 165,
+      "presence_low_sdi": 222
+    },
+    {
+      "ngram": "sees",
+      "z_score": 4.2855695936229825,
+      "log_odds": 0.9070679841692089,
+      "presence_high_sdi": 48,
+      "presence_low_sdi": 40
+    },
+    {
+      "ngram": "forecast",
+      "z_score": 4.255469085106272,
+      "log_odds": 0.9515518150446463,
+      "presence_high_sdi": 44,
+      "presence_low_sdi": 35
+    },
+    {
+      "ngram": "january",
+      "z_score": 4.225823003623714,
+      "log_odds": 0.957115805590262,
+      "presence_high_sdi": 43,
+      "presence_low_sdi": 34
+    },
+    {
+      "ngram": "futures",
+      "z_score": 4.224917883727877,
+      "log_odds": 0.9151373177005739,
+      "presence_high_sdi": 46,
+      "presence_low_sdi": 38
+    },
+    {
+      "ngram": "downgraded",
+      "z_score": 4.221611901380188,
+      "log_odds": 1.3507901593869827,
+      "presence_high_sdi": 27,
+      "presence_low_sdi": 14
+    },
+    {
+      "ngram": "near",
+      "z_score": 4.221611901380188,
+      "log_odds": 1.3507901593869827,
+      "presence_high_sdi": 27,
+      "presence_low_sdi": 14
+    },
+    {
+      "ngram": "supply",
+      "z_score": 4.221611901380188,
+      "log_odds": 1.3507901593869827,
+      "presence_high_sdi": 27,
+      "presence_low_sdi": 14
+    },
+    {
+      "ngram": "higher",
+      "z_score": 4.161472517619456,
+      "log_odds": 0.7299705687407911,
+      "presence_high_sdi": 64,
+      "presence_low_sdi": 64
+    },
+    {
+      "ngram": "slips",
+      "z_score": 4.151519916498546,
+      "log_odds": 2.2838324933763783,
+      "presence_high_sdi": 18,
+      "presence_low_sdi": 3
+    }
+  ],
+  "n1_low_sdi": [
+    {
+      "ngram": "results",
+      "z_score": -8.992203189085982,
+      "log_odds": -1.2425471507445986,
+      "presence_high_sdi": 59,
+      "presence_low_sdi": 411
+    },
+    {
+      "ngram": "call",
+      "z_score": -7.796082532033651,
+      "log_odds": -1.956380381421868,
+      "presence_high_sdi": 16,
+      "presence_low_sdi": 240
+    },
+    {
+      "ngram": "earnings",
+      "z_score": -7.356336993957472,
+      "log_odds": -0.9074205716184145,
+      "presence_high_sdi": 78,
+      "presence_low_sdi": 390
+    },
+    {
+      "ngram": "reports",
+      "z_score": -7.161554154548875,
+      "log_odds": -1.1608208177147787,
+      "presence_high_sdi": 43,
+      "presence_low_sdi": 281
+    },
+    {
+      "ngram": "marketscreener",
+      "z_score": -7.159193674595948,
+      "log_odds": -0.7460557392675553,
+      "presence_high_sdi": 113,
+      "presence_low_sdi": 478
+    },
+    {
+      "ngram": "what",
+      "z_score": -7.030142566087468,
+      "log_odds": -1.2066030837025519,
+      "presence_high_sdi": 38,
+      "presence_low_sdi": 261
+    },
+    {
+      "ngram": "conference",
+      "z_score": -6.508534585213249,
+      "log_odds": -2.7010200705314062,
+      "presence_high_sdi": 5,
+      "presence_low_sdi": 179
+    },
+    {
+      "ngram": "dividend",
+      "z_score": -6.435918842111849,
+      "log_odds": -0.9173421046694825,
+      "presence_high_sdi": 58,
+      "presence_low_sdi": 296
+    },
+    {
+      "ngram": "inc",
+      "z_score": -6.181129880114628,
+      "log_odds": -0.8053352500890321,
+      "presence_high_sdi": 71,
+      "presence_low_sdi": 323
+    },
+    {
+      "ngram": "declares",
+      "z_score": -6.064015052756338,
+      "log_odds": -1.2263056729807618,
+      "presence_high_sdi": 27,
+      "presence_low_sdi": 192
+    },
+    {
+      "ngram": "transcript",
+      "z_score": -5.900046463234883,
+      "log_odds": -2.986670888089224,
+      "presence_high_sdi": 3,
+      "presence_low_sdi": 159
+    },
+    {
+      "ngram": "presentation",
+      "z_score": -5.8318050933389545,
+      "log_odds": -3.3949365805305014,
+      "presence_high_sdi": 2,
+      "presence_low_sdi": 179
+    },
+    {
+      "ngram": "here",
+      "z_score": -5.656164513689451,
+      "log_odds": -0.826383657124349,
+      "presence_high_sdi": 56,
+      "presence_low_sdi": 262
+    },
+    {
+      "ngram": "nov",
+      "z_score": -4.818579197440782,
+      "log_odds": -2.0296422706496964,
+      "presence_high_sdi": 5,
+      "presence_low_sdi": 92
+    },
+    {
+      "ngram": "this",
+      "z_score": -4.613215199935075,
+      "log_odds": -0.527015420832976,
+      "presence_high_sdi": 98,
+      "presence_low_sdi": 338
+    },
+    {
+      "ngram": "https",
+      "z_score": -4.588701877193659,
+      "log_odds": -0.13221735470872925,
+      "presence_high_sdi": 1749,
+      "presence_low_sdi": 3863
+    },
+    {
+      "ngram": "you",
+      "z_score": -4.506466206899431,
+      "log_odds": -0.697378380884087,
+      "presence_high_sdi": 51,
+      "presence_low_sdi": 211
+    },
+    {
+      "ngram": "next",
+      "z_score": -4.284227082538201,
+      "log_odds": -0.9929707952056805,
+      "presence_high_sdi": 21,
+      "presence_low_sdi": 120
+    },
+    {
+      "ngram": "preview",
+      "z_score": -4.132568656602951,
+      "log_odds": -1.756955009042338,
+      "presence_high_sdi": 5,
+      "presence_low_sdi": 70
+    },
+    {
+      "ngram": "edited",
+      "z_score": -3.993192288177281,
+      "log_odds": -4.0109794242652965,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 111
+    },
+    {
+      "ngram": "gmt",
+      "z_score": -3.993192288177281,
+      "log_odds": -4.0109794242652965,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 111
+    },
+    {
+      "ngram": "should",
+      "z_score": -3.841911519331682,
+      "log_odds": -0.8788478064860215,
+      "presence_high_sdi": 22,
+      "presence_low_sdi": 112
+    },
+    {
+      "ngram": "read",
+      "z_score": -3.8376028784646086,
+      "log_odds": -0.8962709366987758,
+      "presence_high_sdi": 21,
+      "presence_low_sdi": 109
+    },
+    {
+      "ngram": "slideshow",
+      "z_score": -3.762192938549133,
+      "log_odds": -2.703531433012161,
+      "presence_high_sdi": 1,
+      "presence_low_sdi": 60
+    },
+    {
+      "ngram": "finance",
+      "z_score": -3.753985966107248,
+      "log_odds": -0.7720376625156149,
+      "presence_high_sdi": 28,
+      "presence_low_sdi": 127
+    },
+    {
+      "ngram": "how",
+      "z_score": -3.7399893076900037,
+      "log_odds": -0.6619793110609722,
+      "presence_high_sdi": 39,
+      "presence_low_sdi": 157
+    },
+    {
+      "ngram": "buy",
+      "z_score": -3.7198497832413513,
+      "log_odds": -0.513216428671333,
+      "presence_high_sdi": 67,
+      "presence_low_sdi": 230
+    },
+    {
+      "ngram": "seeking",
+      "z_score": -3.6603838166350084,
+      "log_odds": -0.876413804228056,
+      "presence_high_sdi": 20,
+      "presence_low_sdi": 102
+    },
+    {
+      "ngram": "alpha",
+      "z_score": -3.646083749771783,
+      "log_odds": -0.9633705390716756,
+      "presence_high_sdi": 16,
+      "presence_low_sdi": 90
+    },
+    {
+      "ngram": "any",
+      "z_score": -3.640819747893161,
+      "log_odds": -1.1309491930323397,
+      "presence_high_sdi": 11,
+      "presence_low_sdi": 75
+    },
+    {
+      "ngram": "buying",
+      "z_score": -3.640733123606646,
+      "log_odds": -1.2307924358988798,
+      "presence_high_sdi": 9,
+      "presence_low_sdi": 69
+    },
+    {
+      "ngram": "bloomberg",
+      "z_score": -3.601328691055736,
+      "log_odds": -1.682178350139294,
+      "presence_high_sdi": 4,
+      "presence_low_sdi": 54
+    },
+    {
+      "ngram": "corporation",
+      "z_score": -3.538788623655302,
+      "log_odds": -0.8140154108063422,
+      "presence_high_sdi": 22,
+      "presence_low_sdi": 105
+    },
+    {
+      "ngram": "business",
+      "z_score": -3.508298511068712,
+      "log_odds": -0.5413422129249215,
+      "presence_high_sdi": 53,
+      "presence_low_sdi": 188
+    },
+    {
+      "ngram": "never",
+      "z_score": -3.452156865207269,
+      "log_odds": -1.2301703080957287,
+      "presence_high_sdi": 8,
+      "presence_low_sdi": 62
+    },
+    {
+      "ngram": "funds",
+      "z_score": -3.449232139323411,
+      "log_odds": -0.5281378839808397,
+      "presence_high_sdi": 54,
+      "presence_low_sdi": 189
+    },
+    {
+      "ngram": "presents",
+      "z_score": -3.3105793949869633,
+      "log_odds": -1.7257588068378293,
+      "presence_high_sdi": 3,
+      "presence_low_sdi": 45
+    },
+    {
+      "ngram": "portfolio",
+      "z_score": -3.288089666503105,
+      "log_odds": -1.5451689278105896,
+      "presence_high_sdi": 4,
+      "presence_low_sdi": 47
+    },
+    {
+      "ngram": "updates",
+      "z_score": -3.255906670582941,
+      "log_odds": -0.7688616877997472,
+      "presence_high_sdi": 21,
+      "presence_low_sdi": 96
+    },
+    {
+      "ngram": "more",
+      "z_score": -3.2150590435133606,
+      "log_odds": -0.3234653157892553,
+      "presence_high_sdi": 133,
+      "presence_low_sdi": 375
+    },
+    {
+      "ngram": "gain",
+      "z_score": -3.2012069190003487,
+      "log_odds": -1.0448598687913915,
+      "presence_high_sdi": 10,
+      "presence_low_sdi": 63
+    },
+    {
+      "ngram": "reading",
+      "z_score": -3.200919563682943,
+      "log_odds": -1.0920411853271492,
+      "presence_high_sdi": 9,
+      "presence_low_sdi": 60
+    },
+    {
+      "ngram": "your",
+      "z_score": -3.191171310898437,
+      "log_odds": -0.7108178088759836,
+      "presence_high_sdi": 24,
+      "presence_low_sdi": 103
+    },
+    {
+      "ngram": "been",
+      "z_score": -3.1700860464225236,
+      "log_odds": -0.8457015338200682,
+      "presence_high_sdi": 16,
+      "presence_low_sdi": 80
+    },
+    {
+      "ngram": "goes",
+      "z_score": -3.1400943635664254,
+      "log_odds": -1.4802546786956503,
+      "presence_high_sdi": 4,
+      "presence_low_sdi": 44
+    },
+    {
+      "ngram": "other",
+      "z_score": -3.042012934441695,
+      "log_odds": -0.9964741672011357,
+      "presence_high_sdi": 10,
+      "presence_low_sdi": 60
+    },
+    {
+      "ngram": "follow",
+      "z_score": -3.040567560026289,
+      "log_odds": -1.3197807466794336,
+      "presence_high_sdi": 5,
+      "presence_low_sdi": 45
+    },
+    {
+      "ngram": "think",
+      "z_score": -2.997980103964727,
+      "log_odds": -0.8787781080342301,
+      "presence_high_sdi": 13,
+      "presence_low_sdi": 68
+    },
+    {
+      "ngram": "financial",
+      "z_score": -2.882472323574427,
+      "log_odds": -0.48992608750990474,
+      "presence_high_sdi": 44,
+      "presence_low_sdi": 149
+    },
+    {
+      "ngram": "watch",
+      "z_score": -2.8507404706084576,
+      "log_odds": -0.693890109290936,
+      "presence_high_sdi": 20,
+      "presence_low_sdi": 85
+    }
+  ],
+  "n2_high_sdi": [
+    {
+      "ngram": "price target",
+      "z_score": 9.129934454002617,
+      "log_odds": 1.4144946243543854,
+      "presence_high_sdi": 122,
+      "presence_low_sdi": 62
+    },
+    {
+      "ngram": "stock price",
+      "z_score": 8.638384897868448,
+      "log_odds": 1.562742627321938,
+      "presence_high_sdi": 99,
+      "presence_low_sdi": 43
+    },
+    {
+      "ngram": "eps beats",
+      "z_score": 7.730143662280862,
+      "log_odds": 1.666760018901455,
+      "presence_high_sdi": 75,
+      "presence_low_sdi": 29
+    },
+    {
+      "ngram": "target raised",
+      "z_score": 7.666321223582555,
+      "log_odds": 3.9130267021336227,
+      "presence_high_sdi": 94,
+      "presence_low_sdi": 3
+    },
+    {
+      "ngram": "raised from",
+      "z_score": 6.909764900733001,
+      "log_odds": 3.5565183061556995,
+      "presence_high_sdi": 66,
+      "presence_low_sdi": 3
+    },
+    {
+      "ngram": "revenue https",
+      "z_score": 6.471473309300767,
+      "log_odds": 2.257970491396299,
+      "presence_high_sdi": 45,
+      "presence_low_sdi": 9
+    },
+    {
+      "ngram": "beats beats",
+      "z_score": 6.254383916259292,
+      "log_odds": 1.4433696052740972,
+      "presence_high_sdi": 56,
+      "presence_low_sdi": 27
+    },
+    {
+      "ngram": "beats revenue",
+      "z_score": 5.907668926040415,
+      "log_odds": 1.169571331093513,
+      "presence_high_sdi": 64,
+      "presence_low_sdi": 41
+    },
+    {
+      "ngram": "market update",
+      "z_score": 4.848122396827488,
+      "log_odds": 0.9667851629351016,
+      "presence_high_sdi": 56,
+      "presence_low_sdi": 44
+    },
+    {
+      "ngram": "down after",
+      "z_score": 4.329519627889429,
+      "log_odds": 2.672237529239874,
+      "presence_high_sdi": 20,
+      "presence_low_sdi": 2
+    },
+    {
+      "ngram": "down https",
+      "z_score": 4.263806902151249,
+      "log_odds": 2.335383221154461,
+      "presence_high_sdi": 19,
+      "presence_low_sdi": 3
+    },
+    {
+      "ngram": "among losers",
+      "z_score": 4.151519916498546,
+      "log_odds": 2.2838324933763783,
+      "presence_high_sdi": 18,
+      "presence_low_sdi": 3
+    },
+    {
+      "ngram": "beats misses",
+      "z_score": 4.093306892907321,
+      "log_odds": 1.6196551586231394,
+      "presence_high_sdi": 21,
+      "presence_low_sdi": 8
+    },
+    {
+      "ngram": "equity offering",
+      "z_score": 4.010562987203729,
+      "log_odds": 1.8781181951348538,
+      "presence_high_sdi": 18,
+      "presence_low_sdi": 5
+    },
+    {
+      "ngram": "store sales",
+      "z_score": 4.0049247712869604,
+      "log_odds": 2.9772288019894315,
+      "presence_high_sdi": 18,
+      "presence_low_sdi": 1
+    },
+    {
+      "ngram": "more than",
+      "z_score": 3.9590939048312577,
+      "log_odds": 0.8406538997005049,
+      "presence_high_sdi": 46,
+      "presence_low_sdi": 41
+    },
+    {
+      "ngram": "first time",
+      "z_score": 3.947891385886708,
+      "log_odds": 1.572877576985534,
+      "presence_high_sdi": 20,
+      "presence_low_sdi": 8
+    },
+    {
+      "ngram": "misses revenue",
+      "z_score": 3.925509779302335,
+      "log_odds": 0.8431111750794331,
+      "presence_high_sdi": 45,
+      "presence_low_sdi": 40
+    },
+    {
+      "ngram": "bofa merrill",
+      "z_score": 3.908616518302707,
+      "log_odds": 2.172092190215679,
+      "presence_high_sdi": 16,
+      "presence_low_sdi": 3
+    },
+    {
+      "ngram": "merrill lynch",
+      "z_score": 3.8306348313596623,
+      "log_odds": 1.9488240515967545,
+      "presence_high_sdi": 16,
+      "presence_low_sdi": 4
+    },
+    {
+      "ngram": "same store",
+      "z_score": 3.739475523045588,
+      "log_odds": 2.804606642284191,
+      "presence_high_sdi": 15,
+      "presence_low_sdi": 1
+    },
+    {
+      "ngram": "premarket after",
+      "z_score": 3.719801697846948,
+      "log_odds": 1.7663778919741544,
+      "presence_high_sdi": 16,
+      "presence_low_sdi": 5
+    },
+    {
+      "ngram": "oil prices",
+      "z_score": 3.719801697846948,
+      "log_odds": 1.7663778919741544,
+      "presence_high_sdi": 16,
+      "presence_low_sdi": 5
+    },
+    {
+      "ngram": "falls after",
+      "z_score": 3.6907279167735907,
+      "log_odds": 2.3342212881945814,
+      "presence_high_sdi": 14,
+      "presence_low_sdi": 2
+    },
+    {
+      "ngram": "stock market",
+      "z_score": 3.574390602621954,
+      "log_odds": 0.5833093714197082,
+      "presence_high_sdi": 69,
+      "presence_low_sdi": 80
+    },
+    {
+      "ngram": "shares down",
+      "z_score": 3.458493274825566,
+      "log_odds": 3.5587602201447996,
+      "presence_high_sdi": 16,
+      "presence_low_sdi": 0
+    },
+    {
+      "ngram": "down premarket",
+      "z_score": 3.458493274825566,
+      "log_odds": 3.5587602201447996,
+      "presence_high_sdi": 16,
+      "presence_low_sdi": 0
+    },
+    {
+      "ngram": "from neutral",
+      "z_score": 3.4180508226617796,
+      "log_odds": 2.5961959701017223,
+      "presence_high_sdi": 12,
+      "presence_low_sdi": 1
+    },
+    {
+      "ngram": "after hours",
+      "z_score": 3.4135338023263806,
+      "log_odds": 1.2046540437326714,
+      "presence_high_sdi": 20,
+      "presence_low_sdi": 12
+    },
+    {
+      "ngram": "are dumping",
+      "z_score": 3.327900068242933,
+      "log_odds": 1.902799661488669,
+      "presence_high_sdi": 12,
+      "presence_low_sdi": 3
+    },
+    {
+      "ngram": "jobs report",
+      "z_score": 3.211589981451898,
+      "log_odds": 1.1842230713837205,
+      "presence_high_sdi": 18,
+      "presence_low_sdi": 11
+    },
+    {
+      "ngram": "stock falls",
+      "z_score": 3.1916009467590225,
+      "log_odds": 1.6795315228697447,
+      "presence_high_sdi": 12,
+      "presence_low_sdi": 4
+    },
+    {
+      "ngram": "among premarket",
+      "z_score": 3.1916009467590225,
+      "log_odds": 1.6795315228697447,
+      "presence_high_sdi": 12,
+      "presence_low_sdi": 4
+    },
+    {
+      "ngram": "after results",
+      "z_score": 3.159371265687626,
+      "log_odds": 2.4286280108126537,
+      "presence_high_sdi": 10,
+      "presence_low_sdi": 1
+    },
+    {
+      "ngram": "year low",
+      "z_score": 3.159371265687626,
+      "log_odds": 2.4286280108126537,
+      "presence_high_sdi": 10,
+      "presence_low_sdi": 1
+    },
+    {
+      "ngram": "retail sales",
+      "z_score": 3.105968643342445,
+      "log_odds": 2.0230383464360333,
+      "presence_high_sdi": 10,
+      "presence_low_sdi": 2
+    },
+    {
+      "ngram": "raised suntrust",
+      "z_score": 3.083268895438499,
+      "log_odds": 3.209168013422911,
+      "presence_high_sdi": 11,
+      "presence_low_sdi": 0
+    },
+    {
+      "ngram": "the last",
+      "z_score": 3.0318357787347208,
+      "log_odds": 1.1298984829778078,
+      "presence_high_sdi": 17,
+      "presence_low_sdi": 11
+    },
+    {
+      "ngram": "dow down",
+      "z_score": 3.0119687901205,
+      "log_odds": 2.33306099268664,
+      "presence_high_sdi": 9,
+      "presence_low_sdi": 1
+    },
+    {
+      "ngram": "funds love",
+      "z_score": 3.0119687901205,
+      "log_odds": 2.33306099268664,
+      "presence_high_sdi": 9,
+      "presence_low_sdi": 1
+    },
+    {
+      "ngram": "the fair",
+      "z_score": 3.0119687901205,
+      "log_odds": 2.33306099268664,
+      "presence_high_sdi": 9,
+      "presence_low_sdi": 1
+    },
+    {
+      "ngram": "this year",
+      "z_score": 3.0050335618740927,
+      "log_odds": 0.8430375360580884,
+      "presence_high_sdi": 26,
+      "presence_low_sdi": 23
+    },
+    {
+      "ngram": "sales factset",
+      "z_score": 2.9889914312372885,
+      "log_odds": 3.121899732128721,
+      "presence_high_sdi": 10,
+      "presence_low_sdi": 0
+    },
+    {
+      "ngram": "raised bofa",
+      "z_score": 2.9889914312372885,
+      "log_odds": 3.121899732128721,
+      "presence_high_sdi": 10,
+      "presence_low_sdi": 0
+    },
+    {
+      "ngram": "investment trust",
+      "z_score": 2.9889914312372885,
+      "log_odds": 3.121899732128721,
+      "presence_high_sdi": 10,
+      "presence_low_sdi": 0
+    },
+    {
+      "ngram": "the dow",
+      "z_score": 2.962375757049809,
+      "log_odds": 1.1941718450323302,
+      "presence_high_sdi": 15,
+      "presence_low_sdi": 9
+    },
+    {
+      "ngram": "stocks the",
+      "z_score": 2.928039139656905,
+      "log_odds": 1.9274713283100198,
+      "presence_high_sdi": 9,
+      "presence_low_sdi": 2
+    },
+    {
+      "ngram": "fair value",
+      "z_score": 2.928039139656905,
+      "log_odds": 1.9274713283100198,
+      "presence_high_sdi": 9,
+      "presence_low_sdi": 2
+    },
+    {
+      "ngram": "factset consensus",
+      "z_score": 2.911657291903163,
+      "log_odds": 0.9253854335112663,
+      "presence_high_sdi": 21,
+      "presence_low_sdi": 17
+    },
+    {
+      "ngram": "pricing equity",
+      "z_score": 2.885495025411662,
+      "log_odds": 3.0263327140027076,
+      "presence_high_sdi": 9,
+      "presence_low_sdi": 0
+    }
+  ],
+  "n2_low_sdi": [
+    {
+      "ngram": "marketscreener https",
+      "z_score": -7.159193674595948,
+      "log_odds": -0.7460557392675553,
+      "presence_high_sdi": 113,
+      "presence_low_sdi": 478
+    },
+    {
+      "ngram": "stock marketscreener",
+      "z_score": -7.107442393991987,
+      "log_odds": -0.9760278414338956,
+      "presence_high_sdi": 62,
+      "presence_low_sdi": 334
+    },
+    {
+      "ngram": "reports results",
+      "z_score": -6.753640460020823,
+      "log_odds": -2.7986255841667482,
+      "presence_high_sdi": 5,
+      "presence_low_sdi": 197
+    },
+    {
+      "ngram": "declares dividend",
+      "z_score": -5.73428859045659,
+      "log_odds": -1.3304319155812587,
+      "presence_high_sdi": 20,
+      "presence_low_sdi": 160
+    },
+    {
+      "ngram": "conference call",
+      "z_score": -5.23148296324405,
+      "log_odds": -3.0553171542288826,
+      "presence_high_sdi": 2,
+      "presence_low_sdi": 128
+    },
+    {
+      "ngram": "here what",
+      "z_score": -4.41748811476637,
+      "log_odds": -1.473323050979042,
+      "presence_high_sdi": 9,
+      "presence_low_sdi": 88
+    },
+    {
+      "ngram": "earnings call",
+      "z_score": -4.2803317583700755,
+      "log_odds": -2.5195533203529905,
+      "presence_high_sdi": 2,
+      "presence_low_sdi": 75
+    },
+    {
+      "ngram": "call presentation",
+      "z_score": -4.229935972216106,
+      "log_odds": -4.244909243718864,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 140
+    },
+    {
+      "ngram": "results earnings",
+      "z_score": -4.18321554135702,
+      "log_odds": -2.464983397048753,
+      "presence_high_sdi": 2,
+      "presence_low_sdi": 71
+    },
+    {
+      "ngram": "earnings preview",
+      "z_score": -4.106780364693191,
+      "log_odds": -2.422046921875544,
+      "presence_high_sdi": 2,
+      "presence_low_sdi": 68
+    },
+    {
+      "ngram": "earnings conference",
+      "z_score": -4.020349642966226,
+      "log_odds": -4.037791588821409,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 114
+    },
+    {
+      "ngram": "edited transcript",
+      "z_score": -3.993192288177281,
+      "log_odds": -4.0109794242652965,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 111
+    },
+    {
+      "ngram": "presentation nov",
+      "z_score": -3.709968554353233,
+      "log_odds": -3.7317280872963874,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 84
+    },
+    {
+      "ngram": "nov gmt",
+      "z_score": -3.709968554353233,
+      "log_odds": -3.7317280872963874,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 84
+    },
+    {
+      "ngram": "read more",
+      "z_score": -3.689194695674386,
+      "log_odds": -1.0017774013814913,
+      "presence_high_sdi": 15,
+      "presence_low_sdi": 88
+    },
+    {
+      "ngram": "dividend https",
+      "z_score": -3.640856658340538,
+      "log_odds": -1.177566524973603,
+      "presence_high_sdi": 10,
+      "presence_low_sdi": 72
+    },
+    {
+      "ngram": "seeking alpha",
+      "z_score": -3.4615461068681945,
+      "log_odds": -0.9179154997255825,
+      "presence_high_sdi": 16,
+      "presence_low_sdi": 86
+    },
+    {
+      "ngram": "preview https",
+      "z_score": -3.4419139508226633,
+      "log_odds": -2.4829733531250584,
+      "presence_high_sdi": 1,
+      "presence_low_sdi": 48
+    },
+    {
+      "ngram": "call transcript",
+      "z_score": -3.4178981082498163,
+      "log_odds": -2.0353287045573056,
+      "presence_high_sdi": 2,
+      "presence_low_sdi": 46
+    },
+    {
+      "ngram": "results https",
+      "z_score": -3.4178981082498163,
+      "log_odds": -2.0353287045573056,
+      "presence_high_sdi": 2,
+      "presence_low_sdi": 46
+    },
+    {
+      "ngram": "more https",
+      "z_score": -3.3568037867800045,
+      "log_odds": -0.9762845065116768,
+      "presence_high_sdi": 13,
+      "presence_low_sdi": 75
+    },
+    {
+      "ngram": "alpha https",
+      "z_score": -3.3540547199816677,
+      "log_odds": -1.1976584733576798,
+      "presence_high_sdi": 8,
+      "presence_low_sdi": 60
+    },
+    {
+      "ngram": "reading https",
+      "z_score": -3.148539633839152,
+      "log_odds": -1.1293341208618797,
+      "presence_high_sdi": 8,
+      "presence_low_sdi": 56
+    },
+    {
+      "ngram": "should you",
+      "z_score": -3.1232291001610832,
+      "log_odds": -1.6342862147991735,
+      "presence_high_sdi": 3,
+      "presence_low_sdi": 41
+    },
+    {
+      "ngram": "hedge funds",
+      "z_score": -3.114848343656322,
+      "log_odds": -0.5328414064021998,
+      "presence_high_sdi": 43,
+      "presence_low_sdi": 152
+    },
+    {
+      "ngram": "sign for",
+      "z_score": -3.095479334531668,
+      "log_odds": -1.1741130041693593,
+      "presence_high_sdi": 7,
+      "presence_low_sdi": 52
+    },
+    {
+      "ngram": "stock https",
+      "z_score": -3.085355965295541,
+      "log_odds": -0.7019959627642764,
+      "presence_high_sdi": 23,
+      "presence_low_sdi": 98
+    },
+    {
+      "ngram": "never been",
+      "z_score": -3.0736801437815764,
+      "log_odds": -1.6100634989418348,
+      "presence_high_sdi": 3,
+      "presence_low_sdi": 40
+    },
+    {
+      "ngram": "inc nasdaq",
+      "z_score": -3.0410969426590806,
+      "log_odds": -1.1549394723557365,
+      "presence_high_sdi": 7,
+      "presence_low_sdi": 51
+    },
+    {
+      "ngram": "have never",
+      "z_score": -3.0229450113871295,
+      "log_odds": -1.5852457377373206,
+      "presence_high_sdi": 3,
+      "presence_low_sdi": 39
+    },
+    {
+      "ngram": "funds have",
+      "z_score": -3.0229450113871295,
+      "log_odds": -1.5852457377373206,
+      "presence_high_sdi": 3,
+      "presence_low_sdi": 39
+    },
+    {
+      "ngram": "this and",
+      "z_score": -2.9899160768270607,
+      "log_odds": -1.7948472942115021,
+      "presence_high_sdi": 2,
+      "presence_low_sdi": 36
+    },
+    {
+      "ngram": "follow this",
+      "z_score": -2.9899160768270607,
+      "log_odds": -1.7948472942115021,
+      "presence_high_sdi": 2,
+      "presence_low_sdi": 36
+    },
+    {
+      "ngram": "inc nyse",
+      "z_score": -2.9709665772104197,
+      "log_odds": -1.5598027967991044,
+      "presence_high_sdi": 3,
+      "presence_low_sdi": 38
+    },
+    {
+      "ngram": "any other",
+      "z_score": -2.9500173658673816,
+      "log_odds": -2.1447487064922335,
+      "presence_high_sdi": 1,
+      "presence_low_sdi": 34
+    },
+    {
+      "ngram": "financial results",
+      "z_score": -2.8907414360831787,
+      "log_odds": -1.7390272867076693,
+      "presence_high_sdi": 2,
+      "presence_low_sdi": 34
+    },
+    {
+      "ngram": "what analysts",
+      "z_score": -2.8830766136562023,
+      "log_odds": -2.9207654892809813,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 37
+    },
+    {
+      "ngram": "and any",
+      "z_score": -2.8390541010852397,
+      "log_odds": -1.7099146951228184,
+      "presence_high_sdi": 2,
+      "presence_low_sdi": 33
+    },
+    {
+      "ngram": "other stock",
+      "z_score": -2.772749615696341,
+      "log_odds": -2.022887724446284,
+      "presence_high_sdi": 1,
+      "presence_low_sdi": 30
+    },
+    {
+      "ngram": "get more",
+      "z_score": -2.765046320284661,
+      "log_odds": -0.87561855609093,
+      "presence_high_sdi": 11,
+      "presence_low_sdi": 58
+    },
+    {
+      "ngram": "for updates",
+      "z_score": -2.7547102755215764,
+      "log_odds": -1.204085438783439,
+      "presence_high_sdi": 5,
+      "presence_low_sdi": 40
+    },
+    {
+      "ngram": "conference slideshow",
+      "z_score": -2.737887981011038,
+      "log_odds": -2.779061539240331,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 32
+    },
+    {
+      "ngram": "investor presentation",
+      "z_score": -2.724882628304531,
+      "log_odds": -1.9899729094351422,
+      "presence_high_sdi": 1,
+      "presence_low_sdi": 29
+    },
+    {
+      "ngram": "been this",
+      "z_score": -2.6754084540362064,
+      "log_odds": -1.9559463811924047,
+      "presence_high_sdi": 1,
+      "presence_low_sdi": 28
+    },
+    {
+      "ngram": "goes dividend",
+      "z_score": -2.673512238889054,
+      "log_odds": -2.716291151003788,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 30
+    },
+    {
+      "ngram": "this bullish",
+      "z_score": -2.6242169031754456,
+      "log_odds": -1.9207301004312685,
+      "presence_high_sdi": 1,
+      "presence_low_sdi": 27
+    },
+    {
+      "ngram": "presentation slideshow",
+      "z_score": -2.5711861872047894,
+      "log_odds": -1.8842375109238159,
+      "presence_high_sdi": 1,
+      "presence_low_sdi": 26
+    },
+    {
+      "ngram": "stock buy",
+      "z_score": -2.503034760251409,
+      "log_odds": -0.9637685442404464,
+      "presence_high_sdi": 7,
+      "presence_low_sdi": 42
+    },
+    {
+      "ngram": "continue reading",
+      "z_score": -2.434257640629706,
+      "log_odds": -1.0734067240275067,
+      "presence_high_sdi": 5,
+      "presence_low_sdi": 35
+    },
+    {
+      "ngram": "settlement prices",
+      "z_score": -2.4097915086541017,
+      "log_odds": -2.4594831594559263,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 23
+    }
+  ],
+  "n3_high_sdi": [
+    {
+      "ngram": "stock price target",
+      "z_score": 8.85286065538242,
+      "log_odds": 1.6736832540375466,
+      "presence_high_sdi": 98,
+      "presence_low_sdi": 38
+    },
+    {
+      "ngram": "price target raised",
+      "z_score": 7.163822965494517,
+      "log_odds": 4.200833346370056,
+      "presence_high_sdi": 94,
+      "presence_low_sdi": 2
+    },
+    {
+      "ngram": "beats beats revenue",
+      "z_score": 6.610437099691752,
+      "log_odds": 1.6956881342877068,
+      "presence_high_sdi": 54,
+      "presence_low_sdi": 20
+    },
+    {
+      "ngram": "eps beats beats",
+      "z_score": 6.610437099691752,
+      "log_odds": 1.6956881342877068,
+      "presence_high_sdi": 54,
+      "presence_low_sdi": 20
+    },
+    {
+      "ngram": "target raised from",
+      "z_score": 6.486290871387387,
+      "log_odds": 3.8290264867068995,
+      "presence_high_sdi": 65,
+      "presence_low_sdi": 2
+    },
+    {
+      "ngram": "beats revenue https",
+      "z_score": 5.315488732284175,
+      "log_odds": 2.370760003740555,
+      "presence_high_sdi": 30,
+      "presence_low_sdi": 5
+    },
+    {
+      "ngram": "stock market update",
+      "z_score": 4.345700611812567,
+      "log_odds": 0.8997138669403117,
+      "presence_high_sdi": 50,
+      "presence_low_sdi": 42
+    },
+    {
+      "ngram": "beats misses revenue",
+      "z_score": 4.06952851122385,
+      "log_odds": 1.6907852620655754,
+      "presence_high_sdi": 20,
+      "presence_low_sdi": 7
+    },
+    {
+      "ngram": "eps beats misses",
+      "z_score": 3.9245034928168177,
+      "log_odds": 1.6417375982165954,
+      "presence_high_sdi": 19,
+      "presence_low_sdi": 7
+    },
+    {
+      "ngram": "bofa merrill lynch",
+      "z_score": 3.908616518302707,
+      "log_odds": 2.172092190215679,
+      "presence_high_sdi": 16,
+      "presence_low_sdi": 3
+    },
+    {
+      "ngram": "misses revenue https",
+      "z_score": 3.7766478567109414,
+      "log_odds": 2.1112103336711376,
+      "presence_high_sdi": 15,
+      "presence_low_sdi": 3
+    },
+    {
+      "ngram": "same store sales",
+      "z_score": 3.739475523045588,
+      "log_odds": 2.804606642284191,
+      "presence_high_sdi": 15,
+      "presence_low_sdi": 1
+    },
+    {
+      "ngram": "the first time",
+      "z_score": 3.4873906785875515,
+      "log_odds": 1.977164670014453,
+      "presence_high_sdi": 13,
+      "presence_low_sdi": 3
+    },
+    {
+      "ngram": "funds are dumping",
+      "z_score": 3.294081485496668,
+      "log_odds": 2.5158962921068433,
+      "presence_high_sdi": 11,
+      "presence_low_sdi": 1
+    },
+    {
+      "ngram": "for the first",
+      "z_score": 3.220514918141221,
+      "log_odds": 1.5714503717729285,
+      "presence_high_sdi": 13,
+      "presence_low_sdi": 5
+    },
+    {
+      "ngram": "raised suntrust robinson",
+      "z_score": 3.083268895438499,
+      "log_odds": 3.209168013422911,
+      "presence_high_sdi": 11,
+      "presence_low_sdi": 0
+    },
+    {
+      "ngram": "target raised suntrust",
+      "z_score": 3.083268895438499,
+      "log_odds": 3.209168013422911,
+      "presence_high_sdi": 11,
+      "presence_low_sdi": 0
+    },
+    {
+      "ngram": "down after hours",
+      "z_score": 3.083268895438499,
+      "log_odds": 3.209168013422911,
+      "presence_high_sdi": 11,
+      "presence_low_sdi": 0
+    },
+    {
+      "ngram": "the fair value",
+      "z_score": 3.0119687901205,
+      "log_odds": 2.33306099268664,
+      "presence_high_sdi": 9,
+      "presence_low_sdi": 1
+    },
+    {
+      "ngram": "hedge funds love",
+      "z_score": 3.0119687901205,
+      "log_odds": 2.33306099268664,
+      "presence_high_sdi": 9,
+      "presence_low_sdi": 1
+    },
+    {
+      "ngram": "raised bofa merrill",
+      "z_score": 2.9889914312372885,
+      "log_odds": 3.121899732128721,
+      "presence_high_sdi": 10,
+      "presence_low_sdi": 0
+    },
+    {
+      "ngram": "target raised bofa",
+      "z_score": 2.9889914312372885,
+      "log_odds": 3.121899732128721,
+      "presence_high_sdi": 10,
+      "presence_low_sdi": 0
+    },
+    {
+      "ngram": "shares down after",
+      "z_score": 2.9889914312372885,
+      "log_odds": 3.121899732128721,
+      "presence_high_sdi": 10,
+      "presence_low_sdi": 0
+    },
+    {
+      "ngram": "store sales factset",
+      "z_score": 2.9889914312372885,
+      "log_odds": 3.121899732128721,
+      "presence_high_sdi": 10,
+      "presence_low_sdi": 0
+    },
+    {
+      "ngram": "sales factset consensus",
+      "z_score": 2.9889914312372885,
+      "log_odds": 3.121899732128721,
+      "presence_high_sdi": 10,
+      "presence_low_sdi": 0
+    },
+    {
+      "ngram": "pricing equity offering",
+      "z_score": 2.885495025411662,
+      "log_odds": 3.0263327140027076,
+      "presence_high_sdi": 9,
+      "presence_low_sdi": 0
+    },
+    {
+      "ngram": "share price down",
+      "z_score": 2.885495025411662,
+      "log_odds": 3.0263327140027076,
+      "presence_high_sdi": 9,
+      "presence_low_sdi": 0
+    },
+    {
+      "ngram": "offering shares down",
+      "z_score": 2.885495025411662,
+      "log_odds": 3.0263327140027076,
+      "presence_high_sdi": 9,
+      "presence_low_sdi": 0
+    },
+    {
+      "ngram": "first time since",
+      "z_score": 2.8493555608468637,
+      "log_odds": 2.2274437046561095,
+      "presence_high_sdi": 8,
+      "presence_low_sdi": 1
+    },
+    {
+      "ngram": "suntrust robinson humphrey",
+      "z_score": 2.833571370504531,
+      "log_odds": 1.4167856852522656,
+      "presence_high_sdi": 11,
+      "presence_low_sdi": 5
+    },
+    {
+      "ngram": "after pricing equity",
+      "z_score": 2.770833942978296,
+      "log_odds": 2.920715425972177,
+      "presence_high_sdi": 8,
+      "presence_low_sdi": 0
+    },
+    {
+      "ngram": "upgraded buy from",
+      "z_score": 2.668208410807078,
+      "log_odds": 2.1094039625421495,
+      "presence_high_sdi": 7,
+      "presence_low_sdi": 1
+    },
+    {
+      "ngram": "uber stock price",
+      "z_score": 2.64238797536372,
+      "log_odds": 2.802675683858217,
+      "presence_high_sdi": 7,
+      "presence_low_sdi": 0
+    },
+    {
+      "ngram": "down premarket after",
+      "z_score": 2.64238797536372,
+      "log_odds": 2.802675683858217,
+      "presence_high_sdi": 7,
+      "presence_low_sdi": 0
+    },
+    {
+      "ngram": "trust declares dividend",
+      "z_score": 2.5859744610597,
+      "log_odds": 1.4163965454546625,
+      "presence_high_sdi": 9,
+      "presence_low_sdi": 4
+    },
+    {
+      "ngram": "after hours https",
+      "z_score": 2.5167005077572044,
+      "log_odds": 1.703814298165529,
+      "presence_high_sdi": 7,
+      "presence_low_sdi": 2
+    },
+    {
+      "ngram": "stock falls after",
+      "z_score": 2.5167005077572044,
+      "log_odds": 1.703814298165529,
+      "presence_high_sdi": 7,
+      "presence_low_sdi": 2
+    },
+    {
+      "ngram": "sector weight keybanc",
+      "z_score": 2.4965157981380126,
+      "log_odds": 2.6688876506574104,
+      "presence_high_sdi": 6,
+      "presence_low_sdi": 0
+    },
+    {
+      "ngram": "among losers https",
+      "z_score": 2.4965157981380126,
+      "log_odds": 2.6688876506574104,
+      "presence_high_sdi": 6,
+      "presence_low_sdi": 0
+    },
+    {
+      "ngram": "weight keybanc capital",
+      "z_score": 2.4965157981380126,
+      "log_odds": 2.6688876506574104,
+      "presence_high_sdi": 6,
+      "presence_low_sdi": 0
+    },
+    {
+      "ngram": "raised from cfra",
+      "z_score": 2.4965157981380126,
+      "log_odds": 2.6688876506574104,
+      "presence_high_sdi": 6,
+      "presence_low_sdi": 0
+    },
+    {
+      "ngram": "from sector weight",
+      "z_score": 2.4965157981380126,
+      "log_odds": 2.6688876506574104,
+      "presence_high_sdi": 6,
+      "presence_low_sdi": 0
+    },
+    {
+      "ngram": "equity offering shares",
+      "z_score": 2.4965157981380126,
+      "log_odds": 2.6688876506574104,
+      "presence_high_sdi": 6,
+      "presence_low_sdi": 0
+    },
+    {
+      "ngram": "raised from suntrust",
+      "z_score": 2.4965157981380126,
+      "log_odds": 2.6688876506574104,
+      "presence_high_sdi": 6,
+      "presence_low_sdi": 0
+    },
+    {
+      "ngram": "raised from deutsche",
+      "z_score": 2.4965157981380126,
+      "log_odds": 2.6688876506574104,
+      "presence_high_sdi": 6,
+      "presence_low_sdi": 0
+    },
+    {
+      "ngram": "upgraded overweight from",
+      "z_score": 2.4965157981380126,
+      "log_odds": 2.6688876506574104,
+      "presence_high_sdi": 6,
+      "presence_low_sdi": 0
+    },
+    {
+      "ngram": "premarket after pricing",
+      "z_score": 2.4965157981380126,
+      "log_odds": 2.6688876506574104,
+      "presence_high_sdi": 6,
+      "presence_low_sdi": 0
+    },
+    {
+      "ngram": "premarket after results",
+      "z_score": 2.4965157981380126,
+      "log_odds": 2.6688876506574104,
+      "presence_high_sdi": 6,
+      "presence_low_sdi": 0
+    },
+    {
+      "ngram": "among consumer gainers",
+      "z_score": 2.4965157981380126,
+      "log_odds": 2.6688876506574104,
+      "presence_high_sdi": 6,
+      "presence_low_sdi": 0
+    },
+    {
+      "ngram": "over the past",
+      "z_score": 2.464025978482767,
+      "log_odds": 1.975615929341343,
+      "presence_high_sdi": 6,
+      "presence_low_sdi": 1
+    }
+  ],
+  "n3_low_sdi": [
+    {
+      "ngram": "stock marketscreener https",
+      "z_score": -7.107442393991987,
+      "log_odds": -0.9760278414338956,
+      "presence_high_sdi": 62,
+      "presence_low_sdi": 334
+    },
+    {
+      "ngram": "results earnings call",
+      "z_score": -4.18321554135702,
+      "log_odds": -2.464983397048753,
+      "presence_high_sdi": 2,
+      "presence_low_sdi": 71
+    },
+    {
+      "ngram": "earnings conference call",
+      "z_score": -4.011376249420172,
+      "log_odds": -4.028931590403677,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 113
+    },
+    {
+      "ngram": "conference call presentation",
+      "z_score": -3.993192288177281,
+      "log_odds": -4.0109794242652965,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 111
+    },
+    {
+      "ngram": "call presentation nov",
+      "z_score": -3.709968554353233,
+      "log_odds": -3.7317280872963874,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 84
+    },
+    {
+      "ngram": "presentation nov gmt",
+      "z_score": -3.709968554353233,
+      "log_odds": -3.7317280872963874,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 84
+    },
+    {
+      "ngram": "declares dividend https",
+      "z_score": -3.4989815403651012,
+      "log_odds": -1.31569821547164,
+      "presence_high_sdi": 7,
+      "presence_low_sdi": 60
+    },
+    {
+      "ngram": "earnings preview https",
+      "z_score": -3.4419139508226633,
+      "log_odds": -2.4829733531250584,
+      "presence_high_sdi": 1,
+      "presence_low_sdi": 48
+    },
+    {
+      "ngram": "earnings call transcript",
+      "z_score": -3.379369511702331,
+      "log_odds": -2.0136972566785287,
+      "presence_high_sdi": 2,
+      "presence_low_sdi": 45
+    },
+    {
+      "ngram": "seeking alpha https",
+      "z_score": -3.3540547199816677,
+      "log_odds": -1.1976584733576798,
+      "presence_high_sdi": 8,
+      "presence_low_sdi": 60
+    },
+    {
+      "ngram": "reports results https",
+      "z_score": -3.0702067261136654,
+      "log_odds": -2.2273620627234774,
+      "presence_high_sdi": 1,
+      "presence_low_sdi": 37
+    },
+    {
+      "ngram": "have never been",
+      "z_score": -3.0229450113871295,
+      "log_odds": -1.5852457377373206,
+      "presence_high_sdi": 3,
+      "presence_low_sdi": 39
+    },
+    {
+      "ngram": "funds have never",
+      "z_score": -3.0229450113871295,
+      "log_odds": -1.5852457377373206,
+      "presence_high_sdi": 3,
+      "presence_low_sdi": 39
+    },
+    {
+      "ngram": "hedge funds have",
+      "z_score": -3.0229450113871295,
+      "log_odds": -1.5852457377373206,
+      "presence_high_sdi": 3,
+      "presence_low_sdi": 39
+    },
+    {
+      "ngram": "follow this and",
+      "z_score": -2.9899160768270607,
+      "log_odds": -1.7948472942115021,
+      "presence_high_sdi": 2,
+      "presence_low_sdi": 36
+    },
+    {
+      "ngram": "and any other",
+      "z_score": -2.8640530938712896,
+      "log_odds": -2.085658112682827,
+      "presence_high_sdi": 1,
+      "presence_low_sdi": 32
+    },
+    {
+      "ngram": "this and any",
+      "z_score": -2.8390541010852397,
+      "log_odds": -1.7099146951228184,
+      "presence_high_sdi": 2,
+      "presence_low_sdi": 33
+    },
+    {
+      "ngram": "read more https",
+      "z_score": -2.8069352722944587,
+      "log_odds": -1.4793847841859025,
+      "presence_high_sdi": 3,
+      "presence_low_sdi": 35
+    },
+    {
+      "ngram": "any other stock",
+      "z_score": -2.772749615696341,
+      "log_odds": -2.022887724446284,
+      "presence_high_sdi": 1,
+      "presence_low_sdi": 30
+    },
+    {
+      "ngram": "here what analysts",
+      "z_score": -2.7686195990444196,
+      "log_odds": -2.8090395414648865,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 33
+    },
+    {
+      "ngram": "sign for updates",
+      "z_score": -2.7547102755215764,
+      "log_odds": -1.204085438783439,
+      "presence_high_sdi": 5,
+      "presence_low_sdi": 40
+    },
+    {
+      "ngram": "never been this",
+      "z_score": -2.6754084540362064,
+      "log_odds": -1.9559463811924047,
+      "presence_high_sdi": 1,
+      "presence_low_sdi": 28
+    },
+    {
+      "ngram": "been this bullish",
+      "z_score": -2.6242169031754456,
+      "log_odds": -1.9207301004312685,
+      "presence_high_sdi": 1,
+      "presence_low_sdi": 27
+    },
+    {
+      "ngram": "earnings call presentation",
+      "z_score": -2.604819748792034,
+      "log_odds": -2.6493498077499087,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 28
+    },
+    {
+      "ngram": "investor presentation slideshow",
+      "z_score": -2.5711861872047894,
+      "log_odds": -1.8842375109238159,
+      "presence_high_sdi": 1,
+      "presence_low_sdi": 26
+    },
+    {
+      "ngram": "continue reading https",
+      "z_score": -2.434257640629706,
+      "log_odds": -1.0734067240275067,
+      "presence_high_sdi": 5,
+      "presence_low_sdi": 35
+    },
+    {
+      "ngram": "settlement prices https",
+      "z_score": -2.4097915086541017,
+      "log_odds": -2.4594831594559263,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 23
+    },
+    {
+      "ngram": "goes dividend tomorrow",
+      "z_score": -2.4097915086541017,
+      "log_odds": -2.4594831594559263,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 23
+    },
+    {
+      "ngram": "get more updates",
+      "z_score": -2.293423992477661,
+      "log_odds": -1.4013052061542286,
+      "presence_high_sdi": 2,
+      "presence_low_sdi": 24
+    },
+    {
+      "ngram": "news highlights top",
+      "z_score": -2.2721084735458,
+      "log_odds": -2.325577164841633,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 20
+    },
+    {
+      "ngram": "news the day",
+      "z_score": -2.2721084735458,
+      "log_odds": -2.325577164841633,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 20
+    },
+    {
+      "ngram": "what analysts think",
+      "z_score": -2.2217947724337344,
+      "log_odds": -2.2766621645194887,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 19
+    },
+    {
+      "ngram": "updates here https",
+      "z_score": -2.2214558229881485,
+      "log_odds": -1.3603583131138581,
+      "presence_high_sdi": 2,
+      "presence_low_sdi": 23
+    },
+    {
+      "ngram": "more updates here",
+      "z_score": -2.2214558229881485,
+      "log_odds": -1.3603583131138581,
+      "presence_high_sdi": 2,
+      "presence_low_sdi": 23
+    },
+    {
+      "ngram": "read more and",
+      "z_score": -2.2207376435929875,
+      "log_odds": -0.6873209966097864,
+      "presence_high_sdi": 12,
+      "presence_low_sdi": 52
+    },
+    {
+      "ngram": "making the biggest",
+      "z_score": -2.168899611808433,
+      "log_odds": -2.225244049561346,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 18
+    },
+    {
+      "ngram": "the biggest moves",
+      "z_score": -2.168899611808433,
+      "log_odds": -2.225244049561346,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 18
+    },
+    {
+      "ngram": "what analysts are",
+      "z_score": -2.168899611808433,
+      "log_odds": -2.225244049561346,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 18
+    },
+    {
+      "ngram": "stocks making the",
+      "z_score": -2.168899611808433,
+      "log_odds": -2.225244049561346,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 18
+    },
+    {
+      "ngram": "other stock seeking",
+      "z_score": -2.1348656467553924,
+      "log_odds": -1.5832587379619847,
+      "presence_high_sdi": 1,
+      "presence_low_sdi": 19
+    },
+    {
+      "ngram": "london stock exchange",
+      "z_score": -2.054214051080246,
+      "log_odds": -2.1137688200407414,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 16
+    },
+    {
+      "ngram": "analysts are forecasting",
+      "z_score": -2.054214051080246,
+      "log_odds": -2.1137688200407414,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 16
+    },
+    {
+      "ngram": "highlights top energy",
+      "z_score": -1.991721397211783,
+      "log_odds": -2.0530194243767426,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 15
+    },
+    {
+      "ngram": "what hedge funds",
+      "z_score": -1.991721397211783,
+      "log_odds": -2.0530194243767426,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 15
+    },
+    {
+      "ngram": "day wti stock",
+      "z_score": -1.991721397211783,
+      "log_odds": -2.0530194243767426,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 15
+    },
+    {
+      "ngram": "hedge funds think",
+      "z_score": -1.991721397211783,
+      "log_odds": -2.0530194243767426,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 15
+    },
+    {
+      "ngram": "here what hedge",
+      "z_score": -1.991721397211783,
+      "log_odds": -2.0530194243767426,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 15
+    },
+    {
+      "ngram": "top energy news",
+      "z_score": -1.991721397211783,
+      "log_odds": -2.0530194243767426,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 15
+    },
+    {
+      "ngram": "inc results earnings",
+      "z_score": -1.991721397211783,
+      "log_odds": -2.0530194243767426,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 15
+    },
+    {
+      "ngram": "the day wti",
+      "z_score": -1.991721397211783,
+      "log_odds": -2.0530194243767426,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 15
+    }
+  ]
+}
