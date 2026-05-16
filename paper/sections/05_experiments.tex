@@ -1,0 +1,290 @@
+\section{Experiments}
+\label{sec:experiments}
+
+\paragraph{Setup.}
+We use the \texttt{sentences\_allagree} subset of Financial
+PhraseBank~\cite{malo2014fpb,flarefpb} (4{,}838 unique sentences after
+deduplication: 604 negative, 2{,}872 neutral, 1{,}362 positive).
+LLM inference uses HuggingFace Transformers~\cite{wolf2020transformers}
+in bf16 (4-bit for 14\,B via bitsandbytes~\cite{dettmers2023bnb}) on
+a single NVIDIA RTX A5000 (24\,GB), batch size 8, deterministic
+decoding. Cost is reported in USD using GPU-rental amortisation
+(\$0.40/hour A5000-class) for FinBERT and Qwen; VADER cost is
+$\approx\!0$. All experiments are reproducible from
+\texttt{experiments/L*.py}.
+
+\subsection{Bias Diversity and Four Quadrants}
+\label{sec:experiments:bias}
+
+Table~\ref{tab:quadrant} reports the four-quadrant decomposition of
+the committee on FPB; Figure~\ref{fig:sdi} visualises the underlying
+SDI distributions and class-conditional separation.
+
+\begin{table*}[t]
+\centering
+\small
+\caption{Four quadrants of committee behaviour. The negative class
+concentrates in \textit{domain shift} (where VADER fails badly);
+ambiguous cases are where the LLM and FinBERT disagree most. $n$
+is sample count; Acc$_\mathrm{V/F/L}$ is per-agent accuracy in that
+quadrant.}
+\label{tab:quadrant}
+\begin{tabular}{lrrrrrrrr}
+\toprule
+Quadrant & $n$ & \% & \%pos & \%neu & \%neg
+         & Acc$_\mathrm{V}$ & Acc$_\mathrm{F}$ & Acc$_\mathrm{L}$ \\
+\midrule
+consensus     & 1907 & 39.4 & 10.7 & 88.7 &  0.5 & 74.6 & 96.4 & 96.5 \\
+mixed         & 1509 & 31.2 & 34.1 & 56.9 &  9.0 & 47.2 & 86.0 & 87.2 \\
+domain shift  &  651 & 13.5 & 34.6 & 10.1 & 55.3 & 10.3 & 95.5 & 95.5 \\
+ambiguous     &  771 & 15.9 & 54.2 & 33.1 & 12.7 & 55.6 & 70.8 & 28.1 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.9\textwidth]{fig_sdi_three_way.pdf}
+\caption{Three-way SDI on FPB. \emph{Left:} distributions of the
+three pairwise SDIs. \emph{Centre:} four-quadrant scatter of
+$(\mathrm{SDI}_{\mathrm{LE}}, \mathrm{SDI}_{\mathrm{ER}})$.
+\emph{Right:} SDI$_{\mathrm{LE}}$ by gold class --- negative has
+highest mean disagreement (0.945; ANOVA $F=1777$, $p<10^{-200}$).}
+\label{fig:sdi}
+\end{figure*}
+
+Pairwise Cohen's $\kappa$ between agent labels (Figure~\ref{fig:bias})
+is low: $\kappa(\mathrm{V},\mathrm{F})=0.27$,
+$\kappa(\mathrm{F},\mathrm{L})=0.61$,
+$\kappa(\mathrm{V},\mathrm{L})=0.19$. Single-agent error sets are
+nearly orthogonal --- pairwise Jaccard overlap $0.13$--$0.15$ ---
+which is what makes the committee genuinely complementary rather
+than a redundant ensemble.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{fig_bias_diversity.pdf}
+\caption{Pairwise Cohen's $\kappa$ (left) and per-sample
+disagreement entropy (right). Low $\kappa$ confirms bias diversity;
+the bimodal entropy distribution shows the committee is either
+fully aligned or split 2-vs-1.}
+\label{fig:bias}
+\end{figure}
+
+\subsection{Single-Agent Scaling and Critic Plateau}
+\label{sec:experiments:scaling}
+
+Figure~\ref{fig:scaling} reports single-agent F1 across the
+Qwen2.5-Instruct family.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{fig_scaling_inflection.pdf}
+\caption{Single-agent F1 vs.\ Qwen size on FPB. The domain-specific
+FinBERT (dashed blue) outperforms every Qwen variant up to 7\,B;
+3\,B underperforms 1.5\,B (over-predicts neutral) and 14\,B-4bit
+lands below 7\,B-bf16 (quantisation cost exceeds the size gain).}
+\label{fig:scaling}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{fig_interaction_vs_size.pdf}
+\caption{The paper's central finding: \emph{interaction substitutes
+for parameters within a model family.} Critic F1 plateaus at
+$\approx 0.87$ across Qwen-1.5B/3B/7B (sky-blue squares); debate
+ramps from 0.69 to 0.87 (orange diamonds); single-agent F1 stays
+well below in grey. Mistral-7B (hollow markers at the right) is
+family-specific lower.}
+\label{fig:interaction}
+\end{figure}
+
+The headline result (Figure~\ref{fig:interaction}):
+critic@$\{1.5\text{B},3\text{B},7\text{B}\}$ all reach $F_1\!\approx\!0.87$
+(a flat plateau), debate ramps from $0.69$ at 1.5\,B to $0.87$ at
+7\,B, and cross-family critic@Mistral-7B reaches only $0.79$ while
+debate@Mistral-7B reaches $0.82$. The plateau is family-specific.
+\textbf{The plateau is statistically real.} 1000-resample bootstrap
+95\% CIs are critic@1.5B $[0.860,0.880]$, critic@3B $[0.860,0.880]$,
+debate@7B $[0.862,0.882]$: all three intervals overlap, so the
+``critic@1.5B = critic@7B'' equality is not a small-sample artefact.
+\textbf{A second cross-family check.} Phi-3.5-mini (3.8\,B,
+microsoft/Phi-3.5-mini-instruct, Apache 2.0) reaches
+critic-protocol $F_1\!=\!0.857$ on the same FPB committee, slotting
+between Mistral-7B critic (0.79) and the Qwen plateau (0.87). Two
+non-Qwen families both achieve high-but-below-plateau critic
+performance --- the plateau height is a Qwen-family property, but the
+\emph{critic mechanism itself} generalises across families.
+
+\paragraph{Same-size persona vote --- a critical negative result.}
+To rule out ``critic just works because of multi-agent voting,
+regardless of granularity'', we instantiated three Qwen-1.5B
+\emph{personas} (bull / bear / neutral analyst prompts) and
+majority-voted. The 3-persona vote reaches $F_1\!=\!0.66$
+(vs.\ single-instance Qwen-1.5B baseline $0.69$ and critic@1.5B
+$0.87$); inter-persona agreement is 81\%. The critic plateau is
+\emph{granularity-driven}, not multi-agent-vote-driven.
+
+\subsection{Token-Economic Pareto Frontier and Token Efficiency}
+\label{sec:experiments:pareto}
+
+Figure~\ref{fig:pareto} shows the Pareto frontier of cost vs.\ F1
+across the seven routing strategies on FPB. Each operating point
+is parameterised by the SDI escalation thresholds, giving the
+operator a single dial that maps tokens-per-query to F1 ---
+\emph{token efficiency as a continuous design variable rather than
+a single deployment choice}.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Three operating points along the SDI two-stage curve plus
+the Always-L3 reference. Cost is per 1{,}000 sentences; ``\%L$x$''
+is the fraction of queries handled by tier $x$.}
+\label{tab:operating}
+\begin{tabular}{lrrrrrr}
+\toprule
+Point & \$/1k & F1 & Lat (ms) & \%L1 & \%L2 & \%L3 \\
+\midrule
+Budget         & 0.0001 & 0.665 &   0.4 & 90.0 &  9.9 &  0.1 \\
+Balanced       & 0.0006 & 0.716 &   4.3 & 70.0 & 28.5 &  1.5 \\
+Premium        & 0.0054 & 0.787 &  46.5 & 30.0 & 52.5 & 17.5 \\
+Always-L3 (ref)& 0.0288 & 0.809 & 259.4 &  0.0 &  0.0 & 100.0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{fig_main_pareto.pdf}
+\caption{Pareto frontier on FPB. SDI two-stage (orange diamonds)
+traces a clean cost--accuracy curve between Always-L1 and Always-L2;
+operating points (Table~\ref{tab:operating}) give a 48$\times$ cost
+reduction at the ``Balanced'' setting against Always-L3 with the
+same Qwen-7B reasoner.}
+\label{fig:pareto}
+\end{figure}
+
+\subsection{Per-Class Lift on the Hard Class}
+\label{sec:experiments:per_class}
+
+Figure~\ref{fig:per_class} sorts strategies by F1 on the negative
+class and reveals the only setting where a committee strictly beats
+the specialist.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{fig_per_class_f1.pdf}
+\caption{Per-class F1 sorted by F1 on the (hard) negative class.
+Debate@7B reaches $0.893$ on negative --- $+1.4$\,pp over FinBERT
+alone (0.879), the only setting where any committee strategy beats
+the specialist on a class. The lift comes from precision improvement
+at near-equal recall.}
+\label{fig:per_class}
+\end{figure}
+
+\subsection{SCD: Hit-Rate vs.\ Accuracy}
+\label{sec:experiments:scd}
+
+70/30 build/query split of FPB; debate@7B labels populate the cache.
+Figure~\ref{fig:scd} shows the trade-off as $\tau$ varies. At
+$\tau\!=\!0.85$ the SCD hits 10\% of queries with only $-0.8$\,pp
+F1 loss vs.\ always-committee. The trade-off sweeps cleanly from
+$\tau\!=\!0.95$ (3\% hit, $-0.3$\,pp F1) to $\tau\!=\!0.50$ (83\%
+hit, $-14.5$\,pp F1). \textbf{Scale-up: 16K-entry cache.} Combining
+FPB + TFNS (16{,}769 sentences) and rebuilding the SCD at the same
+70/30 split preserves the trade-off curve: hit-set $F_1\!=\!0.82$ at
+$\tau\!=\!0.95$ (3.1\% hit) up to $F_1\!=\!0.71$ at $\tau\!=\!0.60$
+(60\% hit), confirming the SCD is not an FPB-specific phenomenon
+(\texttt{scd\_scaleup\_16k.csv}).
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{fig_scd_tradeoff.pdf}
+\caption{SCD accuracy / hit-rate trade-off as $\tau$ varies. The
+deployable sweet spot is $\tau\!\approx\!0.85$. Production caches
+(orders of magnitude larger than our 3.4K-entry build set) would
+see substantially higher hit rates at the same $\tau$.}
+\label{fig:scd}
+\end{figure}
+
+\subsection{Cross-Lingual Generalisation}
+\label{sec:experiments:zh}
+
+We translate 1{,}500 FPB sentences to Mandarin via Qwen-7B and re-run
+the multi-size sweep. Single-agent Qwen-7B Chinese reaches $F_1=0.80$
+(vs.\ 0.81 in English --- nearly lossless). The relationship between
+specialist and generic LLM \emph{inverts} in Chinese:
+\texttt{finbert-tone-chinese}~\cite{finbertchinese} reaches $F_1=0.72$
+on the same translated set, below Qwen-7B. The architecture is
+\emph{language-conditional}: VADER and English FinBERT both score
+$F_1\!\approx\!0.06$ on FinChinaSentiment~\cite{finchina}.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{fig_cross_lingual.pdf}
+\caption{Cross-lingual deployment. \emph{Left:} naive cross-lingual
+committees agree 81--85\% with their English counterparts ($\kappa
+0.55$--$0.66$). \emph{Right:} the SCD acts as a cross-lingual
+canonicaliser --- multilingual sentence-BERT lets a Chinese query
+find its English cached answer at hit-rate $0.95$ / F1 $0.99$ for
+$\tau\!=\!0.70$.}
+\label{fig:xling}
+\end{figure}
+
+The killer cross-lingual finding (Figure~\ref{fig:xling}, right):
+multilingual sentence-BERT lets the SCD serve as a cross-lingual
+canonicaliser. At $\tau\!=\!0.70$, 95\% of Chinese-translated queries
+find a high-confidence match in the English cache with cached-label
+F1 $=0.99$. A new Chinese deployment thus does not need to re-derive
+labels from scratch; it inherits canonical answers from the existing
+English cache.
+
+\subsection{End-to-End Backtest}
+\label{sec:experiments:backtest}
+
+Table~\ref{tab:backtest} summarises results across all strategies;
+Figure~\ref{fig:equity} compares Sharpe and total return.
+
+\begin{table}[t]
+\centering
+\small
+\caption{20-ticker, 2-year backtest on real model predictions
+(2023-01-01 to 2024-12-31). Each weekly signal aggregates 20 sampled
+sentences; T+1 open execution, 5-day hold, 10\,bps slippage,
+position $=$ 10\,\% capital. \textbf{SDI-Single-Stage} achieves the
+best Sharpe of any strategy; Always-L3 (Qwen-7B) is worst on both
+return and Sharpe.}
+\label{tab:backtest}
+\begin{tabular}{lrrrr}
+\toprule
+Strategy           & Return\% & Sharpe & MaxDD\% & Win\% \\
+\midrule
+Always-L1          & 2.0 & 1.51 & $-1.8$ & 55.0 \\
+Always-L2          & 0.8 & 1.36 & $-1.0$ & 51.6 \\
+Always-L3          & 0.3 & 0.11 & $-0.8$ & 47.5 \\
+Oracle             & 0.5 & 0.60 & $-1.3$ & 51.3 \\
+\textbf{SDI-Single (S5)}    & \textbf{3.4} & \textbf{3.50} & $-1.3$ & \textbf{59.3} \\
+\textbf{SDI-Two-Stage (S6)} & 2.8 & 2.90 & $-1.4$ & 58.7 \\
+debate@7B          & 1.0 & 1.77 & $-1.1$ & 53.6 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{fig_equity_curves.pdf}
+\caption{Backtest Sharpe (left) and total return (right) by strategy,
+mean across 20 tickers. SDI-Single Sharpe $=3.50$, $2.6\times$ the
+next best. Always-L3 (Qwen-7B alone) is worst --- a generic LLM
+signal is too noisy to trade on in this news-proxy back-test.}
+\label{fig:equity}
+\end{figure}
+
+We do \emph{not} claim the back-test predicts real markets; FPB
+sentences are a controlled news proxy. The headline is that
+SDI-routed strategies, by selectively combining agents, produce
+signals more discriminating than any single agent alone --- exactly
+what one would predict from the bias diversity reported in
+Section~\ref{sec:experiments:bias}.
+

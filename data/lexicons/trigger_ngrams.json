@@ -1,0 +1,2114 @@
+{
+  "n1_high_sdi": [
+    {
+      "ngram": "eur",
+      "z_score": 10.0987761724157,
+      "log_odds": 0.6863697873533043,
+      "presence_high_sdi": 394,
+      "presence_low_sdi": 478
+    },
+    {
+      "ngram": "loss",
+      "z_score": 9.675143542248486,
+      "log_odds": 1.8293378999535888,
+      "presence_high_sdi": 105,
+      "presence_low_sdi": 37
+    },
+    {
+      "ngram": "from",
+      "z_score": 9.564869134519947,
+      "log_odds": 0.7172385509994963,
+      "presence_high_sdi": 331,
+      "presence_low_sdi": 382
+    },
+    {
+      "ngram": "down",
+      "z_score": 8.753433560628082,
+      "log_odds": 2.283548455777449,
+      "presence_high_sdi": 79,
+      "presence_low_sdi": 17
+    },
+    {
+      "ngram": "signed",
+      "z_score": 7.853444978070853,
+      "log_odds": 2.5604363291271413,
+      "presence_high_sdi": 64,
+      "presence_low_sdi": 10
+    },
+    {
+      "ngram": "profit",
+      "z_score": 7.84918989140897,
+      "log_odds": 0.7773350529361933,
+      "presence_high_sdi": 199,
+      "presence_low_sdi": 207
+    },
+    {
+      "ngram": "decreased",
+      "z_score": 6.839377600956335,
+      "log_odds": 4.025897410858478,
+      "presence_high_sdi": 75,
+      "presence_low_sdi": 2
+    },
+    {
+      "ngram": "period",
+      "z_score": 6.7796850878910675,
+      "log_odds": 0.8760143407138017,
+      "presence_high_sdi": 124,
+      "presence_low_sdi": 114
+    },
+    {
+      "ngram": "finnish",
+      "z_score": 6.523515536027972,
+      "log_odds": 0.5798884228778789,
+      "presence_high_sdi": 226,
+      "presence_low_sdi": 285
+    },
+    {
+      "ngram": "compared",
+      "z_score": 6.434258058923878,
+      "log_odds": 1.064859131680171,
+      "presence_high_sdi": 84,
+      "presence_low_sdi": 63
+    },
+    {
+      "ngram": "agreement",
+      "z_score": 6.349983594556342,
+      "log_odds": 1.2861756733085312,
+      "presence_high_sdi": 64,
+      "presence_low_sdi": 38
+    },
+    {
+      "ngram": "year",
+      "z_score": 5.989920769144456,
+      "log_odds": 0.6485756867956445,
+      "presence_high_sdi": 158,
+      "presence_low_sdi": 183
+    },
+    {
+      "ngram": "said",
+      "z_score": 5.945216568252357,
+      "log_odds": 0.5147669704730178,
+      "presence_high_sdi": 232,
+      "presence_low_sdi": 311
+    },
+    {
+      "ngram": "net",
+      "z_score": 5.737807718262403,
+      "log_odds": 0.5872550896197484,
+      "presence_high_sdi": 172,
+      "presence_low_sdi": 212
+    },
+    {
+      "ngram": "quarter",
+      "z_score": 5.673729648694739,
+      "log_odds": 0.7565645396630978,
+      "presence_high_sdi": 110,
+      "presence_low_sdi": 113
+    },
+    {
+      "ngram": "fell",
+      "z_score": 5.659342304044437,
+      "log_odds": 4.075192221782455,
+      "presence_high_sdi": 53,
+      "presence_low_sdi": 1
+    },
+    {
+      "ngram": "hel",
+      "z_score": 5.498531370515343,
+      "log_odds": 1.0343176765001618,
+      "presence_high_sdi": 64,
+      "presence_low_sdi": 49
+    },
+    {
+      "ngram": "oyj",
+      "z_score": 5.396198602235478,
+      "log_odds": 0.7120604641426875,
+      "presence_high_sdi": 110,
+      "presence_low_sdi": 118
+    },
+    {
+      "ngram": "number",
+      "z_score": 5.314393755161017,
+      "log_odds": 1.3310118802685813,
+      "presence_high_sdi": 43,
+      "presence_low_sdi": 24
+    },
+    {
+      "ngram": "lay",
+      "z_score": 5.065320191712411,
+      "log_odds": 2.7075275302422774,
+      "presence_high_sdi": 27,
+      "presence_low_sdi": 3
+    },
+    {
+      "ngram": "first",
+      "z_score": 5.022511037208808,
+      "log_odds": 0.7426491967820223,
+      "presence_high_sdi": 89,
+      "presence_low_sdi": 92
+    },
+    {
+      "ngram": "earlier",
+      "z_score": 4.949045515112247,
+      "log_odds": 1.0605705535682288,
+      "presence_high_sdi": 50,
+      "presence_low_sdi": 37
+    },
+    {
+      "ngram": "totalled",
+      "z_score": 4.91954740908388,
+      "log_odds": 1.426897609057189,
+      "presence_high_sdi": 34,
+      "presence_low_sdi": 17
+    },
+    {
+      "ngram": "eps",
+      "z_score": 4.725108774478291,
+      "log_odds": 1.486155489636364,
+      "presence_high_sdi": 30,
+      "presence_low_sdi": 14
+    },
+    {
+      "ngram": "half",
+      "z_score": 4.475625663279053,
+      "log_odds": 1.2421841810321856,
+      "presence_high_sdi": 33,
+      "presence_low_sdi": 20
+    },
+    {
+      "ngram": "corresponding",
+      "z_score": 4.19289496054188,
+      "log_odds": 0.7655143837128402,
+      "presence_high_sdi": 59,
+      "presence_low_sdi": 59
+    },
+    {
+      "ngram": "grew",
+      "z_score": 4.1004062940659916,
+      "log_odds": 1.4497125480770316,
+      "presence_high_sdi": 23,
+      "presence_low_sdi": 11
+    },
+    {
+      "ngram": "operating",
+      "z_score": 4.051768772957912,
+      "log_odds": 0.47630021251465227,
+      "presence_high_sdi": 125,
+      "presence_low_sdi": 169
+    },
+    {
+      "ngram": "third",
+      "z_score": 3.992759099483215,
+      "log_odds": 0.9188697485408874,
+      "presence_high_sdi": 40,
+      "presence_low_sdi": 34
+    },
+    {
+      "ngram": "awarded",
+      "z_score": 3.9764485312759685,
+      "log_odds": 1.3693640767564101,
+      "presence_high_sdi": 23,
+      "presence_low_sdi": 12
+    },
+    {
+      "ngram": "offs",
+      "z_score": 3.9751958492848307,
+      "log_odds": 2.4893642026430216,
+      "presence_high_sdi": 16,
+      "presence_low_sdi": 2
+    },
+    {
+      "ngram": "off",
+      "z_score": 3.9693337231365473,
+      "log_odds": 1.1991713983318872,
+      "presence_high_sdi": 27,
+      "presence_low_sdi": 17
+    },
+    {
+      "ngram": "savings",
+      "z_score": 3.8967042219653636,
+      "log_odds": 1.4971614691649684,
+      "presence_high_sdi": 20,
+      "presence_low_sdi": 9
+    },
+    {
+      "ngram": "temporary",
+      "z_score": 3.8878431964506523,
+      "log_odds": 1.9779286368026163,
+      "presence_high_sdi": 16,
+      "presence_low_sdi": 4
+    },
+    {
+      "ngram": "costs",
+      "z_score": 3.7935687588962037,
+      "log_odds": 1.3613990875701036,
+      "presence_high_sdi": 21,
+      "presence_low_sdi": 11
+    },
+    {
+      "ngram": "dropped",
+      "z_score": 3.6779694545952593,
+      "log_odds": 2.768674822918645,
+      "presence_high_sdi": 14,
+      "presence_low_sdi": 1
+    },
+    {
+      "ngram": "its",
+      "z_score": 3.6683553088465,
+      "log_odds": 0.31234491340208037,
+      "presence_high_sdi": 223,
+      "presence_low_sdi": 358
+    },
+    {
+      "ngram": "temporarily",
+      "z_score": 3.5704870238143753,
+      "log_odds": 2.699034492684569,
+      "presence_high_sdi": 13,
+      "presence_low_sdi": 1
+    },
+    {
+      "ngram": "narrowed",
+      "z_score": 3.549138515813377,
+      "log_odds": 3.6463931942260857,
+      "presence_high_sdi": 17,
+      "presence_low_sdi": 0
+    },
+    {
+      "ngram": "today",
+      "z_score": 3.516774573752317,
+      "log_odds": 0.5768046831169782,
+      "presence_high_sdi": 67,
+      "presence_low_sdi": 81
+    },
+    {
+      "ngram": "has",
+      "z_score": 3.487740624495432,
+      "log_odds": 0.30271111683211505,
+      "presence_high_sdi": 214,
+      "presence_low_sdi": 346
+    },
+    {
+      "ngram": "fall",
+      "z_score": 3.463646910781047,
+      "log_odds": 2.2185095410242495,
+      "presence_high_sdi": 12,
+      "presence_low_sdi": 2
+    },
+    {
+      "ngram": "workers",
+      "z_score": 3.463646910781047,
+      "log_odds": 2.2185095410242495,
+      "presence_high_sdi": 12,
+      "presence_low_sdi": 2
+    },
+    {
+      "ngram": "per",
+      "z_score": 3.4014649983088434,
+      "log_odds": 0.6150482207230707,
+      "presence_high_sdi": 56,
+      "presence_low_sdi": 65
+    },
+    {
+      "ngram": "that",
+      "z_score": 3.361945215051874,
+      "log_odds": 0.3423731592278729,
+      "presence_high_sdi": 158,
+      "presence_low_sdi": 244
+    },
+    {
+      "ngram": "cooperation",
+      "z_score": 3.324625920889376,
+      "log_odds": 1.184440046144874,
+      "presence_high_sdi": 19,
+      "presence_low_sdi": 12
+    },
+    {
+      "ngram": "september",
+      "z_score": 3.300561312724359,
+      "log_odds": 0.7120099241879041,
+      "presence_high_sdi": 41,
+      "presence_low_sdi": 43
+    },
+    {
+      "ngram": "slightly",
+      "z_score": 3.277389487065875,
+      "log_odds": 1.5992023197541716,
+      "presence_high_sdi": 13,
+      "presence_low_sdi": 5
+    },
+    {
+      "ngram": "declined",
+      "z_score": 3.243939658884858,
+      "log_odds": 1.7070739751838442,
+      "presence_high_sdi": 12,
+      "presence_low_sdi": 4
+    },
+    {
+      "ngram": "strengthen",
+      "z_score": 3.243939658884858,
+      "log_odds": 1.7070739751838442,
+      "presence_high_sdi": 12,
+      "presence_low_sdi": 4
+    }
+  ],
+  "n1_low_sdi": [
+    {
+      "ngram": "and",
+      "z_score": -8.605236424599056,
+      "log_odds": -0.4388601162268779,
+      "presence_high_sdi": 523,
+      "presence_low_sdi": 1443
+    },
+    {
+      "ngram": "will",
+      "z_score": -4.092281451591458,
+      "log_odds": -0.3292756953005096,
+      "presence_high_sdi": 209,
+      "presence_low_sdi": 583
+    },
+    {
+      "ngram": "approximately",
+      "z_score": -3.994012467537312,
+      "log_odds": -1.8525998332808915,
+      "presence_high_sdi": 4,
+      "presence_low_sdi": 65
+    },
+    {
+      "ngram": "include",
+      "z_score": -3.3672131224043533,
+      "log_odds": -1.7523532674663338,
+      "presence_high_sdi": 3,
+      "presence_low_sdi": 47
+    },
+    {
+      "ngram": "well",
+      "z_score": -3.2723963043607243,
+      "log_odds": -0.8261921938567172,
+      "presence_high_sdi": 18,
+      "presence_low_sdi": 89
+    },
+    {
+      "ngram": "includes",
+      "z_score": -3.107054497775773,
+      "log_odds": -1.2523587647711905,
+      "presence_high_sdi": 6,
+      "presence_low_sdi": 50
+    },
+    {
+      "ngram": "developed",
+      "z_score": -2.936934990522313,
+      "log_odds": -1.5419356943877869,
+      "presence_high_sdi": 3,
+      "presence_low_sdi": 38
+    },
+    {
+      "ngram": "deal",
+      "z_score": -2.8844170656092754,
+      "log_odds": -0.8763488140291393,
+      "presence_high_sdi": 12,
+      "presence_low_sdi": 64
+    },
+    {
+      "ngram": "development",
+      "z_score": -2.7984011980565766,
+      "log_odds": -0.7517073546169635,
+      "presence_high_sdi": 16,
+      "presence_low_sdi": 74
+    },
+    {
+      "ngram": "headquartered",
+      "z_score": -2.7203457619156293,
+      "log_odds": -2.761255512573391,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 32
+    },
+    {
+      "ngram": "center",
+      "z_score": -2.6545781472022107,
+      "log_odds": -1.4031944524405047,
+      "presence_high_sdi": 3,
+      "presence_low_sdi": 33
+    },
+    {
+      "ngram": "worth",
+      "z_score": -2.6495265219861266,
+      "log_odds": -1.9370245334815444,
+      "presence_high_sdi": 1,
+      "presence_low_sdi": 28
+    },
+    {
+      "ngram": "positive",
+      "z_score": -2.5981156602931206,
+      "log_odds": -1.901625946806587,
+      "presence_high_sdi": 1,
+      "presence_low_sdi": 27
+    },
+    {
+      "ngram": "www",
+      "z_score": -2.5981156602931206,
+      "log_odds": -1.901625946806587,
+      "presence_high_sdi": 1,
+      "presence_low_sdi": 27
+    },
+    {
+      "ngram": "markets",
+      "z_score": -2.5919045357316697,
+      "log_odds": -0.8232192099344617,
+      "presence_high_sdi": 11,
+      "presence_low_sdi": 56
+    },
+    {
+      "ngram": "about",
+      "z_score": -2.525892137154429,
+      "log_odds": -0.4997986022189367,
+      "presence_high_sdi": 32,
+      "presence_low_sdi": 112
+    },
+    {
+      "ngram": "value",
+      "z_score": -2.5181379572845013,
+      "log_odds": -0.6166339734579451,
+      "presence_high_sdi": 20,
+      "presence_low_sdi": 80
+    },
+    {
+      "ngram": "employs",
+      "z_score": -2.489650113652309,
+      "log_odds": -1.8269037240193011,
+      "presence_high_sdi": 1,
+      "presence_low_sdi": 25
+    },
+    {
+      "ngram": "acquired",
+      "z_score": -2.4623857087264516,
+      "log_odds": -1.1794076074405533,
+      "presence_high_sdi": 4,
+      "presence_low_sdi": 33
+    },
+    {
+      "ngram": "disclosed",
+      "z_score": -2.432982709247044,
+      "log_odds": -2.481165262136904,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 24
+    },
+    {
+      "ngram": "business",
+      "z_score": -2.41773715003547,
+      "log_odds": -0.3498971801763675,
+      "presence_high_sdi": 63,
+      "presence_low_sdi": 187
+    },
+    {
+      "ngram": "currently",
+      "z_score": -2.3947683872713337,
+      "log_odds": -1.1492469046361897,
+      "presence_high_sdi": 4,
+      "presence_low_sdi": 32
+    },
+    {
+      "ngram": "operates",
+      "z_score": -2.390737631913795,
+      "log_odds": -2.4400363779410776,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 23
+    },
+    {
+      "ngram": "analysis",
+      "z_score": -2.3726826428585244,
+      "log_odds": -1.746247142784437,
+      "presence_high_sdi": 1,
+      "presence_low_sdi": 23
+    },
+    {
+      "ngram": "report",
+      "z_score": -2.328324405381808,
+      "log_odds": -0.810834070954499,
+      "presence_high_sdi": 9,
+      "presence_low_sdi": 46
+    },
+    {
+      "ngram": "power",
+      "z_score": -2.31969438185601,
+      "log_odds": -0.9541050822760466,
+      "presence_high_sdi": 6,
+      "presence_low_sdi": 37
+    },
+    {
+      "ngram": "unit",
+      "z_score": -2.2834927106818337,
+      "log_odds": -0.6210724248544577,
+      "presence_high_sdi": 16,
+      "presence_low_sdi": 65
+    },
+    {
+      "ngram": "start",
+      "z_score": -2.2613735239377943,
+      "log_odds": -0.7890188899856732,
+      "presence_high_sdi": 9,
+      "presence_low_sdi": 45
+    },
+    {
+      "ngram": "com",
+      "z_score": -2.2536628814178234,
+      "log_odds": -1.0861113523109376,
+      "presence_high_sdi": 4,
+      "presence_low_sdi": 30
+    },
+    {
+      "ngram": "control",
+      "z_score": -2.2525758438529087,
+      "log_odds": -2.305584880973157,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 20
+    },
+    {
+      "ngram": "espoo",
+      "z_score": -2.2525758438529087,
+      "log_odds": -2.305584880973157,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 20
+    },
+    {
+      "ngram": "listed",
+      "z_score": -2.2457851684775605,
+      "log_odds": -1.6586222688430494,
+      "presence_high_sdi": 1,
+      "presence_low_sdi": 21
+    },
+    {
+      "ngram": "growth",
+      "z_score": -2.2254856383908233,
+      "log_odds": -0.6875331474918296,
+      "presence_high_sdi": 12,
+      "presence_low_sdi": 53
+    },
+    {
+      "ngram": "alexandria",
+      "z_score": -2.1490594660521016,
+      "log_odds": -2.204888489513136,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 18
+    },
+    {
+      "ngram": "made",
+      "z_score": -2.123600859631852,
+      "log_odds": -0.7439494621697547,
+      "presence_high_sdi": 9,
+      "presence_low_sdi": 43
+    },
+    {
+      "ngram": "respectively",
+      "z_score": -2.1133396605441304,
+      "log_odds": -1.2972731576386236,
+      "presence_high_sdi": 2,
+      "presence_low_sdi": 22
+    },
+    {
+      "ngram": "research",
+      "z_score": -2.1085466169241673,
+      "log_odds": -1.1324711962386917,
+      "presence_high_sdi": 3,
+      "presence_low_sdi": 25
+    },
+    {
+      "ngram": "related",
+      "z_score": -2.107823313636053,
+      "log_odds": -0.8199291520848986,
+      "presence_high_sdi": 7,
+      "presence_low_sdi": 37
+    },
+    {
+      "ngram": "available",
+      "z_score": -2.1035269767839684,
+      "log_odds": -0.8709429118956962,
+      "presence_high_sdi": 6,
+      "presence_low_sdi": 34
+    },
+    {
+      "ngram": "name",
+      "z_score": -2.0931575409249645,
+      "log_odds": -2.1505149426163266,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 17
+    },
+    {
+      "ngram": "covers",
+      "z_score": -2.03509549469918,
+      "log_odds": -1.252514693639224,
+      "presence_high_sdi": 2,
+      "presence_low_sdi": 21
+    },
+    {
+      "ngram": "built",
+      "z_score": -2.0255368803989997,
+      "log_odds": -0.9834065740260263,
+      "presence_high_sdi": 4,
+      "presence_low_sdi": 27
+    },
+    {
+      "ngram": "price",
+      "z_score": -2.0153261836538943,
+      "log_odds": -0.568054470402581,
+      "presence_high_sdi": 15,
+      "presence_low_sdi": 58
+    },
+    {
+      "ngram": "usa",
+      "z_score": -1.9714455282866867,
+      "log_odds": -2.0321195370694047,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 15
+    },
+    {
+      "ngram": "data",
+      "z_score": -1.957230100756949,
+      "log_odds": -0.6093340993885432,
+      "presence_high_sdi": 12,
+      "presence_low_sdi": 49
+    },
+    {
+      "ngram": "efficiency",
+      "z_score": -1.9544026238707983,
+      "log_odds": -1.456725707459686,
+      "presence_high_sdi": 1,
+      "presence_low_sdi": 17
+    },
+    {
+      "ngram": "shopping",
+      "z_score": -1.9544026238707983,
+      "log_odds": -1.456725707459686,
+      "presence_high_sdi": 1,
+      "presence_low_sdi": 17
+    },
+    {
+      "ngram": "operational",
+      "z_score": -1.9544026238707983,
+      "log_odds": -1.456725707459686,
+      "presence_high_sdi": 1,
+      "presence_low_sdi": 17
+    },
+    {
+      "ngram": "division",
+      "z_score": -1.9501026583335521,
+      "log_odds": -0.8114868378305484,
+      "presence_high_sdi": 6,
+      "presence_low_sdi": 32
+    },
+    {
+      "ngram": "financial",
+      "z_score": -1.940259251981863,
+      "log_odds": -0.39455070558922234,
+      "presence_high_sdi": 31,
+      "presence_low_sdi": 98
+    }
+  ],
+  "n2_high_sdi": [
+    {
+      "ngram": "from eur",
+      "z_score": 8.554022316715278,
+      "log_odds": 1.0245835087535897,
+      "presence_high_sdi": 155,
+      "presence_low_sdi": 125
+    },
+    {
+      "ngram": "eur the",
+      "z_score": 7.3761794589832546,
+      "log_odds": 1.1692920778277638,
+      "presence_high_sdi": 97,
+      "presence_low_sdi": 66
+    },
+    {
+      "ngram": "profit eur",
+      "z_score": 6.101068793386607,
+      "log_odds": 1.5962473940926878,
+      "presence_high_sdi": 47,
+      "presence_low_sdi": 20
+    },
+    {
+      "ngram": "net loss",
+      "z_score": 6.003443398766976,
+      "log_odds": 2.127973213796459,
+      "presence_high_sdi": 38,
+      "presence_low_sdi": 9
+    },
+    {
+      "ngram": "the first",
+      "z_score": 5.978138309924443,
+      "log_odds": 0.977824534131793,
+      "presence_high_sdi": 82,
+      "presence_low_sdi": 67
+    },
+    {
+      "ngram": "loss eur",
+      "z_score": 5.322921083248405,
+      "log_odds": 1.4577419745574929,
+      "presence_high_sdi": 39,
+      "presence_low_sdi": 19
+    },
+    {
+      "ngram": "the number",
+      "z_score": 5.205636159468385,
+      "log_odds": 1.8931494162658153,
+      "presence_high_sdi": 30,
+      "presence_low_sdi": 9
+    },
+    {
+      "ngram": "year earlier",
+      "z_score": 5.086396350488146,
+      "log_odds": 1.4051328905064224,
+      "presence_high_sdi": 37,
+      "presence_low_sdi": 19
+    },
+    {
+      "ngram": "totalled eur",
+      "z_score": 4.99934646618248,
+      "log_odds": 1.515649524935938,
+      "presence_high_sdi": 33,
+      "presence_low_sdi": 15
+    },
+    {
+      "ngram": "first half",
+      "z_score": 4.90919597505226,
+      "log_odds": 1.9761391220933087,
+      "presence_high_sdi": 26,
+      "presence_low_sdi": 7
+    },
+    {
+      "ngram": "said today",
+      "z_score": 4.627208530857038,
+      "log_odds": 0.9929561374073135,
+      "presence_high_sdi": 48,
+      "presence_low_sdi": 38
+    },
+    {
+      "ngram": "down from",
+      "z_score": 4.576734910611703,
+      "log_odds": 4.625167316620617,
+      "presence_high_sdi": 46,
+      "presence_low_sdi": 0
+    },
+    {
+      "ngram": "has signed",
+      "z_score": 4.532398195392233,
+      "log_odds": 3.3258710115508245,
+      "presence_high_sdi": 25,
+      "presence_low_sdi": 1
+    },
+    {
+      "ngram": "agreement with",
+      "z_score": 4.5192839776912646,
+      "log_odds": 2.2390055566893947,
+      "presence_high_sdi": 21,
+      "presence_low_sdi": 4
+    },
+    {
+      "ngram": "oyj hel",
+      "z_score": 4.474962765906711,
+      "log_odds": 0.9762435143823844,
+      "presence_high_sdi": 46,
+      "presence_low_sdi": 37
+    },
+    {
+      "ngram": "corresponding period",
+      "z_score": 4.473142612471864,
+      "log_odds": 0.8578016827535406,
+      "presence_high_sdi": 56,
+      "presence_low_sdi": 51
+    },
+    {
+      "ngram": "eur year",
+      "z_score": 4.41111544746695,
+      "log_odds": 1.4891034221335548,
+      "presence_high_sdi": 26,
+      "presence_low_sdi": 12
+    },
+    {
+      "ngram": "eur from",
+      "z_score": 4.404683754920691,
+      "log_odds": 0.6763970122071097,
+      "presence_high_sdi": 80,
+      "presence_low_sdi": 88
+    },
+    {
+      "ngram": "the corresponding",
+      "z_score": 4.308913198197455,
+      "log_odds": 0.8002640476660221,
+      "presence_high_sdi": 58,
+      "presence_low_sdi": 56
+    },
+    {
+      "ngram": "eur down",
+      "z_score": 4.262005597113684,
+      "log_odds": 4.3224625968928585,
+      "presence_high_sdi": 34,
+      "presence_low_sdi": 0
+    },
+    {
+      "ngram": "operating loss",
+      "z_score": 4.196136227658101,
+      "log_odds": 1.5894344837286667,
+      "presence_high_sdi": 22,
+      "presence_low_sdi": 9
+    },
+    {
+      "ngram": "eur compared",
+      "z_score": 4.192703676377517,
+      "log_odds": 0.8707856535547247,
+      "presence_high_sdi": 48,
+      "presence_low_sdi": 43
+    },
+    {
+      "ngram": "same period",
+      "z_score": 4.173341813415265,
+      "log_odds": 1.19694225779801,
+      "presence_high_sdi": 30,
+      "presence_low_sdi": 19
+    },
+    {
+      "ngram": "decreased eur",
+      "z_score": 4.166286428992544,
+      "log_odds": 4.23088386923113,
+      "presence_high_sdi": 31,
+      "presence_low_sdi": 0
+    },
+    {
+      "ngram": "profit for",
+      "z_score": 4.058849040629001,
+      "log_odds": 1.2805462050650815,
+      "presence_high_sdi": 26,
+      "presence_low_sdi": 15
+    },
+    {
+      "ngram": "quarter from",
+      "z_score": 4.049272380337375,
+      "log_odds": 1.5443318913268547,
+      "presence_high_sdi": 21,
+      "presence_low_sdi": 9
+    },
+    {
+      "ngram": "for the",
+      "z_score": 4.048813529061282,
+      "log_odds": 0.459811707426923,
+      "presence_high_sdi": 133,
+      "presence_low_sdi": 183
+    },
+    {
+      "ngram": "net profit",
+      "z_score": 4.022036171158971,
+      "log_odds": 0.8257162257388062,
+      "presence_high_sdi": 48,
+      "presence_low_sdi": 45
+    },
+    {
+      "ngram": "eur while",
+      "z_score": 3.931038037007436,
+      "log_odds": 1.8531091020468082,
+      "presence_high_sdi": 17,
+      "presence_low_sdi": 5
+    },
+    {
+      "ngram": "per share",
+      "z_score": 3.9192428250892872,
+      "log_odds": 0.9269987461466269,
+      "presence_high_sdi": 38,
+      "presence_low_sdi": 32
+    },
+    {
+      "ngram": "eur for",
+      "z_score": 3.7871163703568382,
+      "log_odds": 1.1812225886238625,
+      "presence_high_sdi": 25,
+      "presence_low_sdi": 16
+    },
+    {
+      "ngram": "lay offs",
+      "z_score": 3.778481629703702,
+      "log_odds": 2.8338612222777764,
+      "presence_high_sdi": 15,
+      "presence_low_sdi": 1
+    },
+    {
+      "ngram": "compared profit",
+      "z_score": 3.6073953684176936,
+      "log_odds": 3.7011095554088023,
+      "presence_high_sdi": 18,
+      "presence_low_sdi": 0
+    },
+    {
+      "ngram": "signed agreement",
+      "z_score": 3.549138515813377,
+      "log_odds": 3.6463931942260857,
+      "presence_high_sdi": 17,
+      "presence_low_sdi": 0
+    },
+    {
+      "ngram": "was eur",
+      "z_score": 3.5477612203599165,
+      "log_odds": 0.9270934586991957,
+      "presence_high_sdi": 31,
+      "presence_low_sdi": 26
+    },
+    {
+      "ngram": "million from",
+      "z_score": 3.543745649313308,
+      "log_odds": 1.4467281031709103,
+      "presence_high_sdi": 17,
+      "presence_low_sdi": 8
+    },
+    {
+      "ngram": "its net",
+      "z_score": 3.4931200820145705,
+      "log_odds": 0.8124307011138292,
+      "presence_high_sdi": 37,
+      "presence_low_sdi": 35
+    },
+    {
+      "ngram": "fell eur",
+      "z_score": 3.4874787826004496,
+      "log_odds": 3.588586061582978,
+      "presence_high_sdi": 16,
+      "presence_low_sdi": 0
+    },
+    {
+      "ngram": "the period",
+      "z_score": 3.4696200447232144,
+      "log_odds": 1.0998760998008423,
+      "presence_high_sdi": 23,
+      "presence_low_sdi": 16
+    },
+    {
+      "ngram": "the third",
+      "z_score": 3.466826816664776,
+      "log_odds": 0.9388211400268824,
+      "presence_high_sdi": 29,
+      "presence_low_sdi": 24
+    },
+    {
+      "ngram": "first nine",
+      "z_score": 3.4637660074468437,
+      "log_odds": 1.2647885174654956,
+      "presence_high_sdi": 19,
+      "presence_low_sdi": 11
+    },
+    {
+      "ngram": "profit fell",
+      "z_score": 3.4219963899161554,
+      "log_odds": 3.5273131415266565,
+      "presence_high_sdi": 15,
+      "presence_low_sdi": 0
+    },
+    {
+      "ngram": "decreased from",
+      "z_score": 3.3521898037185416,
+      "log_odds": 3.4621267421675253,
+      "presence_high_sdi": 14,
+      "presence_low_sdi": 0
+    },
+    {
+      "ngram": "profit decreased",
+      "z_score": 3.3521898037185416,
+      "log_odds": 3.4621267421675253,
+      "presence_high_sdi": 14,
+      "presence_low_sdi": 0
+    },
+    {
+      "ngram": "sales decreased",
+      "z_score": 3.3521898037185416,
+      "log_odds": 3.4621267421675253,
+      "presence_high_sdi": 14,
+      "presence_low_sdi": 0
+    },
+    {
+      "ngram": "narrowed eur",
+      "z_score": 3.3521898037185416,
+      "log_odds": 3.4621267421675253,
+      "presence_high_sdi": 14,
+      "presence_low_sdi": 0
+    },
+    {
+      "ngram": "loss narrowed",
+      "z_score": 3.3521898037185416,
+      "log_odds": 3.4621267421675253,
+      "presence_high_sdi": 14,
+      "presence_low_sdi": 0
+    },
+    {
+      "ngram": "recurring items",
+      "z_score": 3.3387853749980585,
+      "log_odds": 1.445736476266136,
+      "presence_high_sdi": 15,
+      "presence_low_sdi": 7
+    },
+    {
+      "ngram": "first quarter",
+      "z_score": 3.3349196314560317,
+      "log_odds": 0.8550200553736027,
+      "presence_high_sdi": 31,
+      "presence_low_sdi": 28
+    },
+    {
+      "ngram": "lay off",
+      "z_score": 3.330341259064267,
+      "log_odds": 2.5435901516160904,
+      "presence_high_sdi": 11,
+      "presence_low_sdi": 1
+    }
+  ],
+  "n2_low_sdi": [
+    {
+      "ngram": "value the",
+      "z_score": -3.1075327629267897,
+      "log_odds": -1.3456011578935225,
+      "presence_high_sdi": 5,
+      "presence_low_sdi": 47
+    },
+    {
+      "ngram": "profit rose",
+      "z_score": -3.018222647930844,
+      "log_odds": -3.0523279411776256,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 43
+    },
+    {
+      "ngram": "the order",
+      "z_score": -2.655627226502785,
+      "log_odds": -2.698119960248139,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 30
+    },
+    {
+      "ngram": "the deal",
+      "z_score": -2.6546884500240457,
+      "log_odds": -1.2648887830631805,
+      "presence_high_sdi": 4,
+      "presence_low_sdi": 36
+    },
+    {
+      "ngram": "the project",
+      "z_score": -2.5981156602931206,
+      "log_odds": -1.901625946806587,
+      "presence_high_sdi": 1,
+      "presence_low_sdi": 27
+    },
+    {
+      "ngram": "the group",
+      "z_score": -2.546149647499661,
+      "log_odds": -0.7534090954304804,
+      "presence_high_sdi": 13,
+      "presence_low_sdi": 61
+    },
+    {
+      "ngram": "about eur",
+      "z_score": -2.524272703320827,
+      "log_odds": -1.530916958277719,
+      "presence_high_sdi": 2,
+      "presence_low_sdi": 28
+    },
+    {
+      "ngram": "and operating",
+      "z_score": -2.3726826428585244,
+      "log_odds": -1.746247142784437,
+      "presence_high_sdi": 1,
+      "presence_low_sdi": 23
+    },
+    {
+      "ngram": "and eur",
+      "z_score": -2.3726826428585244,
+      "log_odds": -1.746247142784437,
+      "presence_high_sdi": 1,
+      "presence_low_sdi": 23
+    },
+    {
+      "ngram": "eur and",
+      "z_score": -2.353378300779455,
+      "log_odds": -0.7245203703690182,
+      "presence_high_sdi": 12,
+      "presence_low_sdi": 55
+    },
+    {
+      "ngram": "the value",
+      "z_score": -2.2536628814178234,
+      "log_odds": -1.0861113523109376,
+      "presence_high_sdi": 4,
+      "presence_low_sdi": 30
+    },
+    {
+      "ngram": "period increased",
+      "z_score": -2.2525758438529087,
+      "log_odds": -2.305584880973157,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 20
+    },
+    {
+      "ngram": "increased eur",
+      "z_score": -2.1884387497910613,
+      "log_odds": -1.3401395675806116,
+      "presence_high_sdi": 2,
+      "presence_low_sdi": 23
+    },
+    {
+      "ngram": "will have",
+      "z_score": -2.1884387497910613,
+      "log_odds": -1.3401395675806116,
+      "presence_high_sdi": 2,
+      "presence_low_sdi": 23
+    },
+    {
+      "ngram": "both operating",
+      "z_score": -2.034079265840836,
+      "log_odds": -2.0930502969564992,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 16
+    },
+    {
+      "ngram": "increased respectively",
+      "z_score": -2.034079265840836,
+      "log_odds": -2.0930502969564992,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 16
+    },
+    {
+      "ngram": "approximately eur",
+      "z_score": -2.034079265840836,
+      "log_odds": -2.0930502969564992,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 16
+    },
+    {
+      "ngram": "the development",
+      "z_score": -2.0327086825176655,
+      "log_odds": -1.5110992543564956,
+      "presence_high_sdi": 1,
+      "presence_low_sdi": 18
+    },
+    {
+      "ngram": "about the",
+      "z_score": -2.0327086825176655,
+      "log_odds": -1.5110992543564956,
+      "presence_high_sdi": 1,
+      "presence_low_sdi": 18
+    },
+    {
+      "ngram": "financial details",
+      "z_score": -1.9714455282866867,
+      "log_odds": -2.0321195370694047,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 15
+    },
+    {
+      "ngram": "respectively from",
+      "z_score": -1.9714455282866867,
+      "log_odds": -2.0321195370694047,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 15
+    },
+    {
+      "ngram": "part the",
+      "z_score": -1.9578114018927166,
+      "log_odds": -0.7652457878499668,
+      "presence_high_sdi": 7,
+      "presence_low_sdi": 35
+    },
+    {
+      "ngram": "espoo finland",
+      "z_score": -1.9048058005588697,
+      "log_odds": -1.9672749715530102,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 14
+    },
+    {
+      "ngram": "not disclosed",
+      "z_score": -1.9048058005588697,
+      "log_odds": -1.9672749715530102,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 14
+    },
+    {
+      "ngram": "the transaction",
+      "z_score": -1.8800739958991,
+      "log_odds": -0.7367669817045481,
+      "presence_high_sdi": 7,
+      "presence_low_sdi": 34
+    },
+    {
+      "ngram": "the board",
+      "z_score": -1.8800739958991,
+      "log_odds": -0.7367669817045481,
+      "presence_high_sdi": 7,
+      "presence_low_sdi": 34
+    },
+    {
+      "ngram": "profit and",
+      "z_score": -1.8718084647903468,
+      "log_odds": -1.3992610617998587,
+      "presence_high_sdi": 1,
+      "presence_low_sdi": 16
+    },
+    {
+      "ngram": "and has",
+      "z_score": -1.8718084647903468,
+      "log_odds": -1.3992610617998587,
+      "presence_high_sdi": 1,
+      "presence_low_sdi": 16
+    },
+    {
+      "ngram": "the business",
+      "z_score": -1.863647190407242,
+      "log_odds": -0.8358398961281237,
+      "presence_high_sdi": 5,
+      "presence_low_sdi": 28
+    },
+    {
+      "ngram": "market analysis",
+      "z_score": -1.8336191623402172,
+      "log_odds": -1.8979761493217415,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 13
+    },
+    {
+      "ngram": "will take",
+      "z_score": -1.8336191623402172,
+      "log_odds": -1.8979761493217415,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 13
+    },
+    {
+      "ngram": "the pharmaceutical",
+      "z_score": -1.7572286206665095,
+      "log_odds": -1.8235623200009314,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 12
+    },
+    {
+      "ngram": "will available",
+      "z_score": -1.7572286206665095,
+      "log_odds": -1.8235623200009314,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 12
+    },
+    {
+      "ngram": "product development",
+      "z_score": -1.7572286206665095,
+      "log_odds": -1.8235623200009314,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 12
+    },
+    {
+      "ngram": "after the",
+      "z_score": -1.7039980159085724,
+      "log_odds": -0.7152540068766546,
+      "presence_high_sdi": 6,
+      "presence_low_sdi": 29
+    },
+    {
+      "ngram": "the following",
+      "z_score": -1.6748256916598314,
+      "log_odds": -1.74321384868031,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 11
+    },
+    {
+      "ngram": "pharmaceutical market",
+      "z_score": -1.6748256916598314,
+      "log_odds": -1.74321384868031,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 11
+    },
+    {
+      "ngram": "will delivered",
+      "z_score": -1.6748256916598314,
+      "log_odds": -1.74321384868031,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 11
+    },
+    {
+      "ngram": "the state",
+      "z_score": -1.6748256916598314,
+      "log_odds": -1.74321384868031,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 11
+    },
+    {
+      "ngram": "new market",
+      "z_score": -1.6748256916598314,
+      "log_odds": -1.74321384868031,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 11
+    },
+    {
+      "ngram": "listed the",
+      "z_score": -1.6748256916598314,
+      "log_odds": -1.74321384868031,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 11
+    },
+    {
+      "ngram": "details were",
+      "z_score": -1.6748256916598314,
+      "log_odds": -1.74321384868031,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 11
+    },
+    {
+      "ngram": "the report",
+      "z_score": -1.5929895534595697,
+      "log_odds": -1.204186914165101,
+      "presence_high_sdi": 1,
+      "presence_low_sdi": 13
+    },
+    {
+      "ngram": "joint venture",
+      "z_score": -1.5929895534595697,
+      "log_odds": -1.204186914165101,
+      "presence_high_sdi": 1,
+      "presence_low_sdi": 13
+    },
+    {
+      "ngram": "the plant",
+      "z_score": -1.5912148498355065,
+      "log_odds": -0.7851613600618883,
+      "presence_high_sdi": 4,
+      "presence_low_sdi": 22
+    },
+    {
+      "ngram": "brand new",
+      "z_score": -1.5854004854092694,
+      "log_odds": -1.6558968015064268,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 10
+    },
+    {
+      "ngram": "future outlook",
+      "z_score": -1.5854004854092694,
+      "log_odds": -1.6558968015064268,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 10
+    },
+    {
+      "ngram": "has developed",
+      "z_score": -1.5854004854092694,
+      "log_odds": -1.6558968015064268,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 10
+    },
+    {
+      "ngram": "headquartered helsinki",
+      "z_score": -1.5854004854092694,
+      "log_odds": -1.6558968015064268,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 10
+    },
+    {
+      "ngram": "project will",
+      "z_score": -1.5854004854092694,
+      "log_odds": -1.6558968015064268,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 10
+    }
+  ],
+  "n3_high_sdi": [
+    {
+      "ngram": "eur the first",
+      "z_score": 5.115842427127306,
+      "log_odds": 2.3014522939882793,
+      "presence_high_sdi": 27,
+      "presence_low_sdi": 5
+    },
+    {
+      "ngram": "the first half",
+      "z_score": 4.90919597505226,
+      "log_odds": 1.9761391220933087,
+      "presence_high_sdi": 26,
+      "presence_low_sdi": 7
+    },
+    {
+      "ngram": "the corresponding period",
+      "z_score": 4.473142612471864,
+      "log_odds": 0.8578016827535406,
+      "presence_high_sdi": 56,
+      "presence_low_sdi": 51
+    },
+    {
+      "ngram": "from eur the",
+      "z_score": 4.375721721497873,
+      "log_odds": 1.0414613749312873,
+      "presence_high_sdi": 40,
+      "presence_low_sdi": 30
+    },
+    {
+      "ngram": "down from eur",
+      "z_score": 4.262005597113684,
+      "log_odds": 4.3224625968928585,
+      "presence_high_sdi": 34,
+      "presence_low_sdi": 0
+    },
+    {
+      "ngram": "eur down from",
+      "z_score": 4.262005597113684,
+      "log_odds": 4.3224625968928585,
+      "presence_high_sdi": 34,
+      "presence_low_sdi": 0
+    },
+    {
+      "ngram": "for the same",
+      "z_score": 4.196136227658101,
+      "log_odds": 1.5894344837286667,
+      "presence_high_sdi": 22,
+      "presence_low_sdi": 9
+    },
+    {
+      "ngram": "the same period",
+      "z_score": 4.173341813415265,
+      "log_odds": 1.19694225779801,
+      "presence_high_sdi": 30,
+      "presence_low_sdi": 19
+    },
+    {
+      "ngram": "profit for the",
+      "z_score": 3.9764485312759685,
+      "log_odds": 1.3693640767564101,
+      "presence_high_sdi": 23,
+      "presence_low_sdi": 12
+    },
+    {
+      "ngram": "eur from eur",
+      "z_score": 3.960596829508652,
+      "log_odds": 0.6565490169735688,
+      "presence_high_sdi": 68,
+      "presence_low_sdi": 76
+    },
+    {
+      "ngram": "the first quarter",
+      "z_score": 3.7272067790632217,
+      "log_odds": 1.0133940832482966,
+      "presence_high_sdi": 30,
+      "presence_low_sdi": 23
+    },
+    {
+      "ngram": "eur for the",
+      "z_score": 3.66197423287513,
+      "log_odds": 1.2810506162494821,
+      "presence_high_sdi": 21,
+      "presence_low_sdi": 12
+    },
+    {
+      "ngram": "compared profit eur",
+      "z_score": 3.549138515813377,
+      "log_odds": 3.6463931942260857,
+      "presence_high_sdi": 17,
+      "presence_low_sdi": 0
+    },
+    {
+      "ngram": "decreased eur from",
+      "z_score": 3.549138515813377,
+      "log_odds": 3.6463931942260857,
+      "presence_high_sdi": 17,
+      "presence_low_sdi": 0
+    },
+    {
+      "ngram": "eur the corresponding",
+      "z_score": 3.547942545857385,
+      "log_odds": 0.8428793852755323,
+      "presence_high_sdi": 36,
+      "presence_low_sdi": 33
+    },
+    {
+      "ngram": "the third quarter",
+      "z_score": 3.5004204714662324,
+      "log_odds": 0.9972748369485238,
+      "presence_high_sdi": 27,
+      "presence_low_sdi": 21
+    },
+    {
+      "ngram": "profit eur the",
+      "z_score": 3.4874787826004496,
+      "log_odds": 3.588586061582978,
+      "presence_high_sdi": 16,
+      "presence_low_sdi": 0
+    },
+    {
+      "ngram": "the first nine",
+      "z_score": 3.4637660074468437,
+      "log_odds": 1.2647885174654956,
+      "presence_high_sdi": 19,
+      "presence_low_sdi": 11
+    },
+    {
+      "ngram": "first nine months",
+      "z_score": 3.4637660074468437,
+      "log_odds": 1.2647885174654956,
+      "presence_high_sdi": 19,
+      "presence_low_sdi": 11
+    },
+    {
+      "ngram": "from eur while",
+      "z_score": 3.463646910781047,
+      "log_odds": 2.2185095410242495,
+      "presence_high_sdi": 12,
+      "presence_low_sdi": 2
+    },
+    {
+      "ngram": "its net loss",
+      "z_score": 3.4219963899161554,
+      "log_odds": 3.5273131415266565,
+      "presence_high_sdi": 15,
+      "presence_low_sdi": 0
+    },
+    {
+      "ngram": "from eur compared",
+      "z_score": 3.376385983285988,
+      "log_odds": 1.9305225440389266,
+      "presence_high_sdi": 12,
+      "presence_low_sdi": 3
+    },
+    {
+      "ngram": "eur compared profit",
+      "z_score": 3.3521898037185416,
+      "log_odds": 3.4621267421675253,
+      "presence_high_sdi": 14,
+      "presence_low_sdi": 0
+    },
+    {
+      "ngram": "decreased from eur",
+      "z_score": 3.3521898037185416,
+      "log_odds": 3.4621267421675253,
+      "presence_high_sdi": 14,
+      "presence_low_sdi": 0
+    },
+    {
+      "ngram": "non recurring items",
+      "z_score": 3.3387853749980585,
+      "log_odds": 1.445736476266136,
+      "presence_high_sdi": 15,
+      "presence_low_sdi": 7
+    },
+    {
+      "ngram": "from eur year",
+      "z_score": 3.3387853749980585,
+      "log_odds": 1.445736476266136,
+      "presence_high_sdi": 15,
+      "presence_low_sdi": 7
+    },
+    {
+      "ngram": "net loss narrowed",
+      "z_score": 3.2774532467770685,
+      "log_odds": 3.392486411933449,
+      "presence_high_sdi": 13,
+      "presence_low_sdi": 0
+    },
+    {
+      "ngram": "loss narrowed eur",
+      "z_score": 3.2774532467770685,
+      "log_odds": 3.392486411933449,
+      "presence_high_sdi": 13,
+      "presence_low_sdi": 0
+    },
+    {
+      "ngram": "for the first",
+      "z_score": 3.217524041597493,
+      "log_odds": 0.9880379072442054,
+      "presence_high_sdi": 23,
+      "presence_low_sdi": 18
+    },
+    {
+      "ngram": "fell eur from",
+      "z_score": 3.19704597301511,
+      "log_odds": 3.317731399964206,
+      "presence_high_sdi": 12,
+      "presence_low_sdi": 0
+    },
+    {
+      "ngram": "net loss eur",
+      "z_score": 3.194891420545258,
+      "log_odds": 2.4559325710498543,
+      "presence_high_sdi": 10,
+      "presence_low_sdi": 1
+    },
+    {
+      "ngram": "operating profit for",
+      "z_score": 3.1863553211315545,
+      "log_odds": 1.3276480504714812,
+      "presence_high_sdi": 15,
+      "presence_low_sdi": 8
+    },
+    {
+      "ngram": "from eur million",
+      "z_score": 3.185464674618724,
+      "log_odds": 1.110026216824064,
+      "presence_high_sdi": 19,
+      "presence_low_sdi": 13
+    },
+    {
+      "ngram": "profit excluding non",
+      "z_score": 3.1476125294267345,
+      "log_odds": 2.050162631358778,
+      "presence_high_sdi": 10,
+      "presence_low_sdi": 2
+    },
+    {
+      "ngram": "sales increased from",
+      "z_score": 3.1476125294267345,
+      "log_odds": 2.050162631358778,
+      "presence_high_sdi": 10,
+      "presence_low_sdi": 2
+    },
+    {
+      "ngram": "eur million for",
+      "z_score": 3.121009009322639,
+      "log_odds": 1.4447464362010587,
+      "presence_high_sdi": 13,
+      "presence_low_sdi": 6
+    },
+    {
+      "ngram": "period decreased from",
+      "z_score": 3.110049423582023,
+      "log_odds": 3.2370420708649705,
+      "presence_high_sdi": 11,
+      "presence_low_sdi": 0
+    },
+    {
+      "ngram": "month period decreased",
+      "z_score": 3.110049423582023,
+      "log_odds": 3.2370420708649705,
+      "presence_high_sdi": 11,
+      "presence_low_sdi": 0
+    },
+    {
+      "ngram": "totalled eur down",
+      "z_score": 3.110049423582023,
+      "log_odds": 3.2370420708649705,
+      "presence_high_sdi": 11,
+      "presence_low_sdi": 0
+    },
+    {
+      "ngram": "eur the third",
+      "z_score": 3.0554447160783176,
+      "log_odds": 1.6263846460846088,
+      "presence_high_sdi": 11,
+      "presence_low_sdi": 4
+    },
+    {
+      "ngram": "temporary lay offs",
+      "z_score": 3.046716696173402,
+      "log_odds": 2.3599766049783337,
+      "presence_high_sdi": 9,
+      "presence_low_sdi": 1
+    },
+    {
+      "ngram": "eur while net",
+      "z_score": 3.046716696173402,
+      "log_odds": 2.3599766049783337,
+      "presence_high_sdi": 9,
+      "presence_low_sdi": 1
+    },
+    {
+      "ngram": "for the period",
+      "z_score": 3.03136438832321,
+      "log_odds": 1.2219820513837547,
+      "presence_high_sdi": 15,
+      "presence_low_sdi": 9
+    },
+    {
+      "ngram": "first quarter from",
+      "z_score": 3.018074115731173,
+      "log_odds": 1.7621756343734551,
+      "presence_high_sdi": 10,
+      "presence_low_sdi": 3
+    },
+    {
+      "ngram": "profit decreased eur",
+      "z_score": 3.0153060837593864,
+      "log_odds": 3.1493844902987345,
+      "presence_high_sdi": 10,
+      "presence_low_sdi": 0
+    },
+    {
+      "ngram": "operating profit fell",
+      "z_score": 3.0153060837593864,
+      "log_odds": 3.1493844902987345,
+      "presence_high_sdi": 10,
+      "presence_low_sdi": 0
+    },
+    {
+      "ngram": "period year earlier",
+      "z_score": 2.9686530320305495,
+      "log_odds": 1.9542066652872574,
+      "presence_high_sdi": 9,
+      "presence_low_sdi": 2
+    },
+    {
+      "ngram": "for the corresponding",
+      "z_score": 2.9686530320305495,
+      "log_odds": 1.9542066652872574,
+      "presence_high_sdi": 9,
+      "presence_low_sdi": 2
+    },
+    {
+      "ngram": "quarter from eur",
+      "z_score": 2.957811297374471,
+      "log_odds": 1.3109097466729285,
+      "presence_high_sdi": 13,
+      "presence_low_sdi": 7
+    },
+    {
+      "ngram": "per share eps",
+      "z_score": 2.9183404000706297,
+      "log_odds": 1.1003221676833252,
+      "presence_high_sdi": 16,
+      "presence_low_sdi": 11
+    }
+  ],
+  "n3_low_sdi": [
+    {
+      "ngram": "profit rose eur",
+      "z_score": -2.751249859215218,
+      "log_odds": -2.7914162153777546,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 33
+    },
+    {
+      "ngram": "the value the",
+      "z_score": -2.5981156602931206,
+      "log_odds": -1.901625946806587,
+      "presence_high_sdi": 1,
+      "presence_low_sdi": 27
+    },
+    {
+      "ngram": "operating profit rose",
+      "z_score": -2.3007038379714593,
+      "log_odds": -2.35241150399969,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 21
+    },
+    {
+      "ngram": "month period increased",
+      "z_score": -2.202107002297137,
+      "log_odds": -2.2564882033913642,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 19
+    },
+    {
+      "ngram": "net profit rose",
+      "z_score": -2.1490594660521016,
+      "log_odds": -2.204888489513136,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 18
+    },
+    {
+      "ngram": "eur and eur",
+      "z_score": -2.0931575409249645,
+      "log_odds": -2.1505149426163266,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 17
+    },
+    {
+      "ngram": "both operating profit",
+      "z_score": -2.034079265840836,
+      "log_odds": -2.0930502969564992,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 16
+    },
+    {
+      "ngram": "period increased respectively",
+      "z_score": -2.034079265840836,
+      "log_odds": -2.0930502969564992,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 16
+    },
+    {
+      "ngram": "operating profit and",
+      "z_score": -2.034079265840836,
+      "log_odds": -2.0930502969564992,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 16
+    },
+    {
+      "ngram": "increased respectively from",
+      "z_score": -1.9714455282866867,
+      "log_odds": -2.0321195370694047,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 15
+    },
+    {
+      "ngram": "respectively from eur",
+      "z_score": -1.9714455282866867,
+      "log_odds": -2.0321195370694047,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 15
+    },
+    {
+      "ngram": "and eur compared",
+      "z_score": -1.9714455282866867,
+      "log_odds": -2.0321195370694047,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 15
+    },
+    {
+      "ngram": "and operating profit",
+      "z_score": -1.8718084647903468,
+      "log_odds": -1.3992610617998587,
+      "presence_high_sdi": 1,
+      "presence_low_sdi": 16
+    },
+    {
+      "ngram": "and net sales",
+      "z_score": -1.8718084647903468,
+      "log_odds": -1.3992610617998587,
+      "presence_high_sdi": 1,
+      "presence_low_sdi": 16
+    },
+    {
+      "ngram": "the board directors",
+      "z_score": -1.8718084647903468,
+      "log_odds": -1.3992610617998587,
+      "presence_high_sdi": 1,
+      "presence_low_sdi": 16
+    },
+    {
+      "ngram": "from eur and",
+      "z_score": -1.8624340525811194,
+      "log_odds": -1.0089482050618397,
+      "presence_high_sdi": 3,
+      "presence_low_sdi": 22
+    },
+    {
+      "ngram": "increased eur from",
+      "z_score": -1.6917268870134223,
+      "log_odds": -1.2734857363963696,
+      "presence_high_sdi": 1,
+      "presence_low_sdi": 14
+    },
+    {
+      "ngram": "profit and net",
+      "z_score": -1.6748256916598314,
+      "log_odds": -1.74321384868031,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 11
+    },
+    {
+      "ngram": "and future outlook",
+      "z_score": -1.5854004854092694,
+      "log_odds": -1.6558968015064268,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 10
+    },
+    {
+      "ngram": "situation and future",
+      "z_score": -1.4876696050436347,
+      "log_odds": -1.560281044923559,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 9
+    },
+    {
+      "ngram": "euro mln and",
+      "z_score": -1.4876696050436347,
+      "log_odds": -1.560281044923559,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 9
+    },
+    {
+      "ngram": "brand new market",
+      "z_score": -1.4876696050436347,
+      "log_odds": -1.560281044923559,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 9
+    },
+    {
+      "ngram": "clear overview the",
+      "z_score": -1.4876696050436347,
+      "log_odds": -1.560281044923559,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 9
+    },
+    {
+      "ngram": "the actual situation",
+      "z_score": -1.4876696050436347,
+      "log_odds": -1.560281044923559,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 9
+    },
+    {
+      "ngram": "actual situation and",
+      "z_score": -1.4876696050436347,
+      "log_odds": -1.560281044923559,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 9
+    },
+    {
+      "ngram": "headquartered helsinki finland",
+      "z_score": -1.4876696050436347,
+      "log_odds": -1.560281044923559,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 9
+    },
+    {
+      "ngram": "overview the actual",
+      "z_score": -1.4876696050436347,
+      "log_odds": -1.560281044923559,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 9
+    },
+    {
+      "ngram": "future outlook the",
+      "z_score": -1.4876696050436347,
+      "log_odds": -1.560281044923559,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 9
+    },
+    {
+      "ngram": "value the order",
+      "z_score": -1.4876696050436347,
+      "log_odds": -1.560281044923559,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 9
+    },
+    {
+      "ngram": "capital and voting",
+      "z_score": -1.3799689990774366,
+      "log_odds": -1.4546150458358325,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 8
+    },
+    {
+      "ngram": "net sales mln",
+      "z_score": -1.3799689990774366,
+      "log_odds": -1.4546150458358325,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 8
+    },
+    {
+      "ngram": "global research data",
+      "z_score": -1.3799689990774366,
+      "log_odds": -1.4546150458358325,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 8
+    },
+    {
+      "ngram": "finland have developed",
+      "z_score": -1.3799689990774366,
+      "log_odds": -1.4546150458358325,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 8
+    },
+    {
+      "ngram": "the nordic exchange",
+      "z_score": -1.3799689990774366,
+      "log_odds": -1.4546150458358325,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 8
+    },
+    {
+      "ngram": "sales increased eur",
+      "z_score": -1.3799689990774366,
+      "log_odds": -1.4546150458358325,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 8
+    },
+    {
+      "ngram": "research data services",
+      "z_score": -1.3799689990774366,
+      "log_odds": -1.4546150458358325,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 8
+    },
+    {
+      "ngram": "value the contract",
+      "z_score": -1.3799689990774366,
+      "log_odds": -1.4546150458358325,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 8
+    },
+    {
+      "ngram": "financial details were",
+      "z_score": -1.2600893816899374,
+      "log_odds": -1.3365266200411776,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 7
+    },
+    {
+      "ngram": "the project will",
+      "z_score": -1.2600893816899374,
+      "log_odds": -1.3365266200411776,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 7
+    },
+    {
+      "ngram": "the joint venture",
+      "z_score": -1.2600893816899374,
+      "log_odds": -1.3365266200411776,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 7
+    },
+    {
+      "ngram": "net sales were",
+      "z_score": -1.2600893816899374,
+      "log_odds": -1.3365266200411776,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 7
+    },
+    {
+      "ngram": "approximately eur million",
+      "z_score": -1.2600893816899374,
+      "log_odds": -1.3365266200411776,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 7
+    },
+    {
+      "ngram": "gives clear overview",
+      "z_score": -1.2600893816899374,
+      "log_odds": -1.3365266200411776,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 7
+    },
+    {
+      "ngram": "profit rose mln",
+      "z_score": -1.2600893816899374,
+      "log_odds": -1.3365266200411776,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 7
+    },
+    {
+      "ngram": "will publish its",
+      "z_score": -1.2600893816899374,
+      "log_odds": -1.3365266200411776,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 7
+    },
+    {
+      "ngram": "market analysis gives",
+      "z_score": -1.2600893816899374,
+      "log_odds": -1.3365266200411776,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 7
+    },
+    {
+      "ngram": "after the transaction",
+      "z_score": -1.2600893816899374,
+      "log_odds": -1.3365266200411776,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 7
+    },
+    {
+      "ngram": "eur and operating",
+      "z_score": -1.2600893816899374,
+      "log_odds": -1.3365266200411776,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 7
+    },
+    {
+      "ngram": "nordic exchange helsinki",
+      "z_score": -1.2600893816899374,
+      "log_odds": -1.3365266200411776,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 7
+    },
+    {
+      "ngram": "this brand new",
+      "z_score": -1.2600893816899374,
+      "log_odds": -1.3365266200411776,
+      "presence_high_sdi": 0,
+      "presence_low_sdi": 7
+    }
+  ]
+}

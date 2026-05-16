@@ -1,0 +1,169 @@
+\section{Framework}
+\label{sec:framework}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.95\columnwidth]{fig_architecture.pdf}
+\caption{TriAgent system architecture. A query first hits the SCD;
+on cache miss the three-tier committee runs
+(VADER$\to$FinBERT$\to$Qwen-$N$), then SDI computation, then an
+interaction protocol when SDI exceeds threshold. The final
+committee label is written back into the SCD.}
+\label{fig:architecture}
+\end{figure}
+
+\subsection{Three-Tier Committee as a Granularity Stack}
+\label{sec:framework:committee}
+
+Figure~\ref{fig:architecture} sketches the system end-to-end. The
+three tiers correspond to three contextual granularities:
+\textbf{L1 VADER}~\cite{hutto2014vader} (word-level lexicon,
+$\approx$0.03\,ms);
+\textbf{L2 FinBERT}~\cite{araci2019finbert} (sentence-level
+transformer, 110\,M params, $\approx$1.5\,ms);
+\textbf{L3 Qwen2.5-Instruct-$N$}~\cite{qwen25} (cross-sentence
+reasoner; $N\!\in\!\{0.5,1.5,3,7,14\text{-4bit}\}$\,B, plus
+cross-family Mistral-7B~\cite{mistral7b}). VADER fails on
+phrase-bound polarity reversals (\textit{loss narrowed}); FinBERT
+fails on multi-clause numeric comparisons; the LLM over-confidently
+invents reasoning where lexicon neutrality is correct. Pairwise
+error-set Jaccard between the three is only $0.13$--$0.15$
+(Section~\ref{sec:experiments:bias}) --- the empirical signature of
+granularity-orthogonal failures.
+
+\paragraph{Deployment-style example.}
+Consider an Apple-style news sentence routed at runtime:
+\textit{``services revenue grew but iPhone unit volumes declined
+sharply against a difficult comparable.''} VADER's lexicon picks up
+\emph{grew} and outputs positive ($+0.31$); FinBERT, attending only
+within the sentence, returns weakly negative ($-0.18$); Qwen-7B
+correctly outputs strongly negative ($-0.62$) by reasoning across
+clauses. SDI$_{\mathrm{ER}}$ exceeds threshold and the SDI gate
+fires the critic protocol, which returns the LLM's label as final.
+This is the routing behaviour the architecture is designed to
+exhibit; the same mechanism applied to the running FPB sentence in
+Section~\ref{sec:intro} is the empirical anchor used throughout the
+paper.
+
+\subsection{Three-Way Semantic Divergence Index}
+\label{sec:framework:sdi}
+
+Let $s_{\mathrm{V}}, s_{\mathrm{F}}, s_{\mathrm{L}} \in [-1, +1]$
+denote the continuous polarity scores emitted by V, F, L
+respectively. We define three pairwise Semantic Divergence Indices,
+one per granularity-pair:
+\begin{equation}
+\label{eq:sdi}
+\begin{aligned}
+\mathrm{SDI}_{\mathrm{LE}} &= |s_{\mathrm{V}} - s_{\mathrm{F}}|,
+\quad
+\mathrm{SDI}_{\mathrm{LR}}  = |s_{\mathrm{V}} - s_{\mathrm{L}}|,\\
+\mathrm{SDI}_{\mathrm{ER}} &= |s_{\mathrm{F}} - s_{\mathrm{L}}|.
+\end{aligned}
+\end{equation}
+Each $\mathrm{SDI}\in [0,2]$ measures the disagreement between two
+agents operating at \emph{different} granularities. We additionally
+track $\mathrm{SDI}_{\max}=\max(\mathrm{SDI}_{\mathrm{LE}},
+\mathrm{SDI}_{\mathrm{LR}},\mathrm{SDI}_{\mathrm{ER}})$ and
+$\overline{\mathrm{SDI}}$ (mean). Thresholding the pair
+$(\mathrm{SDI}_{\mathrm{LE}},\mathrm{SDI}_{\mathrm{ER}})$ at
+$(\tau_{\mathrm{LE}},\tau_{\mathrm{ER}})=(0.3,0.7)$ partitions
+samples into four behaviour \emph{quadrants}:
+\begin{equation}
+\label{eq:quadrant}
+Q(x) = \begin{cases}
+\textit{consensus}     & \mathrm{SDI}_{\mathrm{LE}} \le 0.3 \land \mathrm{SDI}_{\mathrm{ER}} \le 0.7 \\
+\textit{domain shift}  & \mathrm{SDI}_{\mathrm{LE}} >    0.3 \land \mathrm{SDI}_{\mathrm{ER}} \le 0.7 \\
+\textit{ambiguous}     & \mathrm{SDI}_{\mathrm{LE}} \le 0.3 \land \mathrm{SDI}_{\mathrm{ER}} >    0.7 \\
+\textit{mixed}         & \text{otherwise}.
+\end{cases}
+\end{equation}
+Each quadrant carries a distinct downstream implication
+(Table~\ref{tab:quadrant}): consensus skips L3, domain shift trusts
+F and routes around V, ambiguous fires the LLM critic, and mixed
+escalates to debate.
+
+\subsection{Routing and Interaction Protocols}
+\label{sec:framework:routing}
+
+Routing strategies S0--S2 are the three single-agent baselines;
+S3--S5 escalate L1$\to$L2 by random / confidence /
+SDI$_{\mathrm{LE}}$; S6 is a two-stage cascade adding L2$\to$L3 by
+SDI$_{\mathrm{ER}}$. Formally, the two-stage routing decision at a
+sentence $x$ is
+\begin{equation}
+\label{eq:routing}
+\hat{y}(x) =
+\begin{cases}
+\mathcal{I}(x; V, F, L) & \mathrm{SDI}_{\mathrm{ER}}(x) > \theta_{\mathrm{ER}} \\
+F(x)                    & \mathrm{SDI}_{\mathrm{LE}}(x) > \theta_{\mathrm{LE}} \\
+V(x)                    & \text{otherwise,}
+\end{cases}
+\end{equation}
+where $\mathcal{I}\in\{\text{vote}, \text{critic}, \text{debate}\}$
+is the interaction protocol. \textbf{Vote} returns the
+confidence-weighted majority over V/F/L; \textbf{critic} feeds the
+LLM the original sentence plus V's and F's predictions and asks for
+a final label; \textbf{debate} performs a round-2 LLM call that sees
+all three round-1 outputs (including its own rationale) and
+reconciles. The thresholds $(\theta_{\mathrm{LE}},
+\theta_{\mathrm{ER}})$ sweep out the Pareto frontier of
+Section~\ref{sec:experiments:pareto}.
+
+Algorithm~\ref{alg:triagent} summarises the end-to-end inference
+flow including the SCD cache.
+
+\begin{algorithm}[t]
+\caption{TriAgent inference (single query)}
+\label{alg:triagent}
+\begin{algorithmic}[1]
+\Require query $x$; thresholds $\tau, \theta_{\mathrm{LE}}, \theta_{\mathrm{ER}}$;
+agents $V, F, L$; interaction $\mathcal{I}$; SCD cache $\mathcal{C}$
+\Ensure label $\hat{y}$
+\State $(\tilde{x}, \sigma) \gets$ nearest-neighbour in $\mathcal{C}$ by cosine
+\If{$\sigma \ge \tau$}
+  \State \Return $\mathcal{C}[\tilde{x}]$ \Comment{cache hit, no model call}
+\EndIf
+\State $s_{\mathrm{V}} \gets V(x)$; $\;s_{\mathrm{F}} \gets F(x)$
+\State compute $\mathrm{SDI}_{\mathrm{LE}}=|s_{\mathrm{V}}-s_{\mathrm{F}}|$
+\If{$\mathrm{SDI}_{\mathrm{LE}} \le \theta_{\mathrm{LE}}$}
+  \State $\hat{y} \gets V(x)$ \Comment{lexicon suffices}
+\Else
+  \State $s_{\mathrm{L}} \gets L(x)$
+  \State compute $\mathrm{SDI}_{\mathrm{ER}}=|s_{\mathrm{F}}-s_{\mathrm{L}}|$
+  \If{$\mathrm{SDI}_{\mathrm{ER}} > \theta_{\mathrm{ER}}$}
+    \State $\hat{y} \gets \mathcal{I}(x; s_{\mathrm{V}}, s_{\mathrm{F}}, s_{\mathrm{L}})$
+  \Else
+    \State $\hat{y} \gets F(x)$
+  \EndIf
+\EndIf
+\State $\mathcal{C}.\textsc{Put}(x, \hat{y})$
+\Comment{populate cache for future queries}
+\State \Return $\hat{y}$
+\end{algorithmic}
+\end{algorithm}
+
+\subsection{Shared Consensus Dictionary}
+\label{sec:framework:scd}
+
+An optional fourth component caches committee decisions in
+multilingual sentence-BERT embedding
+space~\cite{reimers2019sbert,reimers2020multilingualkd}. Let
+$\phi(\cdot)\in\mathbb{R}^{384}$ denote the sentence-BERT encoder. A
+query $x$ is embedded to $\phi(x)$, $k$-NN-searched against cached
+entries $\{(\tilde{x}_i, y_i)\}$ by cosine similarity
+$\sigma_i = \langle\phi(x),\phi(\tilde{x}_i)\rangle / (\|\phi(x)\|\|\phi(\tilde{x}_i)\|)$,
+and the cached label is returned when
+\begin{equation}
+\label{eq:scdrule}
+\sigma^{\ast}(x) = \max_{i} \sigma_i \;\ge\; \tau,
+\end{equation}
+i.e.\ \emph{without any model call}. The SCD is sentence-granularity
+by construction --- \emph{``net profit halved''} matches
+\emph{``net profit cut in half''} which exact-match memoisation
+would miss. Threshold $\tau$ is a single operator knob trading hit
+rate against accuracy (Section~\ref{sec:experiments:scd}). Beyond
+cost, the SCD supplies cross-committee consistency: a new agent that
+joins the committee inherits the cache, mitigating the
+family-specific plateau gap we observe with Mistral-7B
+(Section~\ref{sec:experiments:scaling}).

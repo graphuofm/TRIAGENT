@@ -1,0 +1,102 @@
+% TriAgent — FinLLM @ IJCAI 2026 submission
+% Compile:  pdflatex main && bibtex main && pdflatex main && pdflatex main
+% Self-contained: ijcai26.sty + named.bst + figures/*.pdf + sections/*.tex
+% all in this directory.
+
+\documentclass{article}
+\pdfpagewidth=8.5in
+\pdfpageheight=11in
+
+\usepackage{ijcai26}
+
+\usepackage{times}
+\usepackage{soul}
+\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[small]{caption}
+\usepackage{graphicx}
+\usepackage{amsmath, amssymb, amsfonts, amsthm}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage[switch]{lineno}
+
+% Line numbers disabled (FinLLM/IJCAI 2026 submission does not require lineno)
+% \linenumbers
+
+\urlstyle{same}
+
+\graphicspath{{figures/}}
+
+\pdfinfo{
+/TemplateVersion (IJCAI.2026.0)
+}
+
+\title{TriAgent: Divergence-Aware Multi-Agent Committees for
+       Cost-Efficient and Privacy-Preserving Financial Sentiment Analysis}
+
+\author{
+Isabel Xu$^{1,*}$
+\and
+Cynthia Xu$^{1,*}$\and
+Rachel Ren$^2$\and
+Cong Guo$^3$\and
+Jiacheng Ding$^{3,\dagger}$\\
+\affiliations
+$^1$The Overlake School\\
+$^2$Edwards Vacuum Inc.\\
+$^3$The University of Memphis\\
+\emails
+\{xushuyao, xuningshu\}@gmail.com,
+rachelren@gmail.com,
+\{cguo, jding2\}@memphis.edu\\
+$^*$Equal contribution. \quad $^\dagger$Corresponding author.
+}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Production deployments of LLM-based financial sentiment analysis face
+a structural cost problem: most queries are trivially classifiable yet
+are routinely processed by expensive cloud reasoners, and the bill
+scales linearly with user count.
+We present \textbf{TriAgent}, a divergence-aware multi-agent committee
+that stacks three increasingly contextual tiers --- a word-level
+lexicon agent (VADER), a sentence-level domain transformer (FinBERT),
+and a cross-sentence reasoner (Qwen2.5-Instruct, swept from 0.5\,B to
+14\,B-4bit and across families) --- and routes queries by a three-way
+\emph{Semantic Divergence Index} (SDI). On Financial PhraseBank we
+find: (i) the domain specialist alone (F1$=$0.88) outperforms every
+generic LLM up to 7\,B (F1$=$0.81) at $60\times$ lower cost; (ii) when
+the LLM is re-tasked as a \emph{critic} over the smaller agents'
+outputs, F1 plateaus at $\approx$0.87 across model sizes from 1.5\,B
+to 7\,B --- ``\emph{interaction substitutes for parameters}'' --- but
+this plateau is granularity-stratified, not multi-agent-per-se: a
+3-persona Qwen-1.5B vote drops to F1$=$0.66; (iii) a Shared Consensus
+Dictionary (SCD) using multilingual sentence-BERT serves as a
+cross-lingual canonicalizer, answering 95\% of Chinese queries from an
+English cache at F1$=$0.99; (iv) the same SDI signal that gates
+routing doubles as a post-hoc LLM-hallucination detector at AUC$=$0.90.
+A 20-ticker backtest shows the SDI two-stage strategy attains the best
+risk-adjusted return (Sharpe$=$3.50) among all evaluated strategies,
+and a scale analysis shows TriAgent saves \$9.3\,M/year vs. the
+default-to-cloud-LLM baseline at 10\,M users. The framework is
+fully open-source and edge-deployable on a single 24\,GB GPU.
+\end{abstract}
+
+\input{sections/01_introduction}
+\input{sections/02_related_work}
+\input{sections/03_framework}
+\input{sections/04_mining_and_predictor}
+\input{sections/05_experiments}
+\input{sections/06_security_and_bias}
+\input{sections/07_discussion}
+\input{sections/08_conclusion}
+
+\bibliographystyle{unsrt}
+\bibliography{references}
+
+\end{document}

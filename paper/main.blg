@@ -1,0 +1,51 @@
+This is BibTeX, Version 0.99e (TeX Live 2026)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: main.aux
+The style file: unsrt.bst
+Database file #1: references.bib
+I was expecting a `{' or a `('---line 1 of file references.bib
+ : % Bibliography for TriAgent — FinLLM @ ijcai 
+ :                                                2026 submission.
+I'm skipping whatever remains of this entry
+You've used 38 entries,
+            1791 wiz_defined-function locations,
+            605 strings with 9158 characters,
+and the built_in function-call counts, 6319 in all, are:
+= -- 463
+> -- 309
+< -- 1
++ -- 118
+- -- 80
+* -- 209
+:= -- 980
+add.period$ -- 111
+call.type$ -- 38
+change.case$ -- 38
+chr.to.int$ -- 0
+cite$ -- 38
+duplicate$ -- 333
+empty$ -- 819
+format.name$ -- 80
+if$ -- 1494
+int.to.chr$ -- 0
+int.to.str$ -- 38
+missing$ -- 21
+newline$ -- 190
+num.names$ -- 35
+pop$ -- 236
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 136
+stack$ -- 0
+substring$ -- 35
+swap$ -- 57
+text.length$ -- 1
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 0
+while$ -- 39
+width$ -- 40
+write$ -- 379
+(There was 1 error message)

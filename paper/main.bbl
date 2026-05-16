@@ -1,0 +1,190 @@
+\begin{thebibliography}{10}
+
+\bibitem{loughran2011liability}
+Tim Loughran and Bill McDonald.
+\newblock When is a liability not a liability? {Textual} analysis, dictionaries, and 10-{K}s.
+\newblock {\em The Journal of Finance}, 66(1):35--65, 2011.
+
+\bibitem{malo2014fpb}
+Pekka Malo, Ankur Sinha, Pekka Korhonen, Jyrki Wallenius, and Pyry Takala.
+\newblock Good debt or bad debt: Detecting semantic orientations in economic texts.
+\newblock In {\em JASIST}, 2014.
+
+\bibitem{araci2019finbert}
+Dogu Araci.
+\newblock {FinBERT}: Financial sentiment analysis with pre-trained language models.
+\newblock arXiv:1908.10063, 2019.
+
+\bibitem{yang2020finbert}
+Yi~Yang, Mark Christopher~Siy Uy, and Allen Huang.
+\newblock {FinBERT}: A pretrained language model for financial communications.
+\newblock arXiv:2006.08097, 2020.
+
+\bibitem{wang2024finllmsurvey}
+Jean Lee et~al.
+\newblock A survey of large language models in finance ({FinLLMs}).
+\newblock arXiv:2402.02315, 2024.
+
+\bibitem{wu2023bloomberggpt}
+Shijie Wu et~al.
+\newblock {BloombergGPT}: A large language model for finance.
+\newblock arXiv:2303.17564, 2023.
+
+\bibitem{yang2023fingpt}
+Hongyang Yang, Xiao-Yang Liu, and Christina~Dan Wang.
+\newblock {FinGPT}: Open-source financial large language models.
+\newblock arXiv:2306.06031, 2023.
+
+\bibitem{xie2023pixiu}
+Qianqian Xie et~al.
+\newblock {PIXIU}: A large language model, instruction data and evaluation benchmark for finance.
+\newblock In {\em Advances in Neural Information Processing Systems (NeurIPS), Datasets and Benchmarks Track}, 2023.
+
+\bibitem{settles2009al}
+Burr Settles.
+\newblock Active learning literature survey.
+\newblock Technical Report 1648, University of Wisconsin--Madison, 2009.
+
+\bibitem{lakshminarayanan2017ensembles}
+Balaji Lakshminarayanan, Alexander Pritzel, and Charles Blundell.
+\newblock Simple and scalable predictive uncertainty estimation using deep ensembles.
+\newblock In {\em NeurIPS}, 2017.
+
+\bibitem{wu2023autogen}
+Qingyun Wu et~al.
+\newblock {AutoGen}: Enabling next-gen {LLM} applications via multi-agent conversation framework.
+\newblock In {\em First Conference on Language Modeling (COLM)}, 2024.
+
+\bibitem{hong2023metagpt}
+Sirui Hong et~al.
+\newblock {MetaGPT}: Meta programming for a multi-agent collaborative framework.
+\newblock In {\em The Twelfth International Conference on Learning Representations (ICLR)}, 2024.
+
+\bibitem{li2023camel}
+Guohao Li et~al.
+\newblock {CAMEL}: Communicative agents for ``mind'' exploration of large language model society.
+\newblock In {\em Advances in Neural Information Processing Systems (NeurIPS)}, 2023.
+
+\bibitem{du2023debate}
+Yilun Du, Shuang Li, Antonio Torralba, Joshua~B. Tenenbaum, and Igor Mordatch.
+\newblock Improving factuality and reasoning in language models through multiagent debate.
+\newblock In {\em Proceedings of the 41st International Conference on Machine Learning (ICML)}, 2024.
+
+\bibitem{liang2023encouraging}
+Tian Liang et~al.
+\newblock Encouraging divergent thinking in large language models through multi-agent debate.
+\newblock In {\em Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing (EMNLP)}, 2024.
+
+\bibitem{zheng2023judging}
+Lianmin Zheng et~al.
+\newblock Judging {LLM-as-a-Judge} with {MT-Bench} and {Chatbot Arena}.
+\newblock In {\em Advances in Neural Information Processing Systems (NeurIPS), Datasets and Benchmarks Track}, 2023.
+
+\bibitem{wang2023selfconsistency}
+Xuezhi Wang et~al.
+\newblock Self-consistency improves chain of thought reasoning in language models.
+\newblock In {\em The Eleventh International Conference on Learning Representations (ICLR)}, 2023.
+
+\bibitem{chen2023frugalgpt}
+Lingjiao Chen, Matei Zaharia, and James Zou.
+\newblock {FrugalGPT}: How to use large language models while reducing cost and improving performance.
+\newblock arXiv:2305.05176, 2023.
+
+\bibitem{ong2024routellm}
+Isaac Ong et~al.
+\newblock {RouteLLM}: Learning to route llms with preference data.
+\newblock arXiv:2406.18665, 2024.
+
+\bibitem{wang2022mixture}
+Hanrui Wang et~al.
+\newblock Mixture of cheap and expensive models for cost-effective inference.
+\newblock In {\em NeurIPS Workshop on Efficient Natural Language and Speech Processing}, 2022.
+
+\bibitem{shnitzer2023llmrouting}
+Tal Shnitzer et~al.
+\newblock Large language model routing with benchmark datasets.
+\newblock arXiv:2309.15789, 2023.
+
+\bibitem{wang2024caching}
+Fuyuan Bang.
+\newblock {GPTCache}: An open-source semantic cache for {LLM} applications enabling faster answers and cost savings.
+\newblock EMNLP Demo, 2023.
+
+\bibitem{reimers2019sbert}
+Nils Reimers and Iryna Gurevych.
+\newblock {Sentence-BERT}: Sentence embeddings using siamese {BERT}-networks.
+\newblock In {\em EMNLP}, 2019.
+
+\bibitem{reimers2020multilingualkd}
+Nils Reimers and Iryna Gurevych.
+\newblock Making monolingual sentence embeddings multilingual using knowledge distillation.
+\newblock In {\em EMNLP}, 2020.
+
+\bibitem{hutto2014vader}
+C.~J. Hutto and Eric Gilbert.
+\newblock {VADER}: A parsimonious rule-based model for sentiment analysis of social media text.
+\newblock In {\em ICWSM}, 2014.
+
+\bibitem{qwen25}
+Qwen Team.
+\newblock {Qwen2.5} technical report.
+\newblock arXiv:2412.15115, 2024.
+
+\bibitem{mistral7b}
+Albert~Q. Jiang et~al.
+\newblock {Mistral 7B}.
+\newblock arXiv:2310.06825, 2023.
+
+\bibitem{flarefpb}
+{FLARE-FPB}: Financial phrasebank parquet mirror.
+\newblock \url{https://huggingface.co/datasets/ChanceFocus/flare-fpb}, 2023.
+
+\bibitem{wolf2020transformers}
+Thomas Wolf et~al.
+\newblock {HuggingFace}'s transformers: State-of-the-art natural language processing.
+\newblock In {\em Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing: System Demonstrations}, 2020.
+
+\bibitem{dettmers2023bnb}
+Tim Dettmers, Mike Lewis, Younes Belkada, and Luke Zettlemoyer.
+\newblock {LLM.int8()}: 8-bit matrix multiplication for transformers at scale.
+\newblock In {\em Advances in Neural Information Processing Systems (NeurIPS)}, 2022.
+
+\bibitem{finbertchinese}
+Yi~Yang et~al.
+\newblock {FinBERT-tone-Chinese}: Domain-specific {BERT} for chinese financial sentiment.
+\newblock \url{https://huggingface.co/yiyanghkust/finbert-tone-chinese}, 2021.
+
+\bibitem{finchina}
+{FinChinaSentiment} dataset.
+\newblock \url{https://huggingface.co/datasets/FinanceMTEB/FinChinaSentiment}, 2024.
+
+\bibitem{ji2023hallucination}
+Ziwei Ji et~al.
+\newblock Survey of hallucination in natural language generation.
+\newblock {\em ACM Computing Surveys}, 55(12):1--38, 2023.
+
+\bibitem{manakul2023selfcheckgpt}
+Potsawee Manakul, Adian Liusie, and F.~Gales, Mark~J.\.
+\newblock {SelfCheckGPT}: Zero-resource black-box hallucination detection for generative large language models.
+\newblock In {\em Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing (EMNLP)}, 2023.
+
+\bibitem{jin2020textfooler}
+Di~Jin et~al.
+\newblock Is {BERT} really robust? a strong baseline for natural language attack on text classification and entailment.
+\newblock In {\em AAAI}, 2020.
+
+\bibitem{perez2022promptinject}
+F{\'a}bio Perez and Ian Ribeiro.
+\newblock Ignore previous prompt: Attack techniques for language models.
+\newblock arXiv:2211.09527, 2022.
+
+\bibitem{johnson2019faiss}
+Jeff Johnson, Matthijs Douze, and Herv{\'e} J{\'e}gou.
+\newblock Billion-scale similarity search with {GPU}s.
+\newblock In {\em IEEE Trans. Big Data}, 2021.
+
+\bibitem{tfns}
+Twitter financial news sentiment dataset.
+\newblock \url{https://huggingface.co/datasets/zeroshot/twitter-financial-news-sentiment}, 2022.
+
+\end{thebibliography}

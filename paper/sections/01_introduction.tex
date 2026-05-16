@@ -1,0 +1,63 @@
+\section{Introduction}
+\label{sec:intro}
+
+A mid-sized asset manager with 1\,M users running 10 sentiment
+queries each per trading day generates $\sim$3.6\,B inference calls
+per year. At the public price of GPT-4o-mini that single workload
+costs $\sim$\$1.1\,M/year; at GPT-4 prices, $\sim$\$36.5\,M/year
+(Figure~\ref{fig:cost}). The cost scales linearly with user count
+while the value of each LLM call falls --- most domain queries are
+trivially classifiable. \textbf{Token efficiency} --- spending fewer
+tokens per query, on cheaper agents, with fewer escalations --- is
+therefore the first-order operational concern, not an afterthought.
+The CFP for FinLLM@IJCAI 2026 calls out exactly this regime:
+multi-agent cloud-edge collaboration, token economics, and
+cross-border fairness in deployment.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{fig_cost_at_scale.pdf}
+\caption{Annual inference cost vs.\ user count (10 queries/user/day).
+At 10\,M users, default-to-cloud-LLM costs \$11\,M--\$365\,M/yr;
+TriAgent shaves this to \$1.65\,M/yr, a \$9.3\,M/yr saving against
+GPT-4o-mini.}
+\label{fig:cost}
+\end{figure}
+
+\paragraph{Running example.}
+Throughout we trace one FPB sentence:
+\textit{``\dots its net profit halved to 1.2~mln euro\dots from
+2.2~mln euro\dots''} (gold $=$ negative).
+VADER ($+0.44$) and FinBERT ($+0.53$) are both fooled by the surface
+word \emph{profit}; Qwen-7B alone correctly outputs negative
+($-0.80$, ``profit declined''); critic@1.5B and critic@7B are
+\emph{anchored} on V$+$F's positives and stay wrong; only round-2
+debate, which feeds back the LLM's own R1 rationale, recovers
+negative. This single example threads through
+Sections~\ref{sec:framework}--\ref{sec:security}.
+
+\paragraph{Contributions.}
+\textsc{TriAgent} is a divergence-aware committee whose three tiers
+correspond to three contextual granularities (word $\to$ sentence
+$\to$ cross-sentence). We contribute:
+\textbf{(C1)} a three-way Semantic Divergence Index (SDI) with a
+four-quadrant routing interpretation;
+\textbf{(C2)} the \emph{critic plateau} --- critic@1.5B$/$3B$/$7B
+all reach F1$=$0.87, while a same-size 3-persona vote regresses to
+F1$=$0.66, identifying granularity-stratified diversity (not
+multi-agent voting per se) as the mechanism;
+\textbf{(C3)} a Shared Consensus Dictionary (SCD) over multilingual
+sentence embeddings that doubles as a cross-lingual canonicaliser
+(95\% of Chinese queries match an English cached label at
+F1$=$0.99);
+\textbf{(C4)} a three-granularity edge predictor (XGBoost AUC$=$0.85)
+enabling fully on-device routing;
+\textbf{(C5)} an empirical security side-benefit --- the same SDI
+acts as a post-hoc LLM-hallucination flag at AUC$=$0.90;
+\textbf{(C6)} a 20-ticker back-test where the SDI single-stage
+strategy attains the best Sharpe ($3.50$) of all evaluated
+strategies, including always-FinBERT ($1.36$) and always-LLM
+($0.11$).
+A single architectural decision --- small agents stratified by
+granularity, plus an SDI gate, plus an embedding cache --- hits all
+three FinLLM 2026 CFP topic buckets simultaneously.

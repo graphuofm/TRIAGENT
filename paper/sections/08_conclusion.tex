@@ -1,0 +1,25 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+We presented \textsc{TriAgent}, a three-tier financial sentiment
+committee whose key insight is architectural: when each agent is
+small and stratified by contextual granularity --- word (lexicon),
+sentence (specialist), cross-sentence (reasoner) --- the same
+Semantic Divergence Index that gates routing for \emph{cost} also
+gates interaction for \emph{capability} and detects anomaly for
+\emph{security}. Across LLM sweeps from 0.5\,B to 14\,B-4bit, two
+families, and four protocols we showed:
+(i) the critic protocol plateaus at $F_1\!\approx\!0.87$ across
+1.5\,B--7\,B Qwen, while a same-size 3-persona vote regresses to
+$0.66$ --- granularity, not multi-agent voting per se, makes the
+plateau exist;
+(ii) a Shared Consensus Dictionary on multilingual sentence-BERT
+serves as a cross-lingual canonicaliser (95\% of Chinese queries
+match English cached answers at $F_1\!=\!0.99$);
+(iii) the SDI signal doubles as a post-hoc LLM-hallucination
+detector at AUC $=0.90$;
+(iv) at the 10\,M-user / 10-queries-per-day scale TriAgent saves
+\$9.3\,M/year compared to defaulting to a cloud LLM, while running
+on roughly $20\times$ fewer GPUs. Code, mined trigger lexicons, the
+SCD, and all committee predictions are released to support both
+academic replication and direct industrial deployment.
