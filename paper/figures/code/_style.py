@@ -67,28 +67,29 @@ def apply_paper_style(font_scale: float = 1.0) -> None:
     The font_scale=1.0 default already lands at ~2x the diagnostic
     style (16-22pt vs the previous 9-11pt range).
     """
-    base = 16.0 * font_scale
+    base = 17.0 * font_scale
     mpl.rcParams.update({
         # Backend / output ---------------------------------------------------
         'figure.dpi':          120,
         'savefig.dpi':         300,
         'savefig.bbox':        'tight',
-        'savefig.pad_inches':  0.02,        # tighter than mpl default 0.1
+        'savefig.pad_inches':  0.04,
         'pdf.fonttype':        42,          # editable text in vector PDFs
         'ps.fonttype':         42,
-        # Fonts (~2x diagnostic) --------------------------------------------
-        'font.family':         'sans-serif',
-        'font.sans-serif':     ['DejaVu Sans', 'Helvetica', 'Arial'],
-        'font.size':           base,                     # 16
-        'axes.titlesize':      base * 1.2,               # 19.2
+        # Fonts — Times serif to match LaTeX body text -----------------------
+        'font.family':         'serif',
+        'font.serif':          ['Times New Roman', 'Times', 'DejaVu Serif'],
+        'mathtext.fontset':    'stix',
+        'font.size':           base,                     # 17
+        'axes.titlesize':      base * 1.24,              # ~21
         'axes.titleweight':    'bold',
-        'axes.labelsize':      base * 1.05,              # 16.8
+        'axes.labelsize':      base * 1.12,              # ~19
         'axes.labelweight':    'bold',
-        'xtick.labelsize':     base,                     # 16
-        'ytick.labelsize':     base,                     # 16
-        'legend.fontsize':     base * 0.85,              # 13.6
-        'legend.title_fontsize': base * 0.9,
-        'figure.titlesize':    base * 1.3,
+        'xtick.labelsize':     base * 0.94,              # 16
+        'ytick.labelsize':     base * 0.94,              # 16
+        'legend.fontsize':     base * 0.82,              # ~14
+        'legend.title_fontsize': base * 0.88,
+        'figure.titlesize':    base * 1.30,
         # Lines --------------------------------------------------------------
         'lines.linewidth':     2.4,
         'lines.markersize':    9,
