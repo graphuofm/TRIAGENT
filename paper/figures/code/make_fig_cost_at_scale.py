@@ -1,107 +1,123 @@
-"""§1 Cost-at-scale: 100K → 10M users economic case.
+"""§1 Cost-at-scale: 1K → 10M users economic case (v4).
 
-Shows annual inference cost (USD, log scale) as a function of user count
-for four deployment baselines and TriAgent SDI two-stage routing.
+One SOLID hero line (TriAgent, green); all four baselines dashed and
+desaturated so the eye lands on the proposed method. Headline
+comparison is vs.\ GPT-4 (the premium reasoner) where the saving is
+the largest and most dramatic.
 
-Per-query cost numbers (verified in our own measurements):
-    VADER          : negligible
-    FinBERT        : $0.0005 / 1k queries  (GPU-amortised)
-    Qwen-7B local  : $0.0288 / 1k queries  (GPU-amortised)
-    GPT-4o-mini    : $0.30   / 1k queries  (OpenAI public pricing 2025)
-    GPT-4 (large)  : $10.00  / 1k queries  (OpenAI public pricing 2025)
-
-TriAgent SDI two-stage Balanced operating point:
-    routes ~70% to L1, 30% to L2, 5% (of L2) to L3 → ~15% LLM coverage
-    total per-query cost ≈ 0.15 × LLM cost + 0.30 × FinBERT cost
+Per-1000-query cost (USD): FinBERT 0.0005, Qwen-7B 0.0288,
+GPT-4o-mini 0.30, GPT-4 10.00. TriAgent ≈ 15% LLM + 30% FinBERT.
 """
 from __future__ import annotations
 
 import sys
 from pathlib import Path
 
+import matplotlib as mpl
 import matplotlib.pyplot as plt
 import numpy as np
-import pandas as pd
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
-from _style import apply_paper_style, save_paper_figure, PAPER_COLORS, WONG
+from _style import save_paper_figure, WONG
 
 
-# Per-1000-query cost in USD (verified in our experiments where local;
-# OpenAI public list prices for the API ones)
-COST_PER_1K = {
-    'FinBERT alone (already cheap)':       0.0005,
-    'Qwen-7B self-hosted':                 0.0288,
-    'GPT-4o-mini API':                     0.30,
-    'GPT-4 API':                          10.00,
+# All four baselines — DASHED & light
+BASELINES = {
+    'FinBERT (self-hosted)':  (0.0005, WONG['blue'],       'P'),
+    'Qwen-7B (self-hosted)':  (0.0288, WONG['purple'],     'X'),
+    'GPT-4o-mini API':        (0.30,   WONG['orange'],     'D'),
+    'GPT-4 API':              (10.00,  WONG['vermillion'], 'o'),
 }
-# TriAgent two-stage Balanced replaces "always-LLM" with mostly-V/F + 15% LLM
-TRIAGENT_FRAC = 0.15
+GPT4_PPK = 10.00
+TRI_PPK  = 0.15 * 0.30 + 0.30 * 0.0005   # ≈ $0.045/1k
 
 
 def main():
-    apply_paper_style()
-    # User counts spanning 4 orders of magnitude
-    n_users   = np.array([1e3, 1e4, 1e5, 1e6, 1e7])
-    queries_per_user_year = 10 * 365            # 10 queries/day × 365 days
+    # ── Times serif throughout (matches LaTeX body text) ─────────────
+    mpl.rcParams.update({
+        'font.family':         'serif',
+        'font.serif':          ['Times New Roman', 'Times', 'DejaVu Serif'],
+        'mathtext.fontset':    'stix',
+        'font.size':           17,
+        'axes.titlesize':      20,
+        'axes.titleweight':    'bold',
+        'axes.labelsize':      18,
+        'axes.labelweight':    'bold',
+        'xtick.labelsize':     16,
+        'ytick.labelsize':     16,
+        'legend.fontsize':     14,
+        'pdf.fonttype':        42,
+        'ps.fonttype':         42,
+        'figure.dpi':          120,
+        'savefig.dpi':         300,
+        'savefig.bbox':        'tight',
+        'savefig.pad_inches':  0.04,
+        'axes.spines.top':     False,
+        'axes.spines.right':   False,
+        'axes.linewidth':      1.4,
+        'axes.grid':           True,
+        'grid.linestyle':      '--',
+        'grid.alpha':          0.25,
+        'grid.linewidth':      0.6,
+        'legend.frameon':      True,
+    })
 
-    fig, ax = plt.subplots(figsize=(9.4, 6.0))
+    n_users = np.array([1e3, 1e4, 1e5, 1e6, 1e7])
+    qpy = 10 * 365
 
-    palette = {
-        'FinBERT alone (already cheap)': WONG['blue'],
-        'Qwen-7B self-hosted':           WONG['purple'],
-        'GPT-4o-mini API':               WONG['orange'],
-        'GPT-4 API':                     WONG['vermillion'],
-    }
-    markers = {
-        'FinBERT alone (already cheap)': 'P',
-        'Qwen-7B self-hosted':           'X',
-        'GPT-4o-mini API':               'D',
-        'GPT-4 API':                     'o',
-    }
+    fig, ax = plt.subplots(figsize=(11.0, 6.6))
 
-    for name, ppk in COST_PER_1K.items():
-        cost_year = n_users * queries_per_user_year * ppk / 1000
-        ax.plot(n_users, cost_year, marker=markers[name], markersize=11,
-                lw=2.6, color=palette[name],
-                label=name)
+    # ── All baselines: dashed, light, thin ───────────────────────────
+    for name, (ppk, color, marker) in BASELINES.items():
+        cost = n_users * qpy * ppk / 1000
+        ax.plot(n_users, cost, marker=marker, markersize=8,
+                lw=1.6, ls='--', color=color, alpha=0.55,
+                markerfacecolor=color, markeredgecolor=color,
+                label=name, zorder=2)
 
-    # TriAgent line — apply to GPT-4o-mini baseline (most realistic comparison)
-    base_cost = COST_PER_1K['GPT-4o-mini API']
-    finbert_cost = COST_PER_1K['FinBERT alone (already cheap)']
-    triagent_per_k = TRIAGENT_FRAC * base_cost + 0.30 * finbert_cost
-    triagent_year = n_users * queries_per_user_year * triagent_per_k / 1000
-    ax.plot(n_users, triagent_year, marker='*', markersize=18,
-            lw=3.4, color=WONG['green'],
-            label=f'TriAgent (15% LLM via SDI two-stage, vs GPT-4o-mini)')
+    # ── TriAgent: solid, thick, green (the only emphasized line) ─────
+    tri_cost = n_users * qpy * TRI_PPK / 1000
+    ax.plot(n_users, tri_cost, marker='*', markersize=20,
+            lw=4.0, color=WONG['green'],
+            label='TriAgent  (ours)', zorder=4)
 
-    # Annotate the savings at 10M users
-    base_at_10m = n_users[-1] * queries_per_user_year * base_cost / 1000
-    tri_at_10m  = n_users[-1] * queries_per_user_year * triagent_per_k / 1000
-    saved = base_at_10m - tri_at_10m
+    # ── Annotation: explicit "vs.\ GPT-4" with arrow to TriAgent ─────
+    gpt4_at_10m = n_users[-1] * qpy * GPT4_PPK / 1000
+    tri_at_10m  = n_users[-1] * qpy * TRI_PPK / 1000
+    saved = gpt4_at_10m - tri_at_10m
     ax.annotate(
-        f'Saves ${saved/1e6:.1f}M/yr\n at 10M users',
-        xy=(n_users[-1], tri_at_10m), xytext=(3e5, 3),
-        fontsize=14, fontweight='bold', color=WONG['green'],
-        ha='left',
-        arrowprops=dict(arrowstyle='->', color=WONG['green'], lw=2.0,
-                        connectionstyle='arc3,rad=-0.3'),
+        f'\\${saved/1e6:.0f}M / yr saved\nvs. GPT-4\nat 10M users',
+        xy=(n_users[-1], tri_at_10m), xytext=(1.5e3, 3e7),
+        fontsize=15, fontweight='bold', color='#CC0000',
+        ha='left', va='center',
+        arrowprops=dict(arrowstyle='->', color='black', lw=1.6,
+                        connectionstyle='arc3,rad=-0.22',
+                        shrinkA=2, shrinkB=8),
+        zorder=5,
     )
 
+    # ── Axes: log + scientific tick labels ───────────────────────────
     ax.set_xscale('log'); ax.set_yscale('log')
-    ax.set_xlabel('User count  (each making 10 queries/day)')
-    ax.set_ylabel('Annual inference cost (USD, log scale)')
-    ax.set_title('Inference cost at scale  —  TriAgent vs four deployment baselines',
-                 pad=14)
-    # Format axes nicely
+    ax.set_xlabel('Users  (10 queries / user / day)')
+    ax.set_ylabel('Annual inference cost  (USD)')
+    ax.set_title('Inference cost vs. deployment scale')
+
     ax.set_xticks([1e3, 1e4, 1e5, 1e6, 1e7])
-    ax.set_xticklabels(['1K', '10K', '100K', '1M', '10M'])
-    yticks = [1, 100, 10_000, 1_000_000, 100_000_000]
+    ax.set_xticklabels(['$10^3$', '$10^4$', '$10^5$', '$10^6$', '$10^7$'])
+    yticks = [1, 1e2, 1e4, 1e6, 1e8]
     ax.set_yticks(yticks)
-    ax.set_yticklabels(['$1', '$100', '$10K', '$1M', '$100M'])
+    ax.set_yticklabels(['$10^0$', '$10^2$', '$10^4$', '$10^6$', '$10^8$'])
     ax.set_ylim(0.5, 5e8)
-    ax.legend(loc='upper left', fontsize=11.5)
+    ax.set_xlim(8e2, 1.4e7)
+    ax.xaxis.set_minor_locator(plt.NullLocator())
+    ax.yaxis.set_minor_locator(plt.NullLocator())
+
+    # ── Legend (lower-right, the only empty quadrant) ────────────────
+    leg = ax.legend(loc='lower right', fontsize=13,
+                    frameon=True, framealpha=0.94, edgecolor='0.55',
+                    handletextpad=0.7, borderpad=0.55)
+    leg.get_frame().set_linewidth(0.7)
 
     save_paper_figure(fig, 'fig_cost_at_scale')
 

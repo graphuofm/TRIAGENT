@@ -33,16 +33,16 @@ def main():
     ax1.axhline(committee_f1, ls='--', lw=2.0, color='#666',
                  label=f'Always-committee F1 $=$ {committee_f1:.3f}')
     ax1.set_xlabel('Similarity threshold  $\\tau$')
-    ax1.set_ylabel('F1-Macro on test set', color=PAPER_COLORS['critic'])
-    ax1.tick_params(axis='y', labelcolor=PAPER_COLORS['critic'])
+    ax1.set_ylabel('F1-Macro on test set', color='black')
+    ax1.tick_params(axis='y', labelcolor='black')
     ax1.set_ylim(0.6, 0.95)
 
     ax2 = ax1.twinx()
     ax2.plot(sweep['tau'], sweep['hit_rate'],
              marker='s', lw=3.0, color=PAPER_COLORS['debate'],
              label='Cache hit rate')
-    ax2.set_ylabel('Cache hit rate', color=PAPER_COLORS['debate'])
-    ax2.tick_params(axis='y', labelcolor=PAPER_COLORS['debate'])
+    ax2.set_ylabel('Cache hit rate', color='black')
+    ax2.tick_params(axis='y', labelcolor='black')
     ax2.set_ylim(0, 1)
     ax2.grid(False)            # avoid double grid
 
