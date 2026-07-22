@@ -14,3 +14,16 @@ paper/main.log
 venv/
 .venv/
 .claude/
+
+# --- personal notes / other submissions (do NOT publish) ---
+cikm2026_short/
+triagent_cikm2026.zip
+CIKM_walkthrough.md
+IJCAI_ISABEL_V2/
+arxiv_v1/
+arxiv_submission_notes.md
+Isabel_TriAgent_Explainer.md
+TriAgent_Isabel_FinLLM_slides.pptx
+TriAgent_FinLLM_slides_Isabel.pptx
+triagent_arxiv_source.tar.gz
+triagent_arxiv_preview.pdf

@@ -2,9 +2,14 @@
 
 **Divergence-aware multi-agent committee for financial sentiment analysis.**
 
-Companion code for our FinLLM @ IJCAI 2026 workshop submission.
+> 🏆 **Long Oral Paper Award — FinLLM @ IJCAI 2026 workshop (Bremen).**
+> Selected as 1 of 5 long-oral papers out of the accepted set.
 
-📄 **Paper:** [`triagent_paper_compiled.pdf`](triagent_paper_compiled.pdf) · arXiv preprint coming soon
+Companion code for the paper *"TriAgent: Divergence-Aware Multi-Agent Committees
+for Cost-Efficient and Privacy-Preserving Financial Sentiment Analysis"*
+(Isabel Xu, Cynthia Xu, Rachel Ren, Cong Guo, Jiacheng Ding).
+
+📄 **Paper:** [`triagent_paper_compiled.pdf`](triagent_paper_compiled.pdf) · arXiv preprint coming soon (submitted 2026)
 📦 **Overleaf bundle:** [`triagent_overleaf.zip`](triagent_overleaf.zip) (drop into Overleaf to recompile)
 
 ---
