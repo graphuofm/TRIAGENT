@@ -289,6 +289,20 @@ More questions and answers: [`FAQ.md`](FAQ.md). Term definitions: [`GLOSSARY.md`
 
 ---
 
+## Topic pages
+
+Longer treatments of each component, with figures:
+
+| Page | Covers |
+|---|---|
+| [Semantic Divergence Index](https://graphuofm.github.io/TRIAGENT/semantic-divergence-index.html) | The routing signal: definition, why disagreement beats confidence, four-quadrant routing, threshold calibration |
+| [The critic plateau](https://graphuofm.github.io/TRIAGENT/critic-plateau.html) | Why a 1.5B critic matches a 7B critic, the persona-vote negative control, and where the plateau fails |
+| [Reducing LLM inference cost](https://graphuofm.github.io/TRIAGENT/llm-inference-cost.html) | Cost tables at scale, the Pareto analysis, the tier ablation, and comparison to learned routers |
+| [Hallucination detection](https://graphuofm.github.io/TRIAGENT/llm-hallucination-detection.html) | AUC 0.898 at zero marginal cost, why only cross-granularity pairings work, and the adversarial limits |
+| [Multilingual semantic cache](https://graphuofm.github.io/TRIAGENT/multilingual-llm-cache.html) | Cross-lingual canonicalisation, the coverage/accuracy trade-off, and the model-ranking inversion |
+
+---
+
 ## Repository layout
 
 ```
