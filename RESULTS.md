@@ -124,11 +124,20 @@ The three tiers get different things wrong — overlap 0.13–0.15 — which is 
 
 ## 7. Four-quadrant decomposition
 
-| Quadrant | Share of FPB | LLM accuracy in that quadrant |
-|---|---|---|
-| **Ambiguous** (V≈F, L dissents) | 15.9% | **28%** — below random for a 3-way task |
+Quadrants are assigned from `(SDI_LE, SDI_ER)` with `SDI_LOW = 0.3` and `SDI_HIGH = 0.7`. The rules are checked in the order listed, so a row where both divergences are high counts as ambiguous. Accuracy is measured separately for each agent inside each quadrant.
 
-The LLM is *confidently wrong* exactly when the cheap pair agrees. A confidence-threshold cascade would escalate here; escalating is the wrong move.
+| Quadrant | Rule (checked in order) | Share of FPB | Qwen-7B acc. | FinBERT acc. | VADER acc. | Qwen-7B mean confidence |
+|---|---|---|---|---|---|---|
+| **Ambiguous** | `SDI_ER > 0.7` | 15.9% | **28.1%** | **70.8%** | 55.6% | 0.93 |
+| **Consensus** | `SDI_LE < 0.3` and `SDI_ER < 0.3` | 39.4% | 96.5% | 96.4% | 74.6% | 0.97 |
+| **Domain shift** | `SDI_LE > 0.7` and `SDI_ER < 0.3` | 13.5% | 95.5% | 95.5% | 10.3% | 0.90 |
+| **Mixed** | everything else | 31.2% | 87.2% | 86.0% | 47.2% | 0.93 |
+
+In the ambiguous quadrant the specialist's and the LLM's scores are far apart, and the LLM is the one that is wrong. Qwen-7B is right 28.1% of the time, below chance for a three-way task, while stating a mean confidence of 0.93. FinBERT is right on 70.8% of the same rows. A confidence threshold on the LLM would not flag these rows. Where the specialist and the LLM diverge sharply, the evidence favours the specialist.
+
+In the domain-shift quadrant the lexicon is the odd one out, and its accuracy collapses to 10.3%.
+
+*A correction.* Earlier versions of this page, and the paper's shorthand, described the ambiguous quadrant as "the two cheap tiers agree but the LLM dissents". That is not the rule: VADER and FinBERT agree on only 61% of ambiguous rows. Restricting to rows where their labels do agree and Qwen-7B dissents (12.2% of FPB) gives Qwen-7B 32.6% and FinBERT 66.9%, which supports the same conclusion.
 
 Negative-class mean `SDI_LE` = 0.945.
 

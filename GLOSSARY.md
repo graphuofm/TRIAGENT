@@ -44,16 +44,16 @@ Two properties distinguish it from a conventional LLM cache: it caches committee
 
 ### Four-quadrant routing
 
-The partition of query space induced by thresholding `(SDI_LE, SDI_ER)`:
+The partition of query space induced by thresholding `(SDI_LE, SDI_ER)` at `SDI_LOW = 0.3` and `SDI_HIGH = 0.7`. The rules are checked in this order, so a row with both divergences high is `ambiguous`:
 
-| Quadrant | Condition | Meaning | Action |
-|---|---|---|---|
-| **Consensus** | both low | all tiers agree | return the cheap answer |
-| **Domain shift** | `SDI_LE` high, `SDI_ER` low | lexicon disagrees with the other two | trust the encoder |
-| **Ambiguous** | `SDI_LE` low, `SDI_ER` high | cheap pair agrees, reasoner dissents | **skip the LLM** — its accuracy here is 28% |
-| **Mixed** | both high | genuine difficulty | fire an interaction protocol |
+| Quadrant | Rule | Meaning | Share of FPB | Qwen-7B / FinBERT accuracy |
+|---|---|---|---|---|
+| **Ambiguous** | `SDI_ER > 0.7` | the encoder and the reasoner strongly disagree | 15.9% | **28.1%** / **70.8%** |
+| **Consensus** | `SDI_LE < 0.3` and `SDI_ER < 0.3` | all three scores are close | 39.4% | 96.5% / 96.4% |
+| **Domain shift** | `SDI_LE > 0.7` and `SDI_ER < 0.3` | the lexicon disagrees with the other two | 13.5% | 95.5% / 95.5% |
+| **Mixed** | everything else | moderate disagreement | 31.2% | 87.2% / 86.0% |
 
-The ambiguous quadrant is the paper's most counter-intuitive result: it is exactly where a confidence-threshold cascade would escalate, and exactly where escalating is wrong.
+The ambiguous quadrant is the paper's most counter-intuitive result. Qwen-7B is wrong on nearly three quarters of those rows while stating a mean confidence of 0.93, so a confidence threshold on the LLM would not flag them. On the same rows FinBERT is right 70.8% of the time.
 
 ---
 

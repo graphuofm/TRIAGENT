@@ -44,7 +44,7 @@ At the Balanced operating point, none that matters on the tested corpus — TriA
 
 ### Is TriAgent a model cascade?
 
-It is cascade-shaped but the escalation criterion is different. Classic cascades escalate on a *confidence* threshold from a single model, which fails when the model is confidently wrong. TriAgent escalates on *inter-model disagreement across granularities*, which catches exactly the case a confidence threshold misses. The paper documents this directly: in the ambiguous quadrant, where the cheap pair agrees but the LLM dissents, the LLM's accuracy is **28%** — below random for a three-way task.
+It is cascade-shaped but the escalation criterion is different. Classic cascades escalate on a *confidence* threshold from a single model, which fails when the model is confidently wrong. TriAgent escalates on *inter-model disagreement across granularities*, which catches exactly the case a confidence threshold misses. The paper documents this directly. In the ambiguous quadrant, where FinBERT's and Qwen-7B's scores differ by more than 0.7 (15.9% of Financial PhraseBank), Qwen-7B is right only **28%** of the time — below random for a three-way task — while stating a mean confidence of 0.93. FinBERT is right on 71% of the same rows.
 
 ---
 
