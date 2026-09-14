@@ -50,3 +50,6 @@ triagent-toolkit/
 
 # Internal distribution playbook — not for publication
 PROMOTION.md
+
+# Built Hugging Face dataset (regenerate with scripts/build_hf_dataset.py)
+hf_dataset/
