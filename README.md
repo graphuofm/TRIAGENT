@@ -5,6 +5,7 @@
 [![arXiv](https://img.shields.io/badge/arXiv-2607.19794-b31b1b.svg)](https://arxiv.org/abs/2607.19794)
 [![CIKM 2026](https://img.shields.io/badge/CIKM%202026-Short%20Paper-blue.svg)](https://doi.org/10.1145/3799682.3839978)
 [![DOI](https://img.shields.io/badge/DOI-10.1145%2F3799682.3839978-blue.svg)](https://doi.org/10.1145/3799682.3839978)
+[![Hugging Face Dataset](https://img.shields.io/badge/%F0%9F%A4%97%20Dataset-dingjiacheng%2Ftriagent-yellow.svg)](https://huggingface.co/datasets/dingjiacheng/triagent)
 [![FinLLM@IJCAI 2026](https://img.shields.io/badge/FinLLM%40IJCAI%202026-Long%20Oral%20Award-gold.svg)](https://arxiv.org/abs/2607.19794)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/)
@@ -12,6 +13,7 @@
 > 🏆 **Long Oral Paper Award — FinLLM @ IJCAI 2026 (Bremen).** 1 of 5 long-oral papers.
 > 📄 **Accepted at CIKM 2026** (Rome, 7–11 November 2026) — DOI [`10.1145/3799682.3839978`](https://doi.org/10.1145/3799682.3839978)
 > 📚 **arXiv preprint:** [arXiv:2607.19794](https://arxiv.org/abs/2607.19794)
+> 🤗 **Dataset:** [dingjiacheng/triagent](https://huggingface.co/datasets/dingjiacheng/triagent) — every per-sentence prediction behind the paper, 25,607 rows
 
 ---
 
@@ -207,6 +209,20 @@ cp .env.example .env   # OPENAI_API_KEY only needed for the GPT-4o-mini sanity c
 ```
 
 Tested on Python 3.10 + PyTorch CUDA 12.4, single NVIDIA RTX A5000 (24 GB).
+
+## Reproducing the results without a GPU
+
+Every per-sentence prediction is published as a Hugging Face dataset: 10 models, the SDI columns, 8 interaction protocols and the persona-vote control, across 5 configurations. Every paper table can be recomputed from it in seconds.
+
+```python
+from datasets import load_dataset
+from sklearn.metrics import f1_score
+
+df = load_dataset("dingjiacheng/triagent", "fpb", split="evaluation").to_pandas()
+print(f1_score(df["label_text"], df["critic_qwen1p5b_label"], average="macro"))  # 0.8707
+```
+
+Dataset card and column reference: [huggingface.co/datasets/dingjiacheng/triagent](https://huggingface.co/datasets/dingjiacheng/triagent)
 
 ## Reproducing every number in the paper
 

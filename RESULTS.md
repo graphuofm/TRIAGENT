@@ -323,6 +323,10 @@ Two observations worth noting. The most expensive policy is the **worst** on a r
 
 ## Reproducing everything
 
+Without a GPU: load the per-sentence predictions from [`dingjiacheng/triagent`](https://huggingface.co/datasets/dingjiacheng/triagent) and recompute any table above.
+
+From scratch:
+
 ```bash
 git clone https://github.com/graphuofm/TRIAGENT && cd TRIAGENT
 python -m venv venv && source venv/bin/activate

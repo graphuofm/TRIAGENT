@@ -44,13 +44,52 @@
       "inLanguage": "en",
       "license": "https://creativecommons.org/licenses/by/4.0/",
       "author": [
-        {"@type": "Person", "name": "Isabel Xu", "affiliation": {"@type": "Organization", "name": "The Overlake School"}},
-        {"@type": "Person", "name": "Cynthia Xu", "affiliation": {"@type": "Organization", "name": "The Overlake School"}},
-        {"@type": "Person", "name": "Rachel Ren", "affiliation": {"@type": "Organization", "name": "Edwards Vacuum Inc."}},
-        {"@type": "Person", "name": "Cong Guo", "affiliation": {"@type": "Organization", "name": "The University of Memphis"}},
-        {"@type": "Person", "name": "Jiacheng Ding", "email": "jding2@memphis.edu", "affiliation": {"@type": "Organization", "name": "The University of Memphis"}}
+        {
+          "@type": "Person",
+          "name": "Isabel Xu",
+          "affiliation": {
+            "@type": "Organization",
+            "name": "The Overlake School"
+          }
+        },
+        {
+          "@type": "Person",
+          "name": "Cynthia Xu",
+          "affiliation": {
+            "@type": "Organization",
+            "name": "The Overlake School"
+          }
+        },
+        {
+          "@type": "Person",
+          "name": "Rachel Ren",
+          "affiliation": {
+            "@type": "Organization",
+            "name": "Edwards Vacuum Inc."
+          }
+        },
+        {
+          "@type": "Person",
+          "name": "Cong Guo",
+          "affiliation": {
+            "@type": "Organization",
+            "name": "The University of Memphis"
+          }
+        },
+        {
+          "@type": "Person",
+          "name": "Jiacheng Ding",
+          "email": "jding2@memphis.edu",
+          "affiliation": {
+            "@type": "Organization",
+            "name": "The University of Memphis"
+          }
+        }
       ],
-      "publisher": {"@type": "Organization", "name": "Association for Computing Machinery"},
+      "publisher": {
+        "@type": "Organization",
+        "name": "Association for Computing Machinery"
+      },
       "isPartOf": {
         "@type": "PublicationEvent",
         "name": "35th ACM International Conference on Information and Knowledge Management (CIKM 2026)",
@@ -73,52 +112,163 @@
       "citation": "https://doi.org/10.1145/3799682.3839978"
     },
     {
+      "@type": "Dataset",
+      "@id": "https://huggingface.co/datasets/dingjiacheng/triagent",
+      "name": "TriAgent: Multi-Agent Committee Predictions for Financial Sentiment",
+      "description": "Every per-sentence prediction behind TriAgent (CIKM 2026): 25,607 rows across five configurations covering Financial PhraseBank, Twitter Financial News Sentiment, a Mandarin translation, adversarial perturbations, and the Shared Consensus Dictionary embeddings. Records labels, scores, confidences, latency and cost for ten models, the Semantic Divergence Index between tiers, eight multi-agent interaction protocols, and a same-model persona-vote control.",
+      "url": "https://huggingface.co/datasets/dingjiacheng/triagent",
+      "sameAs": "https://huggingface.co/datasets/dingjiacheng/triagent",
+      "license": "https://creativecommons.org/licenses/by-nc-sa/3.0/",
+      "isAccessibleForFree": true,
+      "inLanguage": [
+        "en",
+        "zh"
+      ],
+      "creator": [
+        {
+          "@type": "Person",
+          "name": "Isabel Xu",
+          "affiliation": {
+            "@type": "Organization",
+            "name": "The Overlake School"
+          }
+        },
+        {
+          "@type": "Person",
+          "name": "Cynthia Xu",
+          "affiliation": {
+            "@type": "Organization",
+            "name": "The Overlake School"
+          }
+        },
+        {
+          "@type": "Person",
+          "name": "Rachel Ren",
+          "affiliation": {
+            "@type": "Organization",
+            "name": "Edwards Vacuum Inc."
+          }
+        },
+        {
+          "@type": "Person",
+          "name": "Cong Guo",
+          "affiliation": {
+            "@type": "Organization",
+            "name": "The University of Memphis"
+          }
+        },
+        {
+          "@type": "Person",
+          "name": "Jiacheng Ding",
+          "email": "jding2@memphis.edu",
+          "affiliation": {
+            "@type": "Organization",
+            "name": "The University of Memphis"
+          }
+        }
+      ],
+      "citation": "https://doi.org/10.1145/3799682.3839978",
+      "isBasedOn": [
+        "https://huggingface.co/datasets/takala/financial_phrasebank",
+        "https://huggingface.co/datasets/zeroshot/twitter-financial-news-sentiment"
+      ],
+      "keywords": [
+        "financial sentiment analysis",
+        "LLM routing",
+        "Semantic Divergence Index",
+        "multi-agent",
+        "hallucination detection",
+        "calibration",
+        "semantic cache",
+        "cross-lingual"
+      ],
+      "variableMeasured": [
+        "macro-F1",
+        "Semantic Divergence Index",
+        "model confidence",
+        "latency",
+        "inference cost"
+      ],
+      "distribution": {
+        "@type": "DataDownload",
+        "encodingFormat": "application/vnd.apache.parquet",
+        "contentUrl": "https://huggingface.co/datasets/dingjiacheng/triagent"
+      }
+    },
+    {
       "@type": "FAQPage",
       "mainEntity": [
         {
           "@type": "Question",
           "name": "What is TriAgent?",
-          "acceptedAnswer": {"@type": "Answer", "text": "TriAgent is a divergence-aware multi-agent routing framework for LLM inference pipelines. It runs a committee of models stratified by contextual granularity - a word-level lexicon, a sentence-level domain transformer, and a cross-sentence LLM reasoner - and measures their disagreement using the Semantic Divergence Index (SDI). That single signal decides which tier answers each query, keys a multilingual semantic cache, and flags likely LLM hallucinations at AUC 0.90."}
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "TriAgent is a divergence-aware multi-agent routing framework for LLM inference pipelines. It runs a committee of models stratified by contextual granularity - a word-level lexicon, a sentence-level domain transformer, and a cross-sentence LLM reasoner - and measures their disagreement using the Semantic Divergence Index (SDI). That single signal decides which tier answers each query, keys a multilingual semantic cache, and flags likely LLM hallucinations at AUC 0.90."
+          }
         },
         {
           "@type": "Question",
           "name": "How do I reduce LLM inference costs in production?",
-          "acceptedAnswer": {"@type": "Answer", "text": "Stop sending every query to the most expensive model. TriAgent answers 70% of queries with a word-level lexicon, 28.5% with a sentence-level transformer, and escalates only 1.5% to the LLM. At 10 million users issuing 10 queries per day, always-GPT-4 costs $365M per year and always-GPT-4o-mini costs $11M per year, while TriAgent answers the same workload for $1.65M per year."}
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Stop sending every query to the most expensive model. TriAgent answers 70% of queries with a word-level lexicon, 28.5% with a sentence-level transformer, and escalates only 1.5% to the LLM. At 10 million users issuing 10 queries per day, always-GPT-4 costs $365M per year and always-GPT-4o-mini costs $11M per year, while TriAgent answers the same workload for $1.65M per year."
+          }
         },
         {
           "@type": "Question",
           "name": "Do I need labelled training data to build an LLM router?",
-          "acceptedAnswer": {"@type": "Answer", "text": "Not with TriAgent. FrugalGPT trains a scorer on labelled examples and RouteLLM trains on human preference data. The Semantic Divergence Index is computed arithmetically from tier outputs you already have - it is the absolute difference between two agents' scores. There is no router to train and no labelled routing data to collect."}
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Not with TriAgent. FrugalGPT trains a scorer on labelled examples and RouteLLM trains on human preference data. The Semantic Divergence Index is computed arithmetically from tier outputs you already have - it is the absolute difference between two agents' scores. There is no router to train and no labelled routing data to collect."
+          }
         },
         {
           "@type": "Question",
           "name": "What is the critic plateau?",
-          "acceptedAnswer": {"@type": "Answer", "text": "When an LLM is re-tasked as a critic - given the query plus two cheap agents' predictions and asked for a final label - macro-F1 plateaus at about 0.87 across Qwen 1.5B, 3B, and 7B, with overlapping bootstrap 95% confidence intervals. Model size stops buying accuracy. Since critic@1.5B costs $0.04 per 1000 queries and critic@7B costs $0.11, the larger model is three times the price for the same result."}
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "When an LLM is re-tasked as a critic - given the query plus two cheap agents' predictions and asked for a final label - macro-F1 plateaus at about 0.87 across Qwen 1.5B, 3B, and 7B, with overlapping bootstrap 95% confidence intervals. Model size stops buying accuracy. Since critic@1.5B costs $0.04 per 1000 queries and critic@7B costs $0.11, the larger model is three times the price for the same result."
+          }
         },
         {
           "@type": "Question",
           "name": "Is the critic plateau just multi-agent voting or self-consistency?",
-          "acceptedAnswer": {"@type": "Answer", "text": "No. The paper includes a negative control that rules this out. Three personas of the same Qwen-1.5B - bull, bear, and neutral prompts - voting together reach F1 0.66, below the 0.69 a single Qwen-1.5B achieves alone. Same model, same size, three agents, worse result. What produces the plateau is granularity-stratified diversity: agents that consume different context window sizes and therefore fail in structurally different ways."}
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. The paper includes a negative control that rules this out. Three personas of the same Qwen-1.5B - bull, bear, and neutral prompts - voting together reach F1 0.66, below the 0.69 a single Qwen-1.5B achieves alone. Same model, same size, three agents, worse result. What produces the plateau is granularity-stratified diversity: agents that consume different context window sizes and therefore fail in structurally different ways."
+          }
         },
         {
           "@type": "Question",
           "name": "How can I detect LLM hallucinations without extra API calls?",
-          "acceptedAnswer": {"@type": "Answer", "text": "Run a cheaper specialist model in parallel and measure the divergence. In TriAgent, SDI_ER - the gap between the sentence-level encoder and the LLM reasoner - separates correct from incorrect LLM outputs at ROC AUC 0.90. Mean divergence is 0.17 when the LLM is right and 0.71 when it is wrong. Because the encoder output is already computed for routing, the trust score costs nothing additional, unlike SelfCheckGPT which re-samples the same model n times."}
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Run a cheaper specialist model in parallel and measure the divergence. In TriAgent, SDI_ER - the gap between the sentence-level encoder and the LLM reasoner - separates correct from incorrect LLM outputs at ROC AUC 0.90. Mean divergence is 0.17 when the LLM is right and 0.71 when it is wrong. Because the encoder output is already computed for routing, the trust score costs nothing additional, unlike SelfCheckGPT which re-samples the same model n times."
+          }
         },
         {
           "@type": "Question",
           "name": "Can an LLM cache serve queries in a language it was never populated with?",
-          "acceptedAnswer": {"@type": "Answer", "text": "Yes. Because the Shared Consensus Dictionary keys on a multilingual sentence embedding, a Chinese query can match an English cache entry. At similarity threshold 0.70, 95% of Chinese-translated queries hit the English cache and the cached labels score F1 0.99. A new Chinese deployment inherits canonical answers from the existing English cache without running a Chinese committee at all."}
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Because the Shared Consensus Dictionary keys on a multilingual sentence embedding, a Chinese query can match an English cache entry. At similarity threshold 0.70, 95% of Chinese-translated queries hit the English cache and the cached labels score F1 0.99. A new Chinese deployment inherits canonical answers from the existing English cache without running a Chinese committee at all."
+          }
         },
         {
           "@type": "Question",
           "name": "Does the critic plateau always hold?",
-          "acceptedAnswer": {"@type": "Answer", "text": "No, and the paper is explicit about where it breaks. The plateau is calibration-conditional. On Financial PhraseBank, where FinBERT's Expected Calibration Error is 0.016, critic@1.5B reaches 0.87. On TFNS, informal Twitter financial text where FinBERT collapses to F1 0.66, the critic protocol reaches only 0.65 - below the 0.76 the LLM achieves alone. When the mid-tier specialist is miscalibrated, the critic scaffolding actively hurts."}
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No, and the paper is explicit about where it breaks. The plateau is calibration-conditional. On Financial PhraseBank, where FinBERT's Expected Calibration Error is 0.016, critic@1.5B reaches 0.87. On TFNS, informal Twitter financial text where FinBERT collapses to F1 0.66, the critic protocol reaches only 0.65 - below the 0.76 the LLM achieves alone. When the mid-tier specialist is miscalibrated, the critic scaffolding actively hurts."
+          }
         },
         {
           "@type": "Question",
           "name": "Is FinBERT still better than large language models for financial sentiment?",
-          "acceptedAnswer": {"@type": "Answer", "text": "On curated financial news, yes. On Financial PhraseBank, FinBERT reaches macro-F1 0.88 while Qwen-7B reaches 0.81, and the bootstrap 95% confidence intervals do not overlap. The domain specialist is statistically better at roughly one two-hundredth of the cost. On informal Twitter financial text the picture reverses: FinBERT collapses to 0.66 while Qwen-7B holds at 0.76."}
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "On curated financial news, yes. On Financial PhraseBank, FinBERT reaches macro-F1 0.88 while Qwen-7B reaches 0.81, and the bootstrap 95% confidence intervals do not overlap. The domain specialist is statistically better at roughly one two-hundredth of the cost. On informal Twitter financial text the picture reverses: FinBERT collapses to 0.66 while Qwen-7B holds at 0.76."
+          }
         }
       ]
     }
@@ -142,6 +292,7 @@
   <a class="badge award" href="https://arxiv.org/abs/2607.19794">🏆 Long Oral Award &mdash; FinLLM @ IJCAI 2026</a>
   <a class="badge" href="https://doi.org/10.1145/3799682.3839978">CIKM 2026 &mdash; Rome</a>
   <a class="badge" href="https://arxiv.org/abs/2607.19794">arXiv:2607.19794</a>
+  <a class="badge" href="https://huggingface.co/datasets/dingjiacheng/triagent">🤗 Dataset</a>
   <a class="badge" href="https://github.com/graphuofm/TRIAGENT">GitHub</a>
   <span class="badge">MIT License</span>
 </div>
@@ -257,6 +408,13 @@ SDI_ER = |s_F − s_L|    encoder vs. reasoner  ← the trust signal</code></pre
   <a href="llm-hallucination-detection.html"><strong>Free hallucination detection</strong><span>AUC 0.898 with no extra model call, unlike re-sampling methods.</span></a>
   <a href="multilingual-llm-cache.html"><strong>A cache that crosses languages</strong><span>95% of Chinese queries served from an English cache at F1 0.99.</span></a>
 </div>
+
+<h2>Get the data</h2>
+
+<p>Every per-sentence prediction behind the paper is on Hugging Face as <a href="https://huggingface.co/datasets/dingjiacheng/triagent"><code>dingjiacheng/triagent</code></a>. It holds 25,607 rows across five configurations: ten models, the SDI columns, eight interaction protocols and the persona-vote control. Every table in the paper can be recomputed from it without a GPU.</p>
+
+<pre><code>from datasets import load_dataset
+df = load_dataset("dingjiacheng/triagent", "fpb", split="evaluation").to_pandas()</code></pre>
 
 <h2>Get the code</h2>
 
