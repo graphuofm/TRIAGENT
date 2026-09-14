@@ -32,7 +32,7 @@
         {"@type": "Question", "name": "What is the Semantic Divergence Index?",
          "acceptedAnswer": {"@type": "Answer", "text": "The Semantic Divergence Index (SDI) is the pairwise absolute difference between the continuous scores emitted by two models operating at different contextual granularities. For scores s_V, s_F, s_L in the range -1 to +1 from a lexicon, an encoder, and an LLM reasoner, SDI_LE = |s_V - s_F|, SDI_LR = |s_V - s_L|, and SDI_ER = |s_F - s_L|. It is arithmetic over outputs the pipeline already computed, so it needs no training."}},
         {"@type": "Question", "name": "How is SDI different from model confidence?",
-         "acceptedAnswer": {"@type": "Answer", "text": "Confidence comes from one model and fails when that model is confidently wrong. SDI comes from comparing two models that fail in different places. The difference is measurable: in the quadrant where the two cheap models agree but the LLM dissents - 15.9% of Financial PhraseBank - the LLM is right only 28% of the time, below chance for a three-way task, yet it is confident. A confidence threshold escalates there; SDI-based routing does not."}},
+         "acceptedAnswer": {"@type": "Answer", "text": "Confidence comes from one model and fails when that model is confidently wrong. SDI comes from comparing two models that fail in different places. The difference is measurable: in the quadrant where FinBERT's and Qwen-7B's scores differ by more than 0.7 - 15.9% of Financial PhraseBank - Qwen-7B is right only 28% of the time, below chance for a three-way task, while stating a mean confidence of 0.93. FinBERT is right on 71% of those rows. A confidence threshold on the LLM would not flag them; the divergence does."}},
         {"@type": "Question", "name": "Do I need training data to use SDI for routing?",
          "acceptedAnswer": {"@type": "Answer", "text": "No. SDI is computed arithmetically from model outputs. This distinguishes it from FrugalGPT, which trains a scorer on labelled examples, and RouteLLM, which trains on human preference data. There is no router to train and nothing to retrain when you swap a model."}},
         {"@type": "Question", "name": "Does any pair of models produce a useful divergence signal?",
@@ -80,21 +80,21 @@ SDI_ER = |s_F − s_L|    encoder vs. reasoner</code></pre>
 <p>SDI comes from comparing models that fail in <em>different places</em>. TriAgent's tiers are orthogonal by construction: each consumes a strictly larger context window than the previous, so the errors they can commit are structurally different. Measured on Financial PhraseBank, pairwise Cohen's κ ranges from 0.19 to 0.61, and pairwise Jaccard error overlap is only 0.132 to 0.146.</p>
 
 <blockquote>
-<p><strong>The measurement that makes the case.</strong> In the quadrant where the two cheap tiers agree but the LLM dissents — 15.9% of Financial PhraseBank — the LLM's accuracy is <strong>28%</strong>. Below chance for a three-way task. The LLM is confident there, so a confidence-threshold cascade escalates. That is exactly backwards: the correct move is to trust the orthogonal pair and skip the lone reasoner.</p>
+<p><strong>The measurement that makes the case.</strong> When FinBERT's and Qwen-7B's scores differ by more than 0.7 — 15.9% of Financial PhraseBank — Qwen-7B's accuracy is <strong>28%</strong>, below chance for a three-way task. Its mean stated confidence on those rows is 0.93, so a confidence threshold on the LLM would not flag them. FinBERT is right on 71% of the same rows. The correct move is to trust the specialist, not the confident reasoner.</p>
 </blockquote>
 
 <h2>Four-quadrant routing</h2>
 
-<p>Thresholding the pair <code>(SDI_LE, SDI_ER)</code> partitions query space into four regions, each with a distinct routing rule:</p>
+<p>Thresholding the pair <code>(SDI_LE, SDI_ER)</code> at <code>SDI_LOW = 0.3</code> and <code>SDI_HIGH = 0.7</code> partitions query space into four regions. The rules are checked in the order below, so a row where both divergences are high counts as ambiguous. Accuracies are measured on Financial PhraseBank.</p>
 
 <div class="scroll">
 <table>
-  <thead><tr><th>Quadrant</th><th>Condition</th><th>Reading</th><th>Action</th></tr></thead>
+  <thead><tr><th>Quadrant</th><th>Rule</th><th>Reading</th><th class="num">Share</th><th class="num">Qwen-7B acc.</th><th class="num">FinBERT acc.</th></tr></thead>
   <tbody>
-    <tr><td><strong>Consensus</strong></td><td>both low</td><td>all tiers agree</td><td>return the cheap answer</td></tr>
-    <tr><td><strong>Domain shift</strong></td><td><code>SDI_LE</code> high, <code>SDI_ER</code> low</td><td>lexicon disagrees with the other two</td><td>trust the encoder</td></tr>
-    <tr><td><strong>Ambiguous</strong></td><td><code>SDI_LE</code> low, <code>SDI_ER</code> high</td><td>cheap pair agrees, reasoner dissents</td><td><strong>skip the LLM</strong></td></tr>
-    <tr><td><strong>Mixed</strong></td><td>both high</td><td>genuine difficulty</td><td>fire an interaction protocol</td></tr>
+    <tr><td><strong>Ambiguous</strong></td><td><code>SDI_ER &gt; 0.7</code></td><td>encoder and reasoner strongly disagree</td><td class="num">15.9%</td><td class="num"><strong>28.1%</strong></td><td class="num"><strong>70.8%</strong></td></tr>
+    <tr><td><strong>Consensus</strong></td><td><code>SDI_LE &lt; 0.3</code> and <code>SDI_ER &lt; 0.3</code></td><td>all three scores are close</td><td class="num">39.4%</td><td class="num">96.5%</td><td class="num">96.4%</td></tr>
+    <tr><td><strong>Domain shift</strong></td><td><code>SDI_LE &gt; 0.7</code> and <code>SDI_ER &lt; 0.3</code></td><td>lexicon disagrees with the other two</td><td class="num">13.5%</td><td class="num">95.5%</td><td class="num">95.5%</td></tr>
+    <tr><td><strong>Mixed</strong></td><td>everything else</td><td>moderate disagreement</td><td class="num">31.2%</td><td class="num">87.2%</td><td class="num">86.0%</td></tr>
   </tbody>
 </table>
 </div>

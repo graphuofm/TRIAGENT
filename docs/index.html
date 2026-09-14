@@ -191,7 +191,7 @@ SDI_ER = |s_F − s_L|    encoder vs. reasoner  ← the trust signal</code></pre
 <p>Thresholding <code>(SDI_LE, SDI_ER)</code> partitions queries into four quadrants, each with its own routing rule. Thresholds come from a grid search on a 20% validation split; the sweep is monotone, so any pair inside <code>[0.2, 0.4] × [0.6, 0.8]</code> is Pareto-comparable within 0.4 points.</p>
 
 <blockquote>
-<p><strong>The counter-intuitive quadrant.</strong> When the two cheap tiers agree but the LLM dissents &mdash; 15.9% of Financial PhraseBank &mdash; the LLM&rsquo;s accuracy is <strong>28%</strong>, below chance for a three-way task. A confidence-threshold cascade escalates exactly here. TriAgent&rsquo;s rule is the opposite: trust the orthogonal pair, skip the lone reasoner.</p>
+<p><strong>The counter-intuitive quadrant.</strong> When FinBERT&rsquo;s and Qwen-7B&rsquo;s scores differ by more than 0.7 &mdash; 15.9% of Financial PhraseBank &mdash; Qwen-7B is right only <strong>28%</strong> of the time, below chance for a three-way task, while stating a mean confidence of 0.93. FinBERT is right on 71% of the same rows. A confidence threshold on the LLM would not catch this; the divergence does.</p>
 </blockquote>
 
 <h2>Why a 1.5B critic matches a 7B critic</h2>
