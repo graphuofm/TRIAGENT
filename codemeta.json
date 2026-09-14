@@ -1,0 +1,133 @@
+{
+  "@context": "https://w3id.org/codemeta/3.0",
+  "@type": "SoftwareSourceCode",
+  "name": "TriAgent",
+  "description": "TriAgent is a divergence-aware multi-agent routing framework that reduces large language model inference cost by routing each query to the cheapest model tier that can answer it correctly. It stratifies agents by contextual granularity - a word-level lexicon, a sentence-level domain transformer, and a cross-sentence LLM reasoner - and uses the Semantic Divergence Index (SDI), the pairwise disagreement between those tiers, as an unsupervised routing signal, a multilingual semantic cache key, and a post-hoc LLM hallucination detector at AUC 0.90.",
+  "identifier": "https://doi.org/10.1145/3799682.3839978",
+  "codeRepository": "https://github.com/graphuofm/TRIAGENT",
+  "url": "https://github.com/graphuofm/TRIAGENT",
+  "programmingLanguage": [
+    {
+      "@type": "ComputerLanguage",
+      "name": "Python",
+      "version": "3.10"
+    }
+  ],
+  "runtimePlatform": "Python 3.10",
+  "license": "https://spdx.org/licenses/MIT",
+  "version": "1.0.0",
+  "dateCreated": "2026-04-30",
+  "datePublished": "2026-07-22",
+  "developmentStatus": "active",
+  "applicationCategory": "Natural Language Processing",
+  "keywords": [
+    "LLM routing",
+    "LLM inference cost",
+    "model cascade",
+    "semantic caching",
+    "multi-agent systems",
+    "hallucination detection",
+    "multilingual retrieval",
+    "financial sentiment analysis",
+    "cost-efficient inference",
+    "trust signals",
+    "Semantic Divergence Index",
+    "Shared Consensus Dictionary"
+  ],
+  "author": [
+    {
+      "@type": "Person",
+      "givenName": "Isabel",
+      "familyName": "Xu",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "The Overlake School"
+      }
+    },
+    {
+      "@type": "Person",
+      "givenName": "Cynthia",
+      "familyName": "Xu",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "The Overlake School"
+      }
+    },
+    {
+      "@type": "Person",
+      "givenName": "Rachel",
+      "familyName": "Ren",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "Edwards Vacuum Inc."
+      }
+    },
+    {
+      "@type": "Person",
+      "givenName": "Cong",
+      "familyName": "Guo",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "The University of Memphis"
+      }
+    },
+    {
+      "@type": "Person",
+      "givenName": "Jiacheng",
+      "familyName": "Ding",
+      "email": "jding2@memphis.edu",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "The University of Memphis"
+      }
+    }
+  ],
+  "maintainer": {
+    "@type": "Person",
+    "givenName": "Jiacheng",
+    "familyName": "Ding",
+    "email": "jding2@memphis.edu",
+    "affiliation": {
+      "@type": "Organization",
+      "name": "The University of Memphis"
+    }
+  },
+  "referencePublication": [
+    {
+      "@type": "ScholarlyArticle",
+      "name": "TriAgent: Granularity-Stratified Multi-Agent Routing with a Multilingual Semantic Cache and a Free Trust Signal for LLM Inference Pipelines",
+      "identifier": "https://doi.org/10.1145/3799682.3839978",
+      "datePublished": "2026-11-07",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Association for Computing Machinery"
+      },
+      "isPartOf": {
+        "@type": "PublicationEvent",
+        "name": "35th ACM International Conference on Information and Knowledge Management (CIKM 2026)",
+        "location": "Rome, Italy",
+        "startDate": "2026-11-07",
+        "endDate": "2026-11-11"
+      }
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "name": "TriAgent: Divergence-Aware Multi-Agent Committees for Cost-Efficient Financial Sentiment Analysis",
+      "identifier": "arXiv:2607.19794",
+      "url": "https://arxiv.org/abs/2607.19794",
+      "datePublished": "2026-07-22"
+    }
+  ],
+  "softwareRequirements": [
+    "torch>=2.0",
+    "transformers>=4.40",
+    "sentence-transformers>=2.7",
+    "vaderSentiment>=3.3",
+    "xgboost",
+    "numpy",
+    "pandas"
+  ],
+  "operatingSystem": "Linux",
+  "readme": "https://github.com/graphuofm/TRIAGENT/blob/main/README.md",
+  "issueTracker": "https://github.com/graphuofm/TRIAGENT/issues"
+}

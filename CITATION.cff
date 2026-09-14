@@ -1,0 +1,107 @@
+cff-version: 1.2.0
+message: "If you use TriAgent in your research, please cite the CIKM 2026 paper below."
+type: software
+title: "TriAgent: Divergence-Aware Multi-Agent Routing for Cost-Efficient LLM Inference"
+abstract: >-
+  TriAgent is a divergence-aware multi-agent routing framework that reduces
+  large language model inference cost by routing each query to the cheapest
+  model tier that can answer it correctly. It stratifies agents by contextual
+  granularity (a word-level lexicon, a sentence-level domain transformer, and
+  a cross-sentence LLM reasoner) and uses the Semantic Divergence Index (SDI),
+  the pairwise disagreement between those tiers, as an unsupervised routing
+  signal. The same SDI signal also serves as a multilingual semantic cache key
+  and as a post-hoc LLM hallucination detector at AUC 0.90, with no additional
+  model calls, labels, or training.
+authors:
+  - given-names: Isabel
+    family-names: Xu
+    affiliation: The Overlake School
+  - given-names: Cynthia
+    family-names: Xu
+    affiliation: The Overlake School
+  - given-names: Rachel
+    family-names: Ren
+    affiliation: Edwards Vacuum Inc.
+  - given-names: Cong
+    family-names: Guo
+    affiliation: The University of Memphis
+  - given-names: Jiacheng
+    family-names: Ding
+    affiliation: The University of Memphis
+    email: jding2@memphis.edu
+repository-code: "https://github.com/graphuofm/TRIAGENT"
+url: "https://github.com/graphuofm/TRIAGENT"
+license: MIT
+version: "1.0.0"
+date-released: "2026-07-22"
+keywords:
+  - LLM routing
+  - LLM inference cost
+  - model cascade
+  - semantic caching
+  - multi-agent systems
+  - hallucination detection
+  - multilingual retrieval
+  - financial sentiment analysis
+  - cost-efficient inference
+  - trust signals
+preferred-citation:
+  type: conference-paper
+  title: >-
+    TriAgent: Granularity-Stratified Multi-Agent Routing with a Multilingual
+    Semantic Cache and a Free Trust Signal for LLM Inference Pipelines
+  authors:
+    - given-names: Isabel
+      family-names: Xu
+      affiliation: The Overlake School
+    - given-names: Cynthia
+      family-names: Xu
+      affiliation: The Overlake School
+    - given-names: Rachel
+      family-names: Ren
+      affiliation: Edwards Vacuum Inc.
+    - given-names: Cong
+      family-names: Guo
+      affiliation: The University of Memphis
+    - given-names: Jiacheng
+      family-names: Ding
+      affiliation: The University of Memphis
+      email: jding2@memphis.edu
+  collection-title: >-
+    Proceedings of the 35th ACM International Conference on Information and
+    Knowledge Management (CIKM '26)
+  conference:
+    name: >-
+      35th ACM International Conference on Information and Knowledge
+      Management (CIKM 2026)
+    city: Rome
+    country: IT
+    date-start: "2026-11-07"
+    date-end: "2026-11-11"
+  publisher:
+    name: Association for Computing Machinery
+    city: New York
+    country: US
+  year: 2026
+  doi: 10.1145/3799682.3839978
+  url: "https://doi.org/10.1145/3799682.3839978"
+references:
+  - type: article
+    title: >-
+      TriAgent: Divergence-Aware Multi-Agent Committees for Cost-Efficient
+      Financial Sentiment Analysis
+    authors:
+      - given-names: Isabel
+        family-names: Xu
+      - given-names: Cynthia
+        family-names: Xu
+      - given-names: Rachel
+        family-names: Ren
+      - given-names: Cong
+        family-names: Guo
+      - given-names: Jiacheng
+        family-names: Ding
+    year: 2026
+    journal: arXiv
+    notes: "arXiv:2607.19794 [cs.CL]"
+    url: "https://arxiv.org/abs/2607.19794"

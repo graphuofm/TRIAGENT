@@ -27,3 +27,23 @@ TriAgent_Isabel_FinLLM_slides.pptx
 TriAgent_FinLLM_slides_Isabel.pptx
 triagent_arxiv_source.tar.gz
 triagent_arxiv_preview.pdf
+
+# LaTeX build artifacts
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.synctex.gz
+
+# Python build artifacts
+*.egg-info/
+__pycache__/
+*.pyc
+
+# CIKM submission workflow (internal — upload package, not for publication)
+cikm2026_camera_upload/
+
+# Toolkit still in development — README promises a PyPI package that does not
+# exist yet; publishing it would send readers to a broken `pip install`.
+triagent-toolkit/
