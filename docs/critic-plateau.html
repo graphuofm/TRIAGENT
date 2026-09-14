@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The critic plateau — a 1.5B model matches a 7B model when it adjudicates instead of classifying</title>
+<meta name="description" content="Re-tasking an LLM as a critic over two cheap agents plateaus macro-F1 at 0.87 across Qwen 1.5B, 3B, and 7B. A same-size 3-persona vote collapses to 0.66. Interaction substitutes for parameters. TriAgent, CIKM 2026.">
+<link rel="canonical" href="https://graphuofm.github.io/TRIAGENT/critic-plateau.html">
+<link rel="stylesheet" href="style.css">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The critic plateau — a 1.5B model matches a 7B model">
+<meta property="og:description" content="Give a small LLM two cheap opinions to adjudicate and it jumps from F1 0.69 to 0.87, matching a 7B model at one third the cost. The negative control shows why it is not ensembling.">
+<meta property="og:url" content="https://graphuofm.github.io/TRIAGENT/critic-plateau.html">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "headline": "The critic plateau: interaction substitutes for parameters in LLM committees",
+      "description": "When an LLM is re-tasked as a critic over cheaper agents' outputs, macro-F1 plateaus at approximately 0.87 across Qwen-1.5B, 3B, and 7B with overlapping bootstrap 95% confidence intervals. A same-size three-persona vote collapses to 0.66, identifying granularity-stratified diversity rather than multi-agent voting as the mechanism.",
+      "url": "https://graphuofm.github.io/TRIAGENT/critic-plateau.html",
+      "inLanguage": "en",
+      "author": {"@type": "Person", "name": "Jiacheng Ding", "affiliation": {"@type": "Organization", "name": "The University of Memphis"}},
+      "citation": "https://doi.org/10.1145/3799682.3839978",
+      "isBasedOn": "https://arxiv.org/abs/2607.19794",
+      "about": {"@type": "DefinedTerm", "name": "critic plateau", "description": "The empirical finding that LLM accuracy as a critic over cheaper agents saturates with respect to model size."}
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type": "Question", "name": "Can a small LLM match a large one?",
+         "acceptedAnswer": {"@type": "Answer", "text": "On this task, yes, when the small model adjudicates rather than classifies. Qwen2.5-1.5B asked to classify financial sentiment directly reaches macro-F1 0.69. Given the outputs of a word-level lexicon and a 110M-parameter sentence transformer and asked to adjudicate between them, the same 1.5B model reaches 0.87 - matching Qwen-3B at 0.87 and Qwen-7B at 0.86, with overlapping bootstrap 95% confidence intervals."}},
+        {"@type": "Question", "name": "Why does a 1.5B critic match a 7B critic?",
+         "acceptedAnswer": {"@type": "Answer", "text": "Because the critic is not solving the classification task from scratch. It is adjudicating between two structured opinions produced by agents that fail in different places. Adjudication is an easier problem than classification, and a small model can do it when given good scaffolding. The paper frames this as interaction substituting for parameters."}},
+        {"@type": "Question", "name": "Is the critic plateau just multi-agent voting or self-consistency?",
+         "acceptedAnswer": {"@type": "Answer", "text": "No. The negative control rules that out. Three personas of the same Qwen-1.5B - bull, bear, and neutral prompts - voting together reach F1 0.66, below the 0.69 a single instance of the same model achieves alone. Same parameters, same family, three agents, worse result. What produces the plateau is granularity-stratified diversity: agents that read different amounts of context and therefore fail in structurally different ways."}},
+        {"@type": "Question", "name": "Does the critic plateau always hold?",
+         "acceptedAnswer": {"@type": "Answer", "text": "No. It is calibration-conditional. On Financial PhraseBank, where the mid-tier specialist FinBERT has an Expected Calibration Error of 0.016, critic@1.5B reaches 0.87. On TFNS, informal Twitter financial text where FinBERT collapses to F1 0.66, the critic protocol reaches only 0.65 - below the 0.76 the LLM achieves alone. Miscalibrated scaffolding is worse than no scaffolding."}},
+        {"@type": "Question", "name": "Should I use the critic protocol or debate?",
+         "acceptedAnswer": {"@type": "Answer", "text": "They suit different size regimes. Critic feeds the LLM the cheap agents' outputs as scaffolding, which small models can integrate - critic@1.5B already reaches 0.87. Debate adds a second round in which the LLM also sees its own round-1 rationale, which is noise for a small model: debate scores 0.69 at 1.5B, 0.81 at 3B, and 0.87 at 7B. Debate only pays off at 7B, where it becomes the best protocol on the hardest class."}}
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<main>
+
+<p class="crumb"><a href="./">TriAgent</a> → The critic plateau</p>
+
+<h1>The critic plateau</h1>
+
+<p class="lede">Give a 1.5B model two cheap opinions to adjudicate instead of asking it to classify, and it jumps from macro-F1 0.69 to 0.87 — matching a 7B model at one third the cost.</p>
+
+<div class="badges">
+  <a class="badge" href="https://doi.org/10.1145/3799682.3839978">CIKM 2026</a>
+  <a class="badge" href="https://arxiv.org/abs/2607.19794">arXiv:2607.19794</a>
+  <a class="badge" href="https://github.com/graphuofm/TRIAGENT">Code</a>
+</div>
+
+<h2>The result</h2>
+
+<p>Instead of asking the LLM to classify the input directly, hand it the predictions of two much cheaper agents — a word-level lexicon and a 110M-parameter sentence transformer — and ask it to adjudicate between them. Macro-F1 on Financial PhraseBank:</p>
+
+<div class="scroll">
+<table>
+  <thead><tr><th>Protocol</th><th class="num">Qwen-1.5B</th><th class="num">Qwen-3B</th><th class="num">Qwen-7B</th><th class="num">Mistral-7B</th><th class="num">Phi-3.5-mini</th></tr></thead>
+  <tbody>
+    <tr><td>LLM alone</td><td class="num">0.69</td><td class="num">0.62</td><td class="num">0.81</td><td class="num">0.70</td><td class="num">—</td></tr>
+    <tr><td><strong>critic</strong></td><td class="num"><strong>0.87</strong></td><td class="num"><strong>0.87</strong></td><td class="num">0.86</td><td class="num">0.79</td><td class="num">0.86</td></tr>
+    <tr><td>debate</td><td class="num">0.69</td><td class="num">0.81</td><td class="num"><strong>0.87</strong></td><td class="num">0.82</td><td class="num">—</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>The lift over the LLM alone is <strong>+18 points at 1.5B</strong> and <strong>+25 points at 3B</strong>. Model size stops buying accuracy — and the bootstrap confidence intervals confirm the plateau is real rather than a trend:</p>
+
+<div class="scroll">
+<table>
+  <thead><tr><th>Strategy</th><th class="num">Macro-F1</th><th>Bootstrap 95% CI</th></tr></thead>
+  <tbody>
+    <tr><td>critic@1.5B</td><td class="num">0.8707</td><td>[0.8602, 0.8796]</td></tr>
+    <tr><td>critic@3B</td><td class="num">0.8702</td><td>[0.8598, 0.8796]</td></tr>
+    <tr><td>critic@7B</td><td class="num">0.8602</td><td>[0.8502, 0.8703]</td></tr>
+    <tr><td>debate@7B</td><td class="num">0.8722</td><td>[0.8624, 0.8816]</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>All four intervals overlap. Meanwhile <strong>critic@1.5B costs $0.04 per 1,000 queries and critic@7B costs $0.11</strong> — three times the price for a statistically indistinguishable result.</p>
+
+<figure>
+  <img src="figures/fig_interaction_vs_size.png" alt="Line chart of macro-F1 against LLM parameter count for three interaction protocols. The critic line is flat at approximately 0.87 from 1.5B through 7B. The debate line rises steeply from 0.69 at 1.5B to 0.87 at 7B. The LLM-alone line is lowest and non-monotone, dipping at 3B.">
+  <figcaption><strong>Macro-F1 against model size, by protocol.</strong> The critic line is flat — that flatness is the plateau. Debate rises with size instead, because a small model cannot discount its own weak round-1 rationale. The LLM-alone line is non-monotone: Qwen-3B (0.62) scores <em>below</em> Qwen-1.5B (0.69) by over-predicting the neutral class.</figcaption>
+</figure>
+
+<h2>Why it happens</h2>
+
+<p>The critic is not solving the classification task. It is adjudicating between two structured opinions from agents that fail in different places. Adjudication is a strictly easier problem, and a small model can do it when the scaffolding is good.</p>
+
+<p>The paper's framing: <strong>interaction substitutes for parameters.</strong> You can buy accuracy with model size, or you can buy it with better-structured inputs, and on this task the second is 3× cheaper.</p>
+
+<h2>The negative control that identifies the mechanism</h2>
+
+<p>The obvious objection is that this is just ensembling, or self-consistency, in a new costume. So the paper runs the control: three <em>personas</em> of the same Qwen2.5-1.5B — bull, bear, and neutral prompts — voting together.</p>
+
+<div class="scroll">
+<table>
+  <thead><tr><th>Configuration</th><th class="num">Macro-F1</th></tr></thead>
+  <tbody>
+    <tr><td>persona-bull</td><td class="num">0.74</td></tr>
+    <tr><td>persona-bear</td><td class="num">0.68</td></tr>
+    <tr><td>persona-neutral</td><td class="num">0.55</td></tr>
+    <tr><td><strong>3-persona vote</strong></td><td class="num"><strong>0.66</strong></td></tr>
+    <tr><td>single Qwen-1.5B baseline</td><td class="num">0.69</td></tr>
+    <tr><td><strong>cross-tier critic@1.5B</strong></td><td class="num"><strong>0.87</strong></td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>Inter-persona agreement is 81%. <strong>The homogeneous vote scores below a single instance of the same model.</strong> Same parameter count, same family, three agents, worse result.</p>
+
+<blockquote>
+<p>It is not "more agents". It is agents that read different amounts of context and therefore fail in structurally different places — what the paper calls <a href="semantic-divergence-index.html">granularity stratification</a>. Measured: pairwise Cohen's κ 0.19–0.61, pairwise Jaccard error overlap 0.132–0.146.</p>
+</blockquote>
+
+<h2>Where it fails</h2>
+
+<p>The plateau is <strong>calibration-conditional</strong>, and the paper reports the failure case in full rather than confining the claim to the dataset where it works.</p>
+
+<div class="scroll">
+<table>
+  <thead><tr><th>Testbed</th><th class="num">FinBERT F1</th><th class="num">FinBERT ECE</th><th class="num">critic@1.5B</th><th class="num">critic@7B</th><th class="num">LLM alone</th></tr></thead>
+  <tbody>
+    <tr><td>FPB (curated news)</td><td class="num">0.88</td><td class="num">0.016</td><td class="num"><strong>0.87</strong></td><td class="num">0.86</td><td class="num">0.81</td></tr>
+    <tr><td>TFNS (informal tweets)</td><td class="num">0.66</td><td class="num">—</td><td class="num">0.66</td><td class="num">0.65</td><td class="num"><strong>0.76</strong></td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>On TFNS both critic settings fall <em>below</em> the LLM-alone baseline. When the mid-tier specialist is miscalibrated on fragmented customer text, the critic scaffolding actively drags the LLM down. <strong>Bad scaffolding is worse than no scaffolding.</strong></p>
+
+<p>Two further limits. The plateau <em>height</em> is family-specific: Mistral-7B as critic reaches 0.79 — a 9-point lift over Mistral-7B alone, but short of the Qwen ceiling. And aggressive quantisation is not free: Qwen-14B at 4-bit scores 0.79, <em>below</em> 7B at bf16 (0.81).</p>
+
+<h2>The deployable recipe</h2>
+
+<p>Before committing to a critic setup on a new task:</p>
+
+<ol>
+  <li>Check your mid-tier specialist's calibration. If its Expected Calibration Error is poor, stop here.</li>
+  <li>Run a one-shot critic-versus-LLM-alone comparison on a held-out slice. If the critic does not beat the LLM alone, route around it.</li>
+  <li>If the plateau appears, pick the <em>smallest</em> model that reaches it. That is the entire cost saving.</li>
+  <li>Prefer critic at small sizes and debate at 7B and above.</li>
+</ol>
+
+<h2>Critic versus debate</h2>
+
+<p>The two protocols suit different size regimes, and the reason is mechanical. <em>Critic</em> gives the LLM the cheap agents' outputs as scaffolding — a small model can integrate that. <em>Debate</em> adds a round in which the LLM also sees its own round-1 rationale, which for a small model is noise it cannot discount. Hence debate's steep size curve (0.69 → 0.81 → 0.87) against critic's flat one.</p>
+
+<p>At 7B, debate overtakes: it becomes the only protocol that strictly beats the specialist on any class, reaching negative-class F1 0.893 against FinBERT's 0.879. The lift is precision-side (+2.1 pp) at near-equal recall — the operationally meaningful regime for risk management, where a false bearish flag triggers unnecessary hedging.</p>
+
+<h2>Related</h2>
+
+<div class="related">
+  <a href="semantic-divergence-index.html"><strong>Semantic Divergence Index</strong><span>The routing signal behind the architecture</span></a>
+  <a href="llm-inference-cost.html"><strong>Cutting LLM inference cost</strong><span>$365M/yr → $1.65M/yr at 10M users</span></a>
+  <a href="llm-hallucination-detection.html"><strong>Free hallucination detection</strong><span>AUC 0.90 with no extra model call</span></a>
+  <a href="multilingual-llm-cache.html"><strong>Cross-lingual semantic cache</strong><span>95% of Chinese queries from an English cache</span></a>
+</div>
+
+<footer>
+  <p>From <a href="https://doi.org/10.1145/3799682.3839978">TriAgent (CIKM 2026)</a> · <a href="https://arxiv.org/abs/2607.19794">arXiv:2607.19794</a> · <a href="https://github.com/graphuofm/TRIAGENT">code</a> · <a href="https://github.com/graphuofm/TRIAGENT/blob/main/RESULTS.md">all numbers</a></p>
+  <p>Isabel Xu, Cynthia Xu, Rachel Ren, Cong Guo, Jiacheng Ding — corresponding: <a href="mailto:jding2@memphis.edu">jding2@memphis.edu</a></p>
+</footer>
+
+</main>
+</body>
+</html>

@@ -1,0 +1,10 @@
+# TriAgent — https://graphuofm.github.io/TRIAGENT/
+# Research project site. All content is openly licensed: code MIT, paper CC BY 4.0.
+# Crawling and indexing by search engines and LLM retrieval systems is welcome.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://graphuofm.github.io/TRIAGENT/sitemap.xml
+
+# Structured summary for language models: /llms.txt

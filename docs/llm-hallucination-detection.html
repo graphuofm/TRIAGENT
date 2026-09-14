@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Detecting LLM hallucinations with no extra model call — AUC 0.90 from cross-model divergence</title>
+<meta name="description" content="Comparing an LLM against a cheaper specialist you already run separates correct from incorrect outputs at AUC 0.898, at zero marginal cost. Unlike SelfCheckGPT, no re-sampling. TriAgent, CIKM 2026.">
+<link rel="canonical" href="https://graphuofm.github.io/TRIAGENT/llm-hallucination-detection.html">
+<link rel="stylesheet" href="style.css">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Detecting LLM hallucinations with no extra model call">
+<meta property="og:description" content="Divergence between an LLM and a cheaper specialist predicts LLM errors at AUC 0.90 — free, because you already computed both outputs.">
+<meta property="og:url" content="https://graphuofm.github.io/TRIAGENT/llm-hallucination-detection.html">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "headline": "Detecting LLM hallucinations at zero marginal cost using cross-model divergence",
+      "description": "The divergence between a sentence-level encoder and an LLM reasoner separates correct from incorrect LLM outputs at ROC AUC 0.898 on Financial PhraseBank, with no additional model call, no labels, and no training.",
+      "url": "https://graphuofm.github.io/TRIAGENT/llm-hallucination-detection.html",
+      "inLanguage": "en",
+      "author": {"@type": "Person", "name": "Jiacheng Ding", "affiliation": {"@type": "Organization", "name": "The University of Memphis"}},
+      "citation": "https://doi.org/10.1145/3799682.3839978",
+      "isBasedOn": "https://arxiv.org/abs/2607.19794"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type": "Question", "name": "How can I detect LLM hallucinations without extra API calls?",
+         "acceptedAnswer": {"@type": "Answer", "text": "Run a cheaper specialist model in parallel and measure how far its score diverges from the LLM's. On Financial PhraseBank this separates correct from incorrect LLM outputs at ROC AUC 0.898, with Welch t = 46.8. Mean divergence is 0.168 when the LLM is right and 0.709 when it is wrong, a four-fold gap. Because the specialist output is already computed for routing, the trust score costs nothing additional."}},
+        {"@type": "Question", "name": "How does this compare to SelfCheckGPT?",
+         "acceptedAnswer": {"@type": "Answer", "text": "SelfCheckGPT and self-consistency detect errors by re-sampling the same model several times, so detection cost scales linearly with the number of samples. Cross-model divergence compares against a different model the pipeline already ran for another purpose, so the marginal cost is zero. The trade-off is that it requires you to already be running a second heterogeneous model; SelfCheckGPT works on a single model in isolation."}},
+        {"@type": "Question", "name": "Does any pair of models work as a hallucination detector?",
+         "acceptedAnswer": {"@type": "Answer", "text": "No. Only the cross-granularity pairing carries the signal. The encoder-versus-reasoner divergence reaches AUC 0.898, while lexicon-versus-encoder reaches 0.620 and lexicon-versus-reasoner only 0.575. Disagreement in general is a weak signal; disagreement across contextual granularities is a strong one."}},
+        {"@type": "Question", "name": "Does divergence also detect adversarial attacks on LLM inputs?",
+         "acceptedAnswer": {"@type": "Answer", "text": "Only partially. It reaches AUC approximately 0.71 on negation-insertion attacks but roughly 0.50, which is chance, on synonym swaps, numeric flips, and character-level typos. It is a strong hallucination detector and a weak adversarial detector, and should not be deployed as a substitute for purpose-built adversarial defences."}}
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<main>
+
+<p class="crumb"><a href="./">TriAgent</a> → Hallucination detection</p>
+
+<h1>Detecting LLM hallucinations for free</h1>
+
+<p class="lede">If you already run a cheaper specialist alongside your LLM, the gap between their scores tells you when the LLM is wrong — at <strong>AUC 0.898</strong>, with no extra model call, no labels, and no training.</p>
+
+<div class="badges">
+  <a class="badge" href="https://doi.org/10.1145/3799682.3839978">CIKM 2026</a>
+  <a class="badge" href="https://arxiv.org/abs/2607.19794">arXiv:2607.19794</a>
+  <a class="badge" href="https://github.com/graphuofm/TRIAGENT">Code</a>
+</div>
+
+<h2>The measurement</h2>
+
+<p>Stratify Financial PhraseBank by whether the LLM got the answer right, then look at <code>SDI_ER</code> — the absolute difference between the sentence-level encoder's score and the LLM's:</p>
+
+<div class="scroll">
+<table>
+  <thead><tr><th>Condition</th><th class="num">Mean <code>SDI_ER</code></th></tr></thead>
+  <tbody>
+    <tr><td>LLM is <strong>correct</strong></td><td class="num">0.168</td></tr>
+    <tr><td>LLM is <strong>wrong</strong></td><td class="num">0.709</td></tr>
+    <tr><td>Separation</td><td class="num"><strong>4.2×</strong></td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>Thresholded as a binary "the LLM is hallucinating" flag, that reaches <strong>ROC AUC = 0.898</strong>, with Welch t = 46.8 and p ≈ 6 × 10⁻²⁵⁵.</p>
+
+<figure>
+  <img src="figures/fig_e2_halluc_roc.png" alt="ROC curve plot with four lines. The SDI_ER curve bows sharply toward the top-left corner reaching AUC 0.898. SDI_max reaches 0.782. SDI_LE reaches 0.620 and SDI_LR 0.575, both close to the diagonal chance line.">
+  <figcaption><strong>ROC curves for each SDI variant as an "LLM is wrong" detector.</strong> Only the encoder-versus-reasoner pairing (<code>SDI_ER</code>) is a strong detector. The pairings that involve the word-level lexicon hug the diagonal.</figcaption>
+</figure>
+
+<h2>Why it costs nothing</h2>
+
+<p>In a <a href="semantic-divergence-index.html">tier-routed pipeline</a> the encoder's score is already computed — it is what decides whether the query needs to escalate in the first place. Reading it a second time as a trust signal adds one subtraction.</p>
+
+<div class="scroll">
+<table>
+  <thead><tr><th>Method</th><th>Marginal cost per query</th><th>Requires</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Cross-model divergence</strong></td><td><strong>zero</strong> — reuses an existing output</td><td>a second heterogeneous model in the pipeline</td></tr>
+    <tr><td><a href="https://doi.org/10.18653/v1/2023.emnlp-main.557">SelfCheckGPT</a></td><td><em>n</em> extra LLM samples</td><td>nothing beyond the LLM itself</td></tr>
+    <tr><td><a href="https://arxiv.org/abs/2203.11171">Self-consistency</a></td><td><em>n</em> extra LLM samples</td><td>nothing beyond the LLM itself</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>The honest trade-off: if you run exactly one model, SelfCheckGPT applies and this does not. There is nothing to diverge from.</p>
+
+<h2>Only cross-granularity disagreement works</h2>
+
+<p>This is the result that identifies the mechanism. Evaluated as detectors on the same data:</p>
+
+<div class="scroll">
+<table>
+  <thead><tr><th>Variant</th><th>Pairing</th><th class="num">Mean (right)</th><th class="num">Mean (wrong)</th><th class="num">Welch t</th><th class="num">AUC</th></tr></thead>
+  <tbody>
+    <tr><td><code>SDI_LE</code></td><td>lexicon vs. encoder</td><td class="num">0.394</td><td class="num">0.499</td><td class="num">8.66</td><td class="num">0.620</td></tr>
+    <tr><td><code>SDI_LR</code></td><td>lexicon vs. reasoner</td><td class="num">0.324</td><td class="num">0.386</td><td class="num">5.27</td><td class="num">0.575</td></tr>
+    <tr><td><strong><code>SDI_ER</code></strong></td><td><strong>encoder vs. reasoner</strong></td><td class="num"><strong>0.168</strong></td><td class="num"><strong>0.709</strong></td><td class="num"><strong>46.82</strong></td><td class="num"><strong>0.898</strong></td></tr>
+    <tr><td><code>SDI_max</code></td><td>max of the three</td><td class="num">0.443</td><td class="num">0.797</td><td class="num">32.21</td><td class="num">0.782</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>The lexicon-based pairings barely beat chance. What makes <code>SDI_ER</code> work is that the encoder and the reasoner read genuinely different amounts of context, so their errors are structurally different rather than correlated.</p>
+
+<h2>Where it does not work</h2>
+
+<p>The signal is a <strong>hallucination</strong> detector, not an <strong>adversarial</strong> detector, and the paper reports the negative result rather than omitting it:</p>
+
+<div class="scroll">
+<table>
+  <thead><tr><th>Attack type</th><th class="num">Detection AUC</th><th>Verdict</th></tr></thead>
+  <tbody>
+    <tr><td>Negation insertion</td><td class="num">0.71</td><td>moderate</td></tr>
+    <tr><td>Synonym swap</td><td class="num">≈ 0.50</td><td>chance</td></tr>
+    <tr><td>Numeric flip</td><td class="num">≈ 0.50</td><td>chance</td></tr>
+    <tr><td>Character drop / typo</td><td class="num">≈ 0.50</td><td>chance</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>It catches negation attacks and essentially nothing else. Do not deploy it as an adversarial defence — that needs purpose-built detectors, and the paper says so explicitly.</p>
+
+<h2>Wiring it up</h2>
+
+<p>If you are already running a specialist and an LLM in parallel, the whole implementation is:</p>
+
+<pre><code>s_specialist = encoder.score(query)     # already computed for routing
+s_llm        = reasoner.score(query)    # already computed for the answer
+
+trust = 1.0 - abs(s_specialist - s_llm) / 2.0
+
+if trust &lt; threshold:
+    flag_for_review(query)              # or fall back to the specialist</code></pre>
+
+<p>Threshold selection follows the same grid-search recipe as the routing thresholds: sweep on a held-out validation split and pick the point matching your tolerance for false flags.</p>
+
+<h2>Related</h2>
+
+<div class="related">
+  <a href="semantic-divergence-index.html"><strong>Semantic Divergence Index</strong><span>The signal, defined</span></a>
+  <a href="critic-plateau.html"><strong>The critic plateau</strong><span>Why a 1.5B model matches a 7B model</span></a>
+  <a href="llm-inference-cost.html"><strong>Cutting LLM inference cost</strong><span>$365M/yr → $1.65M/yr at 10M users</span></a>
+  <a href="multilingual-llm-cache.html"><strong>Cross-lingual semantic cache</strong><span>95% of Chinese queries from an English cache</span></a>
+</div>
+
+<footer>
+  <p>From <a href="https://doi.org/10.1145/3799682.3839978">TriAgent (CIKM 2026)</a> · <a href="https://arxiv.org/abs/2607.19794">arXiv:2607.19794</a> · <a href="https://github.com/graphuofm/TRIAGENT">code</a> · <a href="https://github.com/graphuofm/TRIAGENT/blob/main/RESULTS.md">all numbers</a></p>
+  <p>Isabel Xu, Cynthia Xu, Rachel Ren, Cong Guo, Jiacheng Ding — corresponding: <a href="mailto:jding2@memphis.edu">jding2@memphis.edu</a></p>
+</footer>
+
+</main>
+</body>
+</html>

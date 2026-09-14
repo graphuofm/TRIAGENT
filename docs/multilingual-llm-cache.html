@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A multilingual semantic cache for LLMs — 95% of Chinese queries served from an English cache</title>
+<meta name="description" content="Keying an LLM cache on a multilingual sentence embedding turns it into a cross-lingual canonicaliser: 95% of Chinese queries hit the English cache at F1 0.99, without running a Chinese pipeline at all. TriAgent, CIKM 2026.">
+<link rel="canonical" href="https://graphuofm.github.io/TRIAGENT/multilingual-llm-cache.html">
+<link rel="stylesheet" href="style.css">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A multilingual semantic cache for LLMs">
+<meta property="og:description" content="A new Chinese deployment inherits canonical answers from the existing English cache — 95% hit rate at F1 0.99 — because the cache key is a multilingual embedding.">
+<meta property="og:url" content="https://graphuofm.github.io/TRIAGENT/multilingual-llm-cache.html">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "headline": "A multilingual semantic cache for LLM pipelines: cross-lingual canonicalisation at zero marginal cost",
+      "description": "The Shared Consensus Dictionary caches committee decisions keyed by multilingual sentence-BERT embeddings. Because the encoder is multilingual, a Chinese query can match an English cache entry: at similarity threshold 0.70, 95% of Chinese queries hit the English cache at F1 0.99.",
+      "url": "https://graphuofm.github.io/TRIAGENT/multilingual-llm-cache.html",
+      "inLanguage": "en",
+      "author": {"@type": "Person", "name": "Jiacheng Ding", "affiliation": {"@type": "Organization", "name": "The University of Memphis"}},
+      "citation": "https://doi.org/10.1145/3799682.3839978",
+      "isBasedOn": "https://arxiv.org/abs/2607.19794",
+      "about": {"@type": "DefinedTerm", "name": "Shared Consensus Dictionary", "alternateName": "SCD", "description": "A semantic cache storing multi-agent committee decisions keyed by multilingual sentence embeddings, which functions as a cross-lingual canonicaliser."}
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type": "Question", "name": "Can an LLM cache serve queries in a language it was never populated with?",
+         "acceptedAnswer": {"@type": "Answer", "text": "Yes, if the cache key is a multilingual sentence embedding rather than a string. Measured on translated Financial PhraseBank, at cosine similarity threshold 0.70, 95% of Chinese queries match entries in an English-only cache and the cached labels score F1 0.99 against gold. A new Chinese deployment inherits canonical answers from the existing English cache without running a Chinese pipeline at all."}},
+        {"@type": "Question", "name": "How does the Shared Consensus Dictionary differ from GPTCache?",
+         "acceptedAnswer": {"@type": "Answer", "text": "Two differences. GPTCache stores single-model outputs; the Shared Consensus Dictionary stores committee decisions, which are more accurate than any individual member's output. And GPTCache uses a monolingual embedding, whereas keying on a multilingual encoder turns the cache into a cross-lingual canonicaliser rather than a per-language store that must be populated once per market."}},
+        {"@type": "Question", "name": "What is the accuracy cost of serving from a semantic cache?",
+         "acceptedAnswer": {"@type": "Answer", "text": "It is a tunable trade-off set by the similarity threshold. On Financial PhraseBank at threshold 0.95 the cache serves 3% of queries for a 0.3 percentage point F1 loss; at 0.85 it serves 10% for 0.8 points; at 0.50 it serves 83% for 14.5 points. The sweep is smooth, and scaling the cache from 4,838 to 16,769 sentences preserves the curve."}},
+        {"@type": "Question", "name": "Should I use the same model architecture in every language?",
+         "acceptedAnswer": {"@type": "Answer", "text": "No. The specialist-versus-LLM ranking inverts across languages. In English, FinBERT reaches macro-F1 0.88 against Qwen-7B's 0.81. In Mandarin, finbert-tone-chinese reaches only 0.72 against Qwen-7B's 0.80. Where no strong domain specialist exists, the LLM is the specialist and the routing hierarchy should invert. Optimal committee architecture is language-specific."}}
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<main>
+
+<p class="crumb"><a href="./">TriAgent</a> → Multilingual semantic cache</p>
+
+<h1>A cache that crosses languages</h1>
+
+<p class="lede">Key your LLM cache on a multilingual sentence embedding instead of a string, and a new market inherits the answers you already computed for the old one: <strong>95% of Chinese queries hit the English cache at F1 0.99</strong>.</p>
+
+<div class="badges">
+  <a class="badge" href="https://doi.org/10.1145/3799682.3839978">CIKM 2026</a>
+  <a class="badge" href="https://arxiv.org/abs/2607.19794">arXiv:2607.19794</a>
+  <a class="badge" href="https://github.com/graphuofm/TRIAGENT">Code</a>
+</div>
+
+<h2>What the Shared Consensus Dictionary stores</h2>
+
+<p>The Shared Consensus Dictionary (SCD) is a semantic cache with two properties that distinguish it from a conventional LLM cache.</p>
+
+<p>First, it caches <strong>committee decisions</strong> rather than single-model outputs — the adjudicated answer, which is more accurate than any individual member's. Second, its key is a <strong>multilingual</strong> sentence embedding (<code>paraphrase-multilingual-MiniLM-L12-v2</code>, 384 dimensions), which turns the cache into a cross-lingual canonicaliser.</p>
+
+<p>A query is embedded to φ(x), k-NN searched against cached entries by cosine similarity, and served the cached label when the best match σ* exceeds a threshold τ.</p>
+
+<h2>The cross-lingual result</h2>
+
+<p>Chinese-translated Financial PhraseBank queries matched against an <strong>English-only</strong> cache:</p>
+
+<div class="scroll">
+<table>
+  <thead><tr><th class="num">τ</th><th class="num">Cross-lingual hit rate</th><th class="num">Accuracy vs. gold</th><th class="num">F1 vs. gold</th></tr></thead>
+  <tbody>
+    <tr><td class="num">0.50</td><td class="num">100.0%</td><td class="num">0.987</td><td class="num">0.983</td></tr>
+    <tr><td class="num">0.60</td><td class="num">99.2%</td><td class="num">0.988</td><td class="num">0.983</td></tr>
+    <tr><td class="num"><strong>0.70</strong></td><td class="num"><strong>94.5%</strong></td><td class="num"><strong>0.990</strong></td><td class="num"><strong>0.987</strong></td></tr>
+    <tr><td class="num">0.75</td><td class="num">86.9%</td><td class="num">0.992</td><td class="num">0.990</td></tr>
+    <tr><td class="num">0.80</td><td class="num">75.3%</td><td class="num">0.997</td><td class="num">0.996</td></tr>
+    <tr><td class="num">0.85</td><td class="num">54.9%</td><td class="num">1.000</td><td class="num">1.000</td></tr>
+  </tbody>
+</table>
+</div>
+
+<blockquote>
+<p>At τ = 0.70 nearly every Chinese query finds an English entry that means the same thing, and the label it inherits is right 99% of the time. <strong>The Chinese committee never runs.</strong></p>
+</blockquote>
+
+<figure>
+  <img src="figures/fig_cross_lingual.png" alt="Plot of cross-lingual cache hit rate and F1 against similarity threshold tau. Hit rate falls from 100% at tau 0.5 to 55% at tau 0.85, while F1 rises from 0.983 to 1.000. The two curves cross in a broad region around tau 0.70 where hit rate is still 95% and F1 is already 0.99.">
+  <figcaption><strong>Hit rate against label quality as the similarity threshold moves.</strong> The useful property is how flat the F1 curve is: even at τ = 0.50, where the cache answers every single query, labels are still right 98% of the time. The operating point at 0.70 gives up almost nothing on either axis.</figcaption>
+</figure>
+
+<h2>The monolingual trade-off</h2>
+
+<p>Within a single language the threshold trades coverage against accuracy in the usual way. On Financial PhraseBank, 3,386 build / 1,452 query split:</p>
+
+<div class="scroll">
+<table>
+  <thead><tr><th class="num">τ</th><th class="num">Hit rate</th><th class="num">F1 loss vs. always-committee</th></tr></thead>
+  <tbody>
+    <tr><td class="num">0.95</td><td class="num">3%</td><td class="num">−0.3 pp</td></tr>
+    <tr><td class="num"><strong>0.85</strong></td><td class="num"><strong>10%</strong></td><td class="num"><strong>−0.8 pp</strong></td></tr>
+    <tr><td class="num">0.50</td><td class="num">83%</td><td class="num">−14.5 pp</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>Scaling the cache from 4,838 to 16,769 sentences preserves the shape of this curve, which suggests the trade-off is a property of the method rather than of the particular corpus.</p>
+
+<figure>
+  <img src="figures/fig_scd_tradeoff.png" alt="Trade-off curve of cache hit rate against macro-F1 as the similarity threshold sweeps from 0.95 down to 0.50. The curve is flat and near-lossless from 3% to about 30% hit rate, then bends downward sharply beyond 50% hit rate.">
+  <figcaption><strong>Cache coverage against accuracy.</strong> The curve is nearly flat up to roughly 30% coverage, then bends. The knee is where the operating point belongs.</figcaption>
+</figure>
+
+<h2>Against GPTCache</h2>
+
+<div class="scroll">
+<table>
+  <thead><tr><th></th><th><a href="https://doi.org/10.18653/v1/2023.nlposs-1.24">GPTCache</a></th><th>Shared Consensus Dictionary</th></tr></thead>
+  <tbody>
+    <tr><td>What is stored</td><td>single-model output</td><td><strong>committee decision</strong></td></tr>
+    <tr><td>Key</td><td>monolingual sentence embedding</td><td><strong>multilingual</strong> sentence embedding</td></tr>
+    <tr><td>Serves a new language</td><td>no — populate per language</td><td><strong>yes</strong> — inherits from any language already cached</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2>A caution: the architecture should change with the language</h2>
+
+<p>The cache crosses languages cleanly. The <em>model hierarchy</em> does not.</p>
+
+<div class="scroll">
+<table>
+  <thead><tr><th>Language</th><th>Specialist</th><th class="num">Specialist F1</th><th class="num">Qwen-7B F1</th><th>Winner</th></tr></thead>
+  <tbody>
+    <tr><td>English</td><td>FinBERT</td><td class="num"><strong>0.88</strong></td><td class="num">0.81</td><td>specialist</td></tr>
+    <tr><td>Mandarin</td><td><code>finbert-tone-chinese</code></td><td class="num">0.72</td><td class="num"><strong>0.80</strong></td><td><strong>LLM</strong></td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>The ranking inverts. Where no strong domain specialist exists for a language, <strong>the LLM is the specialist</strong> and the router should escalate from reasoner to encoder rather than the reverse. Optimal committee architecture is language-specific even when the cache is not.</p>
+
+<p>A sharper version of the same point: on <strong>FinChinaSentiment</strong> (5,738 genuine Chinese sentences), English VADER and English FinBERT both score F1 = 0.06 — essentially random, because they do not process Chinese at all. Cross-lingual transfer is a property of the multilingual <em>embedding</em>, not of the monolingual models sitting behind it.</p>
+
+<h2>Why cross-lingual transfer is nearly lossless here</h2>
+
+<p>Running the full multi-size sweep on 1,500 translated sentences: Qwen-7B reaches F1 0.80 in Chinese against 0.81 in English, a 1-point drop. Qwen-1.5B actually does slightly <em>better</em> in Chinese (0.72) than English (0.69). The 3B anomaly — where 3B underperforms 1.5B by over-predicting the neutral class — persists in both languages, which suggests it is a property of that checkpoint rather than of the language.</p>
+
+<h2>Related</h2>
+
+<div class="related">
+  <a href="semantic-divergence-index.html"><strong>Semantic Divergence Index</strong><span>The signal that decides what is cacheable</span></a>
+  <a href="critic-plateau.html"><strong>The critic plateau</strong><span>Why a 1.5B model matches a 7B model</span></a>
+  <a href="llm-inference-cost.html"><strong>Cutting LLM inference cost</strong><span>$365M/yr → $1.65M/yr at 10M users</span></a>
+  <a href="llm-hallucination-detection.html"><strong>Free hallucination detection</strong><span>AUC 0.90 with no extra model call</span></a>
+</div>
+
+<footer>
+  <p>From <a href="https://doi.org/10.1145/3799682.3839978">TriAgent (CIKM 2026)</a> · <a href="https://arxiv.org/abs/2607.19794">arXiv:2607.19794</a> · <a href="https://github.com/graphuofm/TRIAGENT">code</a> · <a href="https://github.com/graphuofm/TRIAGENT/blob/main/RESULTS.md">all numbers</a></p>
+  <p>Isabel Xu, Cynthia Xu, Rachel Ren, Cong Guo, Jiacheng Ding — corresponding: <a href="mailto:jding2@memphis.edu">jding2@memphis.edu</a></p>
+</footer>
+
+</main>
+</body>
+</html>

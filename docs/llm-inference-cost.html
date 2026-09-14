@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to reduce LLM inference cost in production — tier routing without a learned router</title>
+<meta name="description" content="At 10M users, always-GPT-4 costs $365M/yr and always-GPT-4o-mini $11M/yr. Routing by inter-model disagreement answers the same workload for $1.65M/yr, sending only 1.5% of queries to the expensive tier. No labelled routing data required.">
+<link rel="canonical" href="https://graphuofm.github.io/TRIAGENT/llm-inference-cost.html">
+<link rel="stylesheet" href="style.css">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How to reduce LLM inference cost in production">
+<meta property="og:description" content="Only 1.5% of queries need the expensive model. Routing by inter-model disagreement needs no learned router and no labelled routing data.">
+<meta property="og:url" content="https://graphuofm.github.io/TRIAGENT/llm-inference-cost.html">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "headline": "How to reduce LLM inference cost in production with tier routing",
+      "description": "A measured comparison of always-LLM policies against granularity-stratified tier routing. At 10 million users issuing 10 queries per day, always-GPT-4 costs $365M per year while divergence-based routing answers the same workload for $1.65M per year.",
+      "url": "https://graphuofm.github.io/TRIAGENT/llm-inference-cost.html",
+      "inLanguage": "en",
+      "author": {"@type": "Person", "name": "Jiacheng Ding", "affiliation": {"@type": "Organization", "name": "The University of Memphis"}},
+      "citation": "https://doi.org/10.1145/3799682.3839978",
+      "isBasedOn": "https://arxiv.org/abs/2607.19794"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type": "Question", "name": "How do I reduce LLM inference costs in production?",
+         "acceptedAnswer": {"@type": "Answer", "text": "The largest single lever is to stop sending every query to the most expensive model. Measured on financial sentiment, 70% of queries can be answered by a word-level lexicon, 28.5% by a 110M-parameter sentence transformer, and only 1.5% need the LLM. At 10 million users issuing 10 queries per day, always-GPT-4 costs $365M per year and always-GPT-4o-mini $11M per year, while tier routing answers the same workload for $1.65M per year."}},
+        {"@type": "Question", "name": "What are the alternatives to FrugalGPT and RouteLLM?",
+         "acceptedAnswer": {"@type": "Answer", "text": "FrugalGPT trains a scorer on labelled examples and RouteLLM trains on human preference data, so both carry a supervision cost and must be retrained when models change. TriAgent routes on the Semantic Divergence Index, the arithmetic difference between two models' scores, which requires no training data and no retraining. The trade-off is that it requires running two cheap models per query rather than one learned scorer."}},
+        {"@type": "Question", "name": "Does routing queries away from the LLM hurt accuracy?",
+         "acceptedAnswer": {"@type": "Answer", "text": "Not on the tested corpus. At the Balanced operating point the routed system matches or exceeds both always-GPT-4 and always-GPT-4o-mini on macro-F1. More strikingly, the always-LLM policy is off the Pareto front entirely: FinBERT alone reaches macro-F1 0.883 while Qwen-7B alone reaches 0.809, with non-overlapping bootstrap confidence intervals, at roughly one two-hundredth of the cost."}},
+        {"@type": "Question", "name": "Which model tier is the most expendable?",
+         "acceptedAnswer": {"@type": "Answer", "text": "The LLM. An ablation shows that dropping the LLM entirely and keeping only the lexicon and the encoder reaches macro-F1 0.70 at 7.5 times lower cost, just 1.8 points behind the full committee. Dropping the sentence-level encoder instead costs 13 points of F1. The domain specialist is the irreplaceable tier; the LLM is the cherry, not the cake."}}
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<main>
+
+<p class="crumb"><a href="./">TriAgent</a> → Reducing LLM inference cost</p>
+
+<h1>Reducing LLM inference cost</h1>
+
+<p class="lede">Most production pipelines send every query to the most capable model available. Measured on financial sentiment, only <strong>1.5%</strong> of queries actually need it.</p>
+
+<div class="badges">
+  <a class="badge" href="https://doi.org/10.1145/3799682.3839978">CIKM 2026</a>
+  <a class="badge" href="https://arxiv.org/abs/2607.19794">arXiv:2607.19794</a>
+  <a class="badge" href="https://github.com/graphuofm/TRIAGENT">Code</a>
+</div>
+
+<h2>The cost at scale</h2>
+
+<p>Annual inference cost at 10 queries per user per day, using public 2025 API prices and GPU rental amortised at $0.40/hour for self-hosted models:</p>
+
+<div class="scroll">
+<table>
+  <thead><tr><th>Strategy</th><th class="num">10K users</th><th class="num">1M users</th><th class="num">10M users</th></tr></thead>
+  <tbody>
+    <tr><td>Always-GPT-4</td><td class="num">$365K</td><td class="num">$36.5M</td><td class="num"><strong>$365M</strong></td></tr>
+    <tr><td>Always-GPT-4o-mini</td><td class="num">$11K</td><td class="num">$1.10M</td><td class="num"><strong>$11.0M</strong></td></tr>
+    <tr><td>Always-Qwen-7B (self-hosted)</td><td class="num">$1.05K</td><td class="num">$105K</td><td class="num">$1.05M</td></tr>
+    <tr><td>Always-FinBERT</td><td class="num">$18</td><td class="num">$1.8K</td><td class="num">$18K</td></tr>
+    <tr><td><strong>Tier routing (TriAgent)</strong></td><td class="num">—</td><td class="num">—</td><td class="num"><strong>$1.65M</strong></td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>At 10M users that is <strong>$363M/yr saved against always-GPT-4</strong> and <strong>$9.3M/yr against always-GPT-4o-mini</strong>.</p>
+
+<p>These are scenario estimates, not guarantees. They assume the cache hit rate and specialist accuracy measured in the paper carry over to the production workload, and that per-query API prices remain within an order of magnitude of 2025 published rates. A different workload mix scales the savings proportionally.</p>
+
+<figure>
+  <img src="figures/fig_cost_at_scale.png" alt="Log-log plot of annual inference cost in US dollars against user count from one thousand to ten million, with five lines: always-GPT-4 highest, then GPT-4o-mini, then self-hosted Qwen-7B, then TriAgent routing, with always-FinBERT lowest. All lines are straight on log axes, showing cost scales linearly with users.">
+  <figcaption><strong>Annual inference cost against deployment scale.</strong> Every policy scales linearly with user count, so the gap between the top and bottom lines compounds rather than closing. The routed system tracks near the specialist-only floor while retaining LLM-level accuracy on the queries that need it.</figcaption>
+</figure>
+
+<h2>Where the queries actually go</h2>
+
+<p>At the Balanced operating point:</p>
+
+<div class="scroll">
+<table>
+  <thead><tr><th>Tier</th><th>Reference model</th><th class="num">Share of traffic</th><th class="num">Latency</th><th class="num">Cost / 1k</th></tr></thead>
+  <tbody>
+    <tr><td><strong>L1</strong></td><td>word-level lexicon (VADER)</td><td class="num">70%</td><td class="num">~0.03 ms</td><td class="num">~$0</td></tr>
+    <tr><td><strong>L2</strong></td><td>sentence transformer (FinBERT, 110M)</td><td class="num">28.5%</td><td class="num">~1.5 ms</td><td class="num">~$0.0005</td></tr>
+    <tr><td><strong>L3</strong></td><td>LLM reasoner (Qwen2.5-7B)</td><td class="num">1.5%</td><td class="num">100s of ms</td><td class="num">~$0.11</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2>Routing without a learned router</h2>
+
+<p>The escalation decision uses the <a href="semantic-divergence-index.html">Semantic Divergence Index</a> — the absolute difference between two tiers' scores. That is arithmetic over outputs the pipeline already computed, which has a practical consequence: <strong>there is no router to train, no labelled routing set to collect, and nothing to retrain when you swap a model in or out.</strong></p>
+
+<div class="scroll">
+<table>
+  <thead><tr><th>System</th><th>Routing signal</th><th>Training data needed</th><th>Retrain on model swap?</th></tr></thead>
+  <tbody>
+    <tr><td><strong>TriAgent</strong></td><td>inter-tier divergence</td><td><strong>none</strong></td><td><strong>no</strong></td></tr>
+    <tr><td><a href="https://arxiv.org/abs/2305.05176">FrugalGPT</a></td><td>learned scorer confidence</td><td>labelled examples</td><td>yes</td></tr>
+    <tr><td><a href="https://arxiv.org/abs/2406.18665">RouteLLM</a></td><td>learned preference model</td><td>human preference pairs</td><td>yes</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2>The accuracy question</h2>
+
+<p>The intuition that the biggest model is the most accurate does not survive measurement here. On Financial PhraseBank:</p>
+
+<div class="scroll">
+<table>
+  <thead><tr><th>Model</th><th class="num">Macro-F1</th><th>Bootstrap 95% CI</th><th class="num">Relative cost</th></tr></thead>
+  <tbody>
+    <tr><td><strong>FinBERT (110M)</strong></td><td class="num"><strong>0.883</strong></td><td>[0.873, 0.893]</td><td class="num">1×</td></tr>
+    <tr><td>Qwen-7B</td><td class="num">0.809</td><td>[0.796, 0.820]</td><td class="num">~200×</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>The confidence intervals do not overlap. A 110M-parameter specialist is <em>statistically better</em> than a 7B general-purpose LLM on this task, at roughly 1/200th the cost — which puts the always-LLM policy off the Pareto front entirely.</p>
+
+<figure>
+  <img src="figures/fig_main_pareto.png" alt="Scatter plot of macro-F1 against log-scale cost per thousand queries. Routing strategies form a Pareto frontier curving up and to the right. The always-Qwen-7B point sits below and to the right of the FinBERT point, meaning it costs more and scores worse, placing it off the frontier.">
+  <figcaption><strong>The cost–accuracy Pareto frontier.</strong> Always-L3 sits <em>below and to the right</em> of always-L2 — it costs more and scores worse. Routing strategies sweep the frontier between the specialist floor and the committee ceiling.</figcaption>
+</figure>
+
+<h2>Which tier can you drop?</h2>
+
+<div class="scroll">
+<table>
+  <thead><tr><th>Configuration</th><th class="num">Macro-F1</th><th class="num">Cost / 1k</th><th>Verdict</th></tr></thead>
+  <tbody>
+    <tr><td>L1 + L2 + L3 (full)</td><td class="num">0.88</td><td class="num">$0.0006</td><td>baseline</td></tr>
+    <tr><td><strong>L1 + L2 (drop the LLM)</strong></td><td class="num"><strong>0.70</strong></td><td class="num"><strong>$0.00008</strong></td><td>7.5× cheaper, 1.8 pp behind</td></tr>
+    <tr><td>L1 + L3 (drop the encoder)</td><td class="num">−13 pp</td><td class="num">—</td><td><strong>catastrophic</strong></td></tr>
+  </tbody>
+</table>
+</div>
+
+<p><strong>The specialist is the irreplaceable tier; the LLM is the most expendable.</strong> If you are choosing where to spend engineering effort, fine-tune the domain encoder before you upgrade the reasoner.</p>
+
+<h2>Accuracy is not the only thing that pays</h2>
+
+<p>On a 20-ticker trading back-test the ordering is not what the F1 table predicts:</p>
+
+<div class="scroll">
+<table>
+  <thead><tr><th>Strategy</th><th class="num">Sharpe</th><th class="num">Return %</th></tr></thead>
+  <tbody>
+    <tr><td><strong>SDI single-stage routing</strong></td><td class="num"><strong>3.50</strong></td><td class="num">3.4</td></tr>
+    <tr><td>SDI two-stage routing</td><td class="num">2.90</td><td class="num">2.8</td></tr>
+    <tr><td>Always-VADER</td><td class="num">1.51</td><td class="num">2.0</td></tr>
+    <tr><td>Always-FinBERT</td><td class="num">1.36</td><td class="num">0.8</td></tr>
+    <tr><td><strong>Always-Qwen-7B</strong></td><td class="num"><strong>0.11</strong></td><td class="num">0.3</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>The most expensive policy is the worst on a risk-adjusted basis. And always-VADER beats always-FinBERT on Sharpe despite far worse F1 — classification accuracy and downstream value are only loosely coupled.</p>
+
+<h2>Before you adopt this</h2>
+
+<p>The approach depends on your mid-tier specialist being well calibrated. Where it is not, it performs <em>worse</em> than doing nothing: on TFNS, where FinBERT collapses to F1 0.66, the critic protocol drops to 0.65 against the LLM's own 0.76. Run the one-shot check described on the <a href="critic-plateau.html">critic plateau page</a> before committing.</p>
+
+<h2>Related</h2>
+
+<div class="related">
+  <a href="semantic-divergence-index.html"><strong>Semantic Divergence Index</strong><span>The routing signal, defined</span></a>
+  <a href="critic-plateau.html"><strong>The critic plateau</strong><span>Why a 1.5B model matches a 7B model</span></a>
+  <a href="llm-hallucination-detection.html"><strong>Free hallucination detection</strong><span>AUC 0.90 with no extra model call</span></a>
+  <a href="multilingual-llm-cache.html"><strong>Cross-lingual semantic cache</strong><span>95% of Chinese queries from an English cache</span></a>
+</div>
+
+<footer>
+  <p>From <a href="https://doi.org/10.1145/3799682.3839978">TriAgent (CIKM 2026)</a> · <a href="https://arxiv.org/abs/2607.19794">arXiv:2607.19794</a> · <a href="https://github.com/graphuofm/TRIAGENT">code</a> · <a href="https://github.com/graphuofm/TRIAGENT/blob/main/COMPARISON.md">vs. related systems</a></p>
+  <p>Isabel Xu, Cynthia Xu, Rachel Ren, Cong Guo, Jiacheng Ding — corresponding: <a href="mailto:jding2@memphis.edu">jding2@memphis.edu</a></p>
+</footer>
+
+</main>
+</body>
+</html>
