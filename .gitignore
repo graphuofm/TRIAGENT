@@ -47,3 +47,6 @@ cikm2026_camera_upload/
 # Toolkit still in development — README promises a PyPI package that does not
 # exist yet; publishing it would send readers to a broken `pip install`.
 triagent-toolkit/
+
+# Internal distribution playbook — not for publication
+PROMOTION.md
