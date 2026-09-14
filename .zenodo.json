@@ -1,0 +1,49 @@
+{
+  "title": "TriAgent: Divergence-Aware Multi-Agent Routing for Cost-Efficient LLM Inference",
+  "description": "<p>TriAgent is a divergence-aware multi-agent routing framework that reduces large language model inference cost by routing each query to the cheapest model tier that can answer it correctly. It stratifies agents by <em>contextual granularity</em> &mdash; a word-level lexicon, a sentence-level domain transformer, and a cross-sentence LLM reasoner &mdash; and uses the pairwise disagreement between them, the <strong>Semantic Divergence Index (SDI)</strong>, as an unsupervised routing signal.</p><p>The same signal serves two further purposes at zero marginal cost: it keys a multilingual semantic cache in which 95% of Chinese queries are answered from an English cache at F1 0.99, and it acts as a post-hoc LLM hallucination detector at ROC AUC 0.898.</p><p>The central empirical finding is the <strong>critic plateau</strong>: an LLM re-tasked as a critic over the cheaper agents' outputs reaches macro-F1 0.87 at 1.5B, 3B, and 7B alike, with overlapping bootstrap 95% confidence intervals. A same-size three-persona vote collapses to 0.66, identifying granularity-stratified diversity rather than multi-agent voting as the mechanism. The plateau is calibration-conditional and fails where the mid-tier specialist is miscalibrated; that failure case is reported in full.</p><p>This repository reproduces every number in the paper.</p>",
+  "upload_type": "software",
+  "license": "MIT",
+  "access_right": "open",
+  "creators": [
+    {"name": "Xu, Isabel", "affiliation": "The Overlake School"},
+    {"name": "Xu, Cynthia", "affiliation": "The Overlake School"},
+    {"name": "Ren, Rachel", "affiliation": "Edwards Vacuum Inc."},
+    {"name": "Guo, Cong", "affiliation": "The University of Memphis"},
+    {"name": "Ding, Jiacheng", "affiliation": "The University of Memphis"}
+  ],
+  "keywords": [
+    "LLM routing",
+    "LLM inference cost",
+    "model cascade",
+    "semantic caching",
+    "multi-agent systems",
+    "hallucination detection",
+    "multilingual retrieval",
+    "financial sentiment analysis",
+    "cost-efficient inference",
+    "Semantic Divergence Index",
+    "Shared Consensus Dictionary"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "10.1145/3799682.3839978",
+      "relation": "isSupplementTo",
+      "resource_type": "publication-conferencepaper",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "arXiv:2607.19794",
+      "relation": "isSupplementTo",
+      "resource_type": "publication-preprint",
+      "scheme": "arxiv"
+    },
+    {
+      "identifier": "https://github.com/graphuofm/TRIAGENT",
+      "relation": "isSupplementTo",
+      "resource_type": "software",
+      "scheme": "url"
+    }
+  ],
+  "language": "eng",
+  "notes": "Accepted as a short paper at CIKM 2026 (Rome, 7-11 November 2026). An earlier version received the Long Oral Paper Award at the FinLLM workshop at IJCAI 2026. The paper is published open access under CC BY 4.0; this code is MIT licensed."
+}

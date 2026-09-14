@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Semantic Divergence Index (SDI) — routing LLM queries by model disagreement</title>
+<meta name="description" content="The Semantic Divergence Index is the pairwise absolute difference between model scores, used as an unsupervised LLM routing signal. No learned router, no labelled routing data. Defined in TriAgent, CIKM 2026.">
+<link rel="canonical" href="https://graphuofm.github.io/TRIAGENT/semantic-divergence-index.html">
+<link rel="stylesheet" href="style.css">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Semantic Divergence Index — routing LLM queries by model disagreement">
+<meta property="og:description" content="An unsupervised LLM routing signal computed as the absolute difference between two models' scores. No router to train, no labelled data to collect.">
+<meta property="og:url" content="https://graphuofm.github.io/TRIAGENT/semantic-divergence-index.html">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "headline": "The Semantic Divergence Index (SDI): routing LLM queries by model disagreement",
+      "description": "The Semantic Divergence Index is the pairwise absolute difference between the continuous scores emitted by models at different contextual granularities. It is used as an unsupervised routing signal, requiring no learned router and no labelled routing data.",
+      "url": "https://graphuofm.github.io/TRIAGENT/semantic-divergence-index.html",
+      "inLanguage": "en",
+      "author": {"@type": "Person", "name": "Jiacheng Ding", "affiliation": {"@type": "Organization", "name": "The University of Memphis"}},
+      "citation": "https://doi.org/10.1145/3799682.3839978",
+      "isBasedOn": "https://arxiv.org/abs/2607.19794",
+      "about": {"@type": "DefinedTerm", "name": "Semantic Divergence Index", "alternateName": "SDI", "description": "The pairwise absolute difference between two models' continuous scores, used as an unsupervised routing and trust signal in multi-tier LLM inference pipelines."}
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type": "Question", "name": "What is the Semantic Divergence Index?",
+         "acceptedAnswer": {"@type": "Answer", "text": "The Semantic Divergence Index (SDI) is the pairwise absolute difference between the continuous scores emitted by two models operating at different contextual granularities. For scores s_V, s_F, s_L in the range -1 to +1 from a lexicon, an encoder, and an LLM reasoner, SDI_LE = |s_V - s_F|, SDI_LR = |s_V - s_L|, and SDI_ER = |s_F - s_L|. It is arithmetic over outputs the pipeline already computed, so it needs no training."}},
+        {"@type": "Question", "name": "How is SDI different from model confidence?",
+         "acceptedAnswer": {"@type": "Answer", "text": "Confidence comes from one model and fails when that model is confidently wrong. SDI comes from comparing two models that fail in different places. The difference is measurable: in the quadrant where the two cheap models agree but the LLM dissents - 15.9% of Financial PhraseBank - the LLM is right only 28% of the time, below chance for a three-way task, yet it is confident. A confidence threshold escalates there; SDI-based routing does not."}},
+        {"@type": "Question", "name": "Do I need training data to use SDI for routing?",
+         "acceptedAnswer": {"@type": "Answer", "text": "No. SDI is computed arithmetically from model outputs. This distinguishes it from FrugalGPT, which trains a scorer on labelled examples, and RouteLLM, which trains on human preference data. There is no router to train and nothing to retrain when you swap a model."}},
+        {"@type": "Question", "name": "Does any pair of models produce a useful divergence signal?",
+         "acceptedAnswer": {"@type": "Answer", "text": "No - only pairs at different contextual granularities. Measured as a hallucination detector, the encoder-versus-reasoner pairing reaches AUC 0.898 while the lexicon-versus-encoder pairing reaches only 0.620 and lexicon-versus-reasoner 0.575. Disagreement in general is weak; cross-granularity disagreement is strong."}}
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<main>
+
+<p class="crumb"><a href="./">TriAgent</a> → Semantic Divergence Index</p>
+
+<h1>The Semantic Divergence Index</h1>
+
+<p class="lede">An unsupervised routing signal for multi-tier LLM pipelines: the absolute difference between two models' scores, computed from outputs you already have.</p>
+
+<div class="badges">
+  <a class="badge" href="https://doi.org/10.1145/3799682.3839978">CIKM 2026</a>
+  <a class="badge" href="https://arxiv.org/abs/2607.19794">arXiv:2607.19794</a>
+  <a class="badge" href="https://github.com/graphuofm/TRIAGENT">Code</a>
+</div>
+
+<h2>Definition</h2>
+
+<p>Let <code>s_V</code>, <code>s_F</code>, <code>s_L</code> ∈ [−1, +1] be the continuous scores emitted by three agents operating at different contextual granularities — a word-level lexicon, a sentence-level encoder, and a cross-sentence reasoner. The Semantic Divergence Index is defined pairwise:</p>
+
+<pre><code>SDI_LE = |s_V − s_F|    lexicon vs. encoder
+SDI_LR = |s_V − s_L|    lexicon vs. reasoner
+SDI_ER = |s_F − s_L|    encoder vs. reasoner</code></pre>
+
+<p>Each SDI lies in [0, 2]. That is the whole definition — SDI is arithmetic, not a learned quantity, which is why a TriAgent router needs no labelled routing data and nothing has to be retrained when a model is swapped out.</p>
+
+<figure>
+  <img src="figures/fig_sdi_three_way.png" alt="Three-panel distribution plot of SDI_LE, SDI_LR, and SDI_ER on Financial PhraseBank, broken out by true sentiment class. The negative class shows a mean SDI_LE of 0.945, far higher than neutral or positive, indicating the lexicon and the encoder disagree most on negative sentiment.">
+  <figcaption><strong>The three SDI distributions on Financial PhraseBank, split by true class.</strong> The negative class has a mean <code>SDI_LE</code> of 0.945 — the lexicon and the encoder disagree most sharply on exactly the class that matters most for risk management.</figcaption>
+</figure>
+
+<h2>Why disagreement beats confidence</h2>
+
+<p>A conventional cascade escalates when the cheap model reports low confidence. That signal comes from a single model and therefore inherits that model's blind spots — it cannot detect the case where the model is confidently wrong.</p>
+
+<p>SDI comes from comparing models that fail in <em>different places</em>. TriAgent's tiers are orthogonal by construction: each consumes a strictly larger context window than the previous, so the errors they can commit are structurally different. Measured on Financial PhraseBank, pairwise Cohen's κ ranges from 0.19 to 0.61, and pairwise Jaccard error overlap is only 0.132 to 0.146.</p>
+
+<blockquote>
+<p><strong>The measurement that makes the case.</strong> In the quadrant where the two cheap tiers agree but the LLM dissents — 15.9% of Financial PhraseBank — the LLM's accuracy is <strong>28%</strong>. Below chance for a three-way task. The LLM is confident there, so a confidence-threshold cascade escalates. That is exactly backwards: the correct move is to trust the orthogonal pair and skip the lone reasoner.</p>
+</blockquote>
+
+<h2>Four-quadrant routing</h2>
+
+<p>Thresholding the pair <code>(SDI_LE, SDI_ER)</code> partitions query space into four regions, each with a distinct routing rule:</p>
+
+<div class="scroll">
+<table>
+  <thead><tr><th>Quadrant</th><th>Condition</th><th>Reading</th><th>Action</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Consensus</strong></td><td>both low</td><td>all tiers agree</td><td>return the cheap answer</td></tr>
+    <tr><td><strong>Domain shift</strong></td><td><code>SDI_LE</code> high, <code>SDI_ER</code> low</td><td>lexicon disagrees with the other two</td><td>trust the encoder</td></tr>
+    <tr><td><strong>Ambiguous</strong></td><td><code>SDI_LE</code> low, <code>SDI_ER</code> high</td><td>cheap pair agrees, reasoner dissents</td><td><strong>skip the LLM</strong></td></tr>
+    <tr><td><strong>Mixed</strong></td><td>both high</td><td>genuine difficulty</td><td>fire an interaction protocol</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2>Choosing the thresholds</h2>
+
+<p>Thresholds are set per task by a grid search on a held-out 20% validation split, minimising expected per-query cost subject to macro-F1 staying within 1 percentage point of the always-LLM baseline. The sweep is monotone: any <code>(θ_LE, θ_ER)</code> inside <code>[0.2, 0.4] × [0.6, 0.8]</code> is Pareto-comparable, within 0.4 percentage points of the reported operating points. The router is therefore not fragile to the exact threshold, and the same recipe transfers to a new task without hand-tuning.</p>
+
+<h2>One signal, three jobs</h2>
+
+<p>SDI was designed as a routing signal. Two further uses fell out of the architecture rather than being designed in:</p>
+
+<div class="scroll">
+<table>
+  <thead><tr><th>Use</th><th>Mechanism</th><th>Measured</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Routing</strong></td><td>four-quadrant threshold on <code>(SDI_LE, SDI_ER)</code></td><td>1.5% of queries reach the expensive tier</td></tr>
+    <tr><td><strong>Trust scoring</strong></td><td><code>SDI_ER</code> as a "the LLM is wrong" flag</td><td><a href="llm-hallucination-detection.html">AUC 0.898</a></td></tr>
+    <tr><td><strong>Cache admission</strong></td><td>low divergence means the answer is safely cacheable</td><td><a href="multilingual-llm-cache.html">95% cross-lingual hit at F1 0.99</a></td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2>Only cross-granularity pairings carry signal</h2>
+
+<p>Not every pairing is informative, which is itself evidence for the granularity-stratification premise. Evaluated as hallucination detectors on Financial PhraseBank:</p>
+
+<div class="scroll">
+<table>
+  <thead><tr><th>Variant</th><th>Pairing</th><th class="num">AUC</th></tr></thead>
+  <tbody>
+    <tr><td><code>SDI_LE</code></td><td>lexicon vs. encoder</td><td class="num">0.620</td></tr>
+    <tr><td><code>SDI_LR</code></td><td>lexicon vs. reasoner</td><td class="num">0.575</td></tr>
+    <tr><td><strong><code>SDI_ER</code></strong></td><td><strong>encoder vs. reasoner</strong></td><td class="num"><strong>0.898</strong></td></tr>
+    <tr><td><code>SDI_max</code></td><td>max of the three</td><td class="num">0.782</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>Disagreement in general is a weak signal. Disagreement <em>across granularities</em> is a strong one.</p>
+
+<h2>A note on the name</h2>
+
+<p>The acronym SDI is overloaded elsewhere — Shannon Diversity Index in ecology, Spatial Data Infrastructure in geoinformatics, Sustainable Development Indicator in policy. In TriAgent and the work that cites it, SDI always means Semantic Divergence Index.</p>
+
+<h2>Related</h2>
+
+<div class="related">
+  <a href="critic-plateau.html"><strong>The critic plateau</strong><span>Why a 1.5B model as critic matches a 7B model</span></a>
+  <a href="llm-inference-cost.html"><strong>Cutting LLM inference cost</strong><span>$365M/yr → $1.65M/yr at 10M users</span></a>
+  <a href="llm-hallucination-detection.html"><strong>Free hallucination detection</strong><span>AUC 0.90 with no extra model call</span></a>
+  <a href="multilingual-llm-cache.html"><strong>Cross-lingual semantic cache</strong><span>95% of Chinese queries from an English cache</span></a>
+</div>
+
+<footer>
+  <p>From <a href="https://doi.org/10.1145/3799682.3839978">TriAgent (CIKM 2026)</a> · <a href="https://arxiv.org/abs/2607.19794">arXiv:2607.19794</a> · <a href="https://github.com/graphuofm/TRIAGENT">code</a> · <a href="https://github.com/graphuofm/TRIAGENT/blob/main/GLOSSARY.md">glossary</a></p>
+  <p>Isabel Xu, Cynthia Xu, Rachel Ren, Cong Guo, Jiacheng Ding — corresponding: <a href="mailto:jding2@memphis.edu">jding2@memphis.edu</a></p>
+</footer>
+
+</main>
+</body>
+</html>
