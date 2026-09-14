@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TriAgent — Divergence-Aware Multi-Agent Routing for Cost-Efficient LLM Inference</title>
+<meta name="description" content="TriAgent cuts LLM inference cost 10-100x by routing each query to the cheapest model tier that can answer it. The Semantic Divergence Index (SDI) is an unsupervised routing signal, a multilingual cache key, and a free hallucination detector at AUC 0.90. CIKM 2026.">
+<link rel="canonical" href="https://graphuofm.github.io/TRIAGENT/">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="TriAgent — Divergence-Aware Multi-Agent Routing for Cost-Efficient LLM Inference">
+<meta property="og:description" content="A 1.5B model used as a critic matches a 7B model (F1 0.87). A same-size persona vote collapses to 0.66. Granularity-stratified diversity, not multi-agent voting, is the mechanism. CIKM 2026.">
+<meta property="og:url" content="https://graphuofm.github.io/TRIAGENT/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="TriAgent — Cost-Efficient LLM Inference Routing">
+<meta name="twitter:description" content="One divergence signal does three jobs: routes queries, keys a multilingual cache, and detects hallucinations at AUC 0.90. No learned router, no labelled data. CIKM 2026.">
+
+<meta name="citation_title" content="TriAgent: Granularity-Stratified Multi-Agent Routing with a Multilingual Semantic Cache and a Free Trust Signal for LLM Inference Pipelines">
+<meta name="citation_author" content="Xu, Isabel">
+<meta name="citation_author" content="Xu, Cynthia">
+<meta name="citation_author" content="Ren, Rachel">
+<meta name="citation_author" content="Guo, Cong">
+<meta name="citation_author" content="Ding, Jiacheng">
+<meta name="citation_publication_date" content="2026/11/07">
+<meta name="citation_conference_title" content="Proceedings of the 35th ACM International Conference on Information and Knowledge Management (CIKM '26)">
+<meta name="citation_doi" content="10.1145/3799682.3839978">
+<meta name="citation_arxiv_id" content="2607.19794">
+<meta name="citation_abstract_html_url" content="https://arxiv.org/abs/2607.19794">
+<meta name="citation_pdf_url" content="https://arxiv.org/pdf/2607.19794">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ScholarlyArticle",
+      "@id": "https://doi.org/10.1145/3799682.3839978",
+      "name": "TriAgent: Granularity-Stratified Multi-Agent Routing with a Multilingual Semantic Cache and a Free Trust Signal for LLM Inference Pipelines",
+      "headline": "TriAgent: Granularity-Stratified Multi-Agent Routing for LLM Inference Pipelines",
+      "abstract": "LLM-based information pipelines share a structural cost problem: the reasoner LLM dominates the per-query bill, yet a large fraction of queries are trivially handled by far cheaper specialists. TriAgent is a multi-agent inference router that stratifies agents by contextual granularity (word, sentence, cross-sentence) and gates routing with a three-way Semantic Divergence Index (SDI). The critic plateau is calibration-conditional; a Shared Consensus Dictionary answers 95% of Chinese queries from an English cache at F1 0.99; the same SDI doubles as a post-hoc hallucination detector at AUC 0.90.",
+      "identifier": "https://doi.org/10.1145/3799682.3839978",
+      "sameAs": "https://arxiv.org/abs/2607.19794",
+      "datePublished": "2026-11-07",
+      "inLanguage": "en",
+      "license": "https://creativecommons.org/licenses/by/4.0/",
+      "author": [
+        {"@type": "Person", "name": "Isabel Xu", "affiliation": {"@type": "Organization", "name": "The Overlake School"}},
+        {"@type": "Person", "name": "Cynthia Xu", "affiliation": {"@type": "Organization", "name": "The Overlake School"}},
+        {"@type": "Person", "name": "Rachel Ren", "affiliation": {"@type": "Organization", "name": "Edwards Vacuum Inc."}},
+        {"@type": "Person", "name": "Cong Guo", "affiliation": {"@type": "Organization", "name": "The University of Memphis"}},
+        {"@type": "Person", "name": "Jiacheng Ding", "email": "jding2@memphis.edu", "affiliation": {"@type": "Organization", "name": "The University of Memphis"}}
+      ],
+      "publisher": {"@type": "Organization", "name": "Association for Computing Machinery"},
+      "isPartOf": {
+        "@type": "PublicationEvent",
+        "name": "35th ACM International Conference on Information and Knowledge Management (CIKM 2026)",
+        "location": "Rome, Italy",
+        "startDate": "2026-11-07",
+        "endDate": "2026-11-11"
+      },
+      "keywords": "LLM routing, LLM inference cost, model cascade, semantic caching, multi-agent systems, hallucination detection, multilingual retrieval, financial sentiment analysis, Semantic Divergence Index, Shared Consensus Dictionary",
+      "award": "Long Oral Paper Award, FinLLM Workshop at IJCAI 2026",
+      "codeRepository": "https://github.com/graphuofm/TRIAGENT"
+    },
+    {
+      "@type": "SoftwareSourceCode",
+      "name": "TriAgent",
+      "description": "Reference implementation of TriAgent: divergence-aware multi-agent routing, the Shared Consensus Dictionary multilingual cache, and the SDI hallucination detector.",
+      "codeRepository": "https://github.com/graphuofm/TRIAGENT",
+      "programmingLanguage": "Python",
+      "license": "https://spdx.org/licenses/MIT",
+      "runtimePlatform": "Python 3.10",
+      "citation": "https://doi.org/10.1145/3799682.3839978"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is TriAgent?",
+          "acceptedAnswer": {"@type": "Answer", "text": "TriAgent is a divergence-aware multi-agent routing framework for LLM inference pipelines. It runs a committee of models stratified by contextual granularity - a word-level lexicon, a sentence-level domain transformer, and a cross-sentence LLM reasoner - and measures their disagreement using the Semantic Divergence Index (SDI). That single signal decides which tier answers each query, keys a multilingual semantic cache, and flags likely LLM hallucinations at AUC 0.90."}
+        },
+        {
+          "@type": "Question",
+          "name": "How do I reduce LLM inference costs in production?",
+          "acceptedAnswer": {"@type": "Answer", "text": "Stop sending every query to the most expensive model. TriAgent answers 70% of queries with a word-level lexicon, 28.5% with a sentence-level transformer, and escalates only 1.5% to the LLM. At 10 million users issuing 10 queries per day, always-GPT-4 costs $365M per year and always-GPT-4o-mini costs $11M per year, while TriAgent answers the same workload for $1.65M per year."}
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need labelled training data to build an LLM router?",
+          "acceptedAnswer": {"@type": "Answer", "text": "Not with TriAgent. FrugalGPT trains a scorer on labelled examples and RouteLLM trains on human preference data. The Semantic Divergence Index is computed arithmetically from tier outputs you already have - it is the absolute difference between two agents' scores. There is no router to train and no labelled routing data to collect."}
+        },
+        {
+          "@type": "Question",
+          "name": "What is the critic plateau?",
+          "acceptedAnswer": {"@type": "Answer", "text": "When an LLM is re-tasked as a critic - given the query plus two cheap agents' predictions and asked for a final label - macro-F1 plateaus at about 0.87 across Qwen 1.5B, 3B, and 7B, with overlapping bootstrap 95% confidence intervals. Model size stops buying accuracy. Since critic@1.5B costs $0.04 per 1000 queries and critic@7B costs $0.11, the larger model is three times the price for the same result."}
+        },
+        {
+          "@type": "Question",
+          "name": "Is the critic plateau just multi-agent voting or self-consistency?",
+          "acceptedAnswer": {"@type": "Answer", "text": "No. The paper includes a negative control that rules this out. Three personas of the same Qwen-1.5B - bull, bear, and neutral prompts - voting together reach F1 0.66, below the 0.69 a single Qwen-1.5B achieves alone. Same model, same size, three agents, worse result. What produces the plateau is granularity-stratified diversity: agents that consume different context window sizes and therefore fail in structurally different ways."}
+        },
+        {
+          "@type": "Question",
+          "name": "How can I detect LLM hallucinations without extra API calls?",
+          "acceptedAnswer": {"@type": "Answer", "text": "Run a cheaper specialist model in parallel and measure the divergence. In TriAgent, SDI_ER - the gap between the sentence-level encoder and the LLM reasoner - separates correct from incorrect LLM outputs at ROC AUC 0.90. Mean divergence is 0.17 when the LLM is right and 0.71 when it is wrong. Because the encoder output is already computed for routing, the trust score costs nothing additional, unlike SelfCheckGPT which re-samples the same model n times."}
+        },
+        {
+          "@type": "Question",
+          "name": "Can an LLM cache serve queries in a language it was never populated with?",
+          "acceptedAnswer": {"@type": "Answer", "text": "Yes. Because the Shared Consensus Dictionary keys on a multilingual sentence embedding, a Chinese query can match an English cache entry. At similarity threshold 0.70, 95% of Chinese-translated queries hit the English cache and the cached labels score F1 0.99. A new Chinese deployment inherits canonical answers from the existing English cache without running a Chinese committee at all."}
+        },
+        {
+          "@type": "Question",
+          "name": "Does the critic plateau always hold?",
+          "acceptedAnswer": {"@type": "Answer", "text": "No, and the paper is explicit about where it breaks. The plateau is calibration-conditional. On Financial PhraseBank, where FinBERT's Expected Calibration Error is 0.016, critic@1.5B reaches 0.87. On TFNS, informal Twitter financial text where FinBERT collapses to F1 0.66, the critic protocol reaches only 0.65 - below the 0.76 the LLM achieves alone. When the mid-tier specialist is miscalibrated, the critic scaffolding actively hurts."}
+        },
+        {
+          "@type": "Question",
+          "name": "Is FinBERT still better than large language models for financial sentiment?",
+          "acceptedAnswer": {"@type": "Answer", "text": "On curated financial news, yes. On Financial PhraseBank, FinBERT reaches macro-F1 0.88 while Qwen-7B reaches 0.81, and the bootstrap 95% confidence intervals do not overlap. The domain specialist is statistically better at roughly one two-hundredth of the cost. On informal Twitter financial text the picture reverses: FinBERT collapses to 0.66 while Qwen-7B holds at 0.76."}
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<style>
+  :root {
+    --bg: #ffffff;
+    --fg: #1a1a1a;
+    --muted: #5a5f66;
+    --border: #e2e5e9;
+    --accent: #9a2c2c;
+    --code-bg: #f5f6f8;
+    --table-head: #f0f2f5;
+    --highlight: #fdf6e3;
+    --max: 820px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #14161a;
+      --fg: #e6e8eb;
+      --muted: #9aa1ab;
+      --border: #2c3038;
+      --accent: #e06666;
+      --code-bg: #1c1f25;
+      --table-head: #1c1f25;
+      --highlight: #241f14;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding-block: 3rem;
+    padding-inline: 20px;
+    background: var(--bg);
+    color: var(--fg);
+    font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  main { max-width: var(--max); margin: 0 auto; }
+  h1 { font-size: 2rem; line-height: 1.2; margin: 0 0 .5rem; letter-spacing: -0.02em; }
+  h2 { font-size: 1.3rem; margin: 2.75rem 0 .85rem; padding-bottom: .35rem; border-bottom: 1px solid var(--border); letter-spacing: -0.01em; }
+  h3 { font-size: 1.05rem; margin: 1.75rem 0 .5rem; }
+  p { margin: 0 0 1rem; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .lede { font-size: 1.1rem; color: var(--fg); margin-bottom: 1.5rem; }
+  .authors { color: var(--muted); font-size: .95rem; margin-bottom: .35rem; }
+  .affil { color: var(--muted); font-size: .85rem; margin-bottom: 1.5rem; }
+  .badges { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1.75rem; }
+  .badge {
+    display: inline-block; padding: .3rem .7rem; border: 1px solid var(--border);
+    border-radius: 999px; font-size: .82rem; color: var(--fg); background: var(--code-bg);
+  }
+  .badge.award { background: var(--highlight); border-color: #d4b483; }
+  table { width: 100%; border-collapse: collapse; margin: 1.25rem 0; font-size: .92rem; }
+  th, td { text-align: left; padding: .55rem .7rem; border-bottom: 1px solid var(--border); }
+  th { background: var(--table-head); font-weight: 600; }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .scroll { overflow-x: auto; }
+  code { background: var(--code-bg); padding: .12em .38em; border-radius: 4px; font-size: .88em; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+  pre { background: var(--code-bg); padding: 1rem; border-radius: 8px; overflow-x: auto; border: 1px solid var(--border); }
+  pre code { background: none; padding: 0; font-size: .82rem; line-height: 1.55; }
+  blockquote { margin: 1.25rem 0; padding: .75rem 1rem; background: var(--code-bg); border-left: 3px solid var(--accent); border-radius: 0 6px 6px 0; }
+  blockquote p:last-child { margin-bottom: 0; }
+  .faq dt { font-weight: 600; margin-top: 1.4rem; }
+  .faq dd { margin: .4rem 0 0; color: var(--fg); }
+  footer { margin-top: 3.5rem; padding-top: 1.25rem; border-top: 1px solid var(--border); color: var(--muted); font-size: .88rem; }
+  .tiers { list-style: none; padding: 0; }
+  .tiers li { padding: .5rem 0; border-bottom: 1px solid var(--border); }
+  .tiers strong { display: inline-block; min-width: 2.5rem; }
+</style>
+</head>
+<body>
+<main>
+
+<h1>TriAgent</h1>
+
+<p class="lede">A divergence-aware multi-agent routing framework that cuts large language model inference cost by 10&ndash;100&times; &mdash; by sending each query to the cheapest model tier that can answer it correctly.</p>
+
+<p class="authors">Isabel Xu, Cynthia Xu, Rachel Ren, Cong Guo, Jiacheng Ding</p>
+<p class="affil">The Overlake School &middot; Edwards Vacuum Inc. &middot; The University of Memphis</p>
+
+<div class="badges">
+  <a class="badge award" href="https://arxiv.org/abs/2607.19794">🏆 Long Oral Award &mdash; FinLLM @ IJCAI 2026</a>
+  <a class="badge" href="https://doi.org/10.1145/3799682.3839978">CIKM 2026 &mdash; Rome</a>
+  <a class="badge" href="https://arxiv.org/abs/2607.19794">arXiv:2607.19794</a>
+  <a class="badge" href="https://github.com/graphuofm/TRIAGENT">GitHub</a>
+  <span class="badge">MIT License</span>
+</div>
+
+<h2>The idea in one paragraph</h2>
+
+<p>Production LLM pipelines share a structural cost trap: the reasoner LLM dominates the per-query bill, yet most queries are trivially handled by models that cost a thousandth as much. TriAgent runs three agents stratified by <strong>contextual granularity</strong> &mdash; a word-level lexicon, a sentence-level domain transformer, and a cross-sentence LLM reasoner &mdash; chosen so their failure modes are orthogonal by construction. The pairwise disagreement between them, the <strong>Semantic Divergence Index (SDI)</strong>, is then used for three things at once: deciding which tier answers the query, keying a multilingual semantic cache, and flagging likely LLM hallucinations. None of it requires a learned router or labelled routing data.</p>
+
+<h2>Five results</h2>
+
+<div class="scroll">
+<table>
+  <thead><tr><th>Finding</th><th>Result</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Critic plateau</strong></td><td>A 1.5B model used as a <em>critic</em> over two cheap agents reaches F<sub>1</sub> = 0.87, matching 3B and 7B (overlapping bootstrap 95% CIs). A same-size 3-persona vote collapses to F<sub>1</sub> = 0.66.</td></tr>
+    <tr><td><strong>Cost at scale</strong></td><td>At 10M users &times; 10 queries/day: always-GPT-4 $365M/yr, always-GPT-4o-mini $11M/yr, TriAgent $1.65M/yr.</td></tr>
+    <tr><td><strong>Multilingual cache</strong></td><td>95% of Chinese queries answered from an <em>English</em> cache at F<sub>1</sub> = 0.99.</td></tr>
+    <tr><td><strong>Free trust signal</strong></td><td>The same SDI predicts &ldquo;the LLM is wrong&rdquo; at AUC = 0.90, with no extra models, labels, or training.</td></tr>
+    <tr><td><strong>Back-test</strong></td><td>SDI single-stage routing reaches Sharpe = 3.50 on 20 tickers, against always-FinBERT 1.36 and always-LLM 0.11.</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2>How it works</h2>
+
+<h3>Three tiers, stratified by granularity</h3>
+
+<ul class="tiers">
+  <li><strong>L1</strong> &mdash; word-level lexicon (VADER). ~0.03 ms, effectively $0.</li>
+  <li><strong>L2</strong> &mdash; sentence-level domain transformer (FinBERT, 110M params). ~1.5 ms, ~$0.0005/1k.</li>
+  <li><strong>L3</strong> &mdash; cross-sentence reasoner (Qwen2.5 / Mistral-7B / Phi-3.5-mini). 100s of ms, ~$0.11/1k.</li>
+</ul>
+
+<p>Each tier consumes a strictly larger context window than the previous, so the errors they can commit are structurally different. Measured pairwise Cohen&rsquo;s &kappa; is 0.19&ndash;0.61; pairwise Jaccard error overlap is only 0.13&ndash;0.15.</p>
+
+<h3>The Semantic Divergence Index</h3>
+
+<pre><code>SDI_LE = |s_V − s_F|    lexicon vs. encoder
+SDI_LR = |s_V − s_L|    lexicon vs. reasoner
+SDI_ER = |s_F − s_L|    encoder vs. reasoner  ← the trust signal</code></pre>
+
+<p>Thresholding <code>(SDI_LE, SDI_ER)</code> partitions queries into four quadrants, each with its own routing rule. Thresholds come from a grid search on a 20% validation split; the sweep is monotone, so any pair inside <code>[0.2, 0.4] × [0.6, 0.8]</code> is Pareto-comparable within 0.4 points.</p>
+
+<blockquote>
+<p><strong>The counter-intuitive quadrant.</strong> When the two cheap tiers agree but the LLM dissents &mdash; 15.9% of Financial PhraseBank &mdash; the LLM&rsquo;s accuracy is <strong>28%</strong>, below chance for a three-way task. A confidence-threshold cascade escalates exactly here. TriAgent&rsquo;s rule is the opposite: trust the orthogonal pair, skip the lone reasoner.</p>
+</blockquote>
+
+<h2>Why a 1.5B critic matches a 7B critic</h2>
+
+<div class="scroll">
+<table>
+  <thead><tr><th>Protocol</th><th class="num">Qwen-1.5B</th><th class="num">Qwen-3B</th><th class="num">Qwen-7B</th><th class="num">Mistral-7B</th></tr></thead>
+  <tbody>
+    <tr><td>LLM alone</td><td class="num">0.69</td><td class="num">0.62</td><td class="num">0.81</td><td class="num">0.70</td></tr>
+    <tr><td><strong>critic</strong></td><td class="num"><strong>0.87</strong></td><td class="num"><strong>0.87</strong></td><td class="num">0.86</td><td class="num">0.79</td></tr>
+    <tr><td>debate</td><td class="num">0.69</td><td class="num">0.81</td><td class="num"><strong>0.87</strong></td><td class="num">0.82</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>The critic is not solving the task from scratch &mdash; it is adjudicating between two structured opinions from agents that fail in different places. Adjudication is an easier problem than classification, and a small model can do it. <strong>critic@1.5B costs $0.04 per 1k queries; critic@7B costs $0.11 &mdash; three times the price for the same F<sub>1</sub>.</strong></p>
+
+<p>The negative control identifies the mechanism. Three <em>personas</em> of the same Qwen-1.5B voting together reach F<sub>1</sub> = 0.66, <em>below</em> the 0.69 a single instance achieves alone. Multi-agent voting per se does not produce the plateau; granularity-stratified diversity does.</p>
+
+<h2>Where it fails</h2>
+
+<p>Stated plainly, because the boundary is part of the contribution.</p>
+
+<div class="scroll">
+<table>
+  <thead><tr><th>Testbed</th><th class="num">FinBERT F<sub>1</sub></th><th class="num">ECE</th><th class="num">critic@1.5B</th><th>Verdict</th></tr></thead>
+  <tbody>
+    <tr><td>FPB (curated news)</td><td class="num">0.88</td><td class="num">0.016</td><td class="num">0.87</td><td>plateau holds</td></tr>
+    <tr><td>TFNS (informal tweets)</td><td class="num">0.66</td><td class="num">&mdash;</td><td class="num">0.66</td><td><strong>plateau fails</strong> &mdash; below LLM-alone (0.76)</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>The plateau is <strong>calibration-conditional</strong>. When the mid-tier specialist is miscalibrated, the critic scaffolding actively hurts. The deployable rule is to run a one-shot critic-versus-LLM-alone check before committing. Two further limits: the plateau <em>height</em> is family-specific (Mistral-7B tops out at 0.79), and SDI is a weak <em>adversarial</em> detector (AUC &asymp; 0.5 on synonym swaps, numeric flips, and typos) even though it is a strong hallucination detector.</p>
+
+<h2>Frequently asked questions</h2>
+
+<dl class="faq">
+  <dt>Does TriAgent only work for financial sentiment analysis?</dt>
+  <dd>The architecture is task-agnostic &mdash; the router applies to any pipeline where a cheap specialist and a reasoner LLM co-exist, including dense-retrieval re-rankers, entity linkers, intent classifiers, and RAG re-readers. The empirical findings are validated on two financial testbeds and must be re-checked per task with the one-shot recipe in the paper.</dd>
+
+  <dt>Do I have to use VADER and FinBERT?</dt>
+  <dd>No. They are reference instances for financial sentiment, chosen because they are the canonical open baselines in their tier. Any cheap/mid/expensive triple works.</dd>
+
+  <dt>Is this a learned router?</dt>
+  <dd>No, and that is the point. SDI is arithmetic over tier outputs. FrugalGPT-style cascades need labelled examples and RouteLLM needs preference data; TriAgent needs neither.</dd>
+
+  <dt>How does the trust signal compare to SelfCheckGPT?</dt>
+  <dd>SelfCheckGPT re-samples the same model <em>n</em> times, so detection cost scales with samples. SDI compares against a different model the pipeline already ran, so the marginal cost is zero. Only the cross-granularity pairing carries the signal: SDI<sub>ER</sub> reaches AUC 0.898, while SDI<sub>LE</sub> manages 0.620 and SDI<sub>LR</sub> only 0.575.</dd>
+
+  <dt>Why does the cache work across languages?</dt>
+  <dd>Because the key is a multilingual sentence embedding, not a string. At &tau; = 0.70, 95% of Chinese queries match English entries at F<sub>1</sub> = 0.99 &mdash; a new Chinese deployment inherits canonical answers without running a Chinese committee.</dd>
+</dl>
+
+<p>Extended answers: <a href="https://github.com/graphuofm/TRIAGENT/blob/main/FAQ.md">FAQ</a> &middot; term definitions: <a href="https://github.com/graphuofm/TRIAGENT/blob/main/GLOSSARY.md">Glossary</a> &middot; every number: <a href="https://github.com/graphuofm/TRIAGENT/blob/main/RESULTS.md">Results</a> &middot; related work: <a href="https://github.com/graphuofm/TRIAGENT/blob/main/COMPARISON.md">Comparison</a>.</p>
+
+<h2>Get the code</h2>
+
+<pre><code>git clone https://github.com/graphuofm/TRIAGENT
+cd TRIAGENT
+python -m venv venv &amp;&amp; source venv/bin/activate
+pip install -r requirements.txt</code></pre>
+
+<p>Every reported number is reproducible from the <code>experiments/L1</code>&ndash;<code>L9</code> scripts. End-to-end wall-clock is 6&ndash;8 hours on a single NVIDIA RTX A5000 (24 GB).</p>
+
+<h2>Publications</h2>
+
+<div class="scroll">
+<table>
+  <thead><tr><th>Venue</th><th>Title</th><th>Status</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>CIKM 2026<br><span style="color:var(--muted);font-size:.85em">Rome, Nov 7&ndash;11</span></td>
+      <td>TriAgent: Granularity-Stratified Multi-Agent Routing with a Multilingual Semantic Cache and a Free Trust Signal for LLM Inference Pipelines</td>
+      <td>Accepted &mdash; <a href="https://doi.org/10.1145/3799682.3839978">10.1145/3799682.3839978</a></td>
+    </tr>
+    <tr>
+      <td>FinLLM @ IJCAI 2026<br><span style="color:var(--muted);font-size:.85em">Bremen</span></td>
+      <td>TriAgent: Divergence-Aware Multi-Agent Committees for Cost-Efficient and Privacy-Preserving Financial Sentiment Analysis</td>
+      <td>🏆 Long Oral Paper Award</td>
+    </tr>
+    <tr>
+      <td>arXiv</td>
+      <td>TriAgent: Divergence-Aware Multi-Agent Committees for Cost-Efficient Financial Sentiment Analysis</td>
+      <td><a href="https://arxiv.org/abs/2607.19794">arXiv:2607.19794</a></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h2>Cite</h2>
+
+<pre><code>@inproceedings{xu2026triagent,
+  title     = {TriAgent: Granularity-Stratified Multi-Agent Routing with a
+               Multilingual Semantic Cache and a Free Trust Signal for
+               {LLM} Inference Pipelines},
+  author    = {Xu, Isabel and Xu, Cynthia and Ren, Rachel and
+               Guo, Cong and Ding, Jiacheng},
+  booktitle = {Proceedings of the 35th ACM International Conference on
+               Information and Knowledge Management (CIKM '26)},
+  year      = {2026},
+  address   = {Rome, Italy},
+  publisher = {ACM},
+  doi       = {10.1145/3799682.3839978},
+}</code></pre>
+
+<footer>
+  <p>Corresponding author: Jiacheng Ding, The University of Memphis &mdash; <a href="mailto:jding2@memphis.edu">jding2@memphis.edu</a></p>
+  <p>Code released under the MIT License. Paper published open access under CC BY 4.0.</p>
+</footer>
+
+</main>
+</body>
+</html>
