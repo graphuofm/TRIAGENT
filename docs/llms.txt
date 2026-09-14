@@ -47,6 +47,7 @@ this requires a learned router or labelled routing data.
 - [Paper (CIKM 2026)](https://doi.org/10.1145/3799682.3839978): the peer-reviewed version.
 - [arXiv:2607.19794](https://arxiv.org/abs/2607.19794): open preprint, full experimental detail.
 - [Code repository](https://github.com/graphuofm/TRIAGENT): MIT licensed, reproduces every number.
+- [Dataset on Hugging Face](https://huggingface.co/datasets/dingjiacheng/triagent): every per-sentence prediction behind the paper (25,607 rows, 5 configs, CC BY-NC-SA 3.0). Recompute any table with no GPU.
 
 ## Reference documents
 
